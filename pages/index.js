@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Typography, Box } from "@material-ui/core";
-import ProTip from "../src/ProTip";
-import Link from "../src/Link";
-import Copyright from "../src/Copyright";
+import ProTip from "../components/ProTip";
+import Link from "../components/Link";
+import Copyright from "../components/Copyright";
 
 export default function Index() {
   return (
