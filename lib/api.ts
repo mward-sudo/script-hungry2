@@ -100,7 +100,7 @@ export async function getAllPostsForHome(preview) {
   return data?.posts
 }
 
-export async function getPostAndMorePosts(slug, preview, previewData) {
+export async function getPost(slug, preview, previewData) {
   const postPreview = preview && previewData?.post
   // The slug may be the id of an unpublished post
   const isId = Number.isInteger(Number(slug))
@@ -175,13 +175,6 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
             : ''
         }
       }
-      posts(first: 3, where: { orderby: { field: DATE, order: DESC } }) {
-        edges {
-          node {
-            ...PostFields
-          }
-        }
-      }
     }
   `,
     {
@@ -201,11 +194,6 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
     if (revision) Object.assign(data.post, revision)
     delete data.post.revisions
   }
-
-  // Filter out the main post
-  data.posts.edges = data.posts.edges.filter(({ node }) => node.slug !== slug)
-  // If there are still 3 posts, remove the last one
-  if (data.posts.edges.length > 2) data.posts.edges.pop()
 
   return data
 }

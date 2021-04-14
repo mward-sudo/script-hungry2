@@ -1,12 +1,19 @@
 import React from "react";
 import PostExcerpt from "./post-excerpt";
 
-const PostExcerptList: React.FC = ({ posts }) => {
+type PostsExcerptListProps = {
+  posts: undefined;
+};
+
+const PostExcerptList: React.FC<PostsExcerptListProps> = ({ posts }) => {
   return (
     <>
-      {posts.edges.map((post, index) => {
-        const { title, excerpt } = post.node;
-        return <PostExcerpt key={index} title={title} excerpt={excerpt} />;
+      {posts.edges.map((post) => {
+        const { title, excerpt, slug } = post.node;
+        console.log(slug);
+        return (
+          <PostExcerpt key={slug} title={title} excerpt={excerpt} slug={slug} />
+        );
       })}
     </>
   );
