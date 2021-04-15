@@ -5,7 +5,7 @@ const Post = ({ post, preview }) => {
   const router = useRouter();
   const { slug } = router.query;
 
-  return <>{post.title}</>;
+  return <>{post?.title}</>;
 };
 
 export async function getStaticProps({ params, preview = false, previewData }) {
