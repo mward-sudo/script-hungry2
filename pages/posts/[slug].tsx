@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { getAllPostsWithSlug, getPost } from "../../lib/api";
 import Header from "../../components/header";
-import Copyright from "../../components/Copyright";
+import Copyright from "../../components/copyright";
 import { Container, Box } from "@material-ui/core";
 
 const Post = ({ post, preview }) => {
@@ -13,6 +13,7 @@ const Post = ({ post, preview }) => {
       <Header element="p" />
       <Container maxWidth="sm">
         <Box my={4}>
+          <p>{slug}</p>
           <p>{post.title}</p>
           <Copyright />
         </Box>
