@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
+import { ElementType } from "react";
 import {
   AppBar,
   Toolbar,
@@ -11,7 +12,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 
 type HeaderProps = {
-  element?: string;
+  element?: ElementType;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -28,8 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Header: React.FC<HeaderProps> = ({ element }) => {
-  const router = useRouter();
+const Header: React.FC<HeaderProps> = ({ element = "h1" }) => {
   const classes = useStyles();
 
   return (
@@ -45,15 +45,12 @@ const Header: React.FC<HeaderProps> = ({ element }) => {
             <MenuIcon />
           </IconButton>
           <Typography
-            component={element && "h1"}
+            component={element}
             variant="h6"
             className={classes.title}
           >
             scriptHungry
           </Typography>
-          <Button color="inherit" onClick={() => router.back()}>
-            &lt; Back
-          </Button>
         </Toolbar>
       </AppBar>
     </div>
