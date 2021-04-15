@@ -1,11 +1,24 @@
 import { useRouter } from "next/router";
 import { getAllPostsWithSlug, getPost } from "../../lib/api";
+import Header from "../../components/header";
+import Copyright from "../../components/Copyright";
+import { Container, Box } from "@material-ui/core";
 
 const Post = ({ post, preview }) => {
   const router = useRouter();
   const { slug } = router.query;
 
-  return <>{post?.title}</>;
+  return (
+    <>
+      <Header element="p" />
+      <Container maxWidth="sm">
+        <Box my={4}>
+          <p>{post.title}</p>
+          <Copyright />
+        </Box>
+      </Container>
+    </>
+  );
 };
 
 export async function getStaticProps({ params, preview = false, previewData }) {
