@@ -14,7 +14,7 @@ const Post = ({ post, preview }) => {
       <Container maxWidth="sm">
         <Box my={4}>
           <p>{slug}</p>
-          <p>{post.title}</p>
+          <p>{post?.title}</p>
           <Copyright />
         </Box>
       </Container>
