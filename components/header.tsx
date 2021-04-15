@@ -11,7 +11,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 
 type HeaderProps = {
-  element: string;
+  element?: string;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
