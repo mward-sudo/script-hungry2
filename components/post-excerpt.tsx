@@ -22,8 +22,6 @@ const PostExcerpt: React.FC<PostExcerptProps> = ({ title, excerpt, slug }) => {
   }));
   const classes = useStyles();
 
-  console.log(slug);
-
   return (
     <Card>
       <Link href={`/posts/${slug}`} passHref>

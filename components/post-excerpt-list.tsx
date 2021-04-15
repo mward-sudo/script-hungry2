@@ -10,7 +10,6 @@ const PostExcerptList: React.FC<PostsExcerptListProps> = ({ posts }) => {
     <>
       {posts.edges.map((post) => {
         const { title, excerpt, slug } = post.node;
-        console.log(slug);
         return (
           <PostExcerpt key={slug} title={title} excerpt={excerpt} slug={slug} />
         );
