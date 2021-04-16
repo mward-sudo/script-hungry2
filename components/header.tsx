@@ -10,13 +10,23 @@ type HeaderProps = {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      flexGrow: 1
+      flexGrow: 1,
+      marginBottom: "5em"
+    },
+    appBar: {
+      display: "sticky",
+      backgroundColor: "rgba(255,255,255,0.75)",
+      backdropFilter: "blur(6px)",
+      zIndex: 1000
     },
     menuButton: {
       marginRight: theme.spacing(2)
     },
     title: {
-      flexGrow: 1
+      fontFamily: "monospace",
+      fontSize: 20,
+      flexGrow: 1,
+      color: "#333"
     }
   })
 );
@@ -26,12 +36,12 @@ const Header: FC<HeaderProps> = ({ element = "h1" }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar className={classes.appBar}>
         <Toolbar>
           <IconButton
             edge="start"
             className={classes.menuButton}
-            color="inherit"
+            color="primary"
             aria-label="menu"
           >
             <MenuIcon />
