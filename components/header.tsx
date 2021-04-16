@@ -1,6 +1,5 @@
-import { FC } from "react";
+import { FC, ElementType } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { ElementType } from "react";
 import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 
