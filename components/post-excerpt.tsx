@@ -35,18 +35,16 @@ const PostExcerpt: React.FC<PostExcerptProps> = ({
       <Link href={`/posts/${slug}`} passHref>
         <CardActionArea>
           <CardContent>
-            <CardMedia>
-              <PostHeaderImage
-                url={featuredImage.node.sourceUrl}
-                height={featuredImage.node.mediaDetails?.height}
-                width={featuredImage.node.mediaDetails?.width}
-              />
-            </CardMedia>
-
             <Typography variant="h5" component="h2">
               {title}
             </Typography>
-
+          </CardContent>
+          <PostHeaderImage
+            url={featuredImage.node.sourceUrl}
+            height={featuredImage.node.mediaDetails?.height}
+            width={featuredImage.node.mediaDetails?.width}
+          />
+          <CardContent>
             <div
               className={classes.body}
               dangerouslySetInnerHTML={{ __html: excerpt }}

@@ -10,7 +10,7 @@ type PostHeaderImageProps = {
 const PostHeaderImage: FC<PostHeaderImageProps> = ({ url, height, width }) => {
   return (
     <>
-      <Image src={url} height={height} width={width} />
+      <Image src={url} height={height} width={width} layout="responsive" />
     </>
   );
 };
