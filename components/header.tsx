@@ -1,4 +1,4 @@
-import React from "react";
+import { FC } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import { ElementType } from "react";
 import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const Header: React.FC<HeaderProps> = ({ element = "h1" }) => {
+const Header: FC<HeaderProps> = ({ element = "h1" }) => {
   const classes = useStyles();
 
   return (
