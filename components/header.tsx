@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
-      marginBottom: "5em"
+      marginBottom: "6em"
     },
     appBar: {
       display: "sticky",
