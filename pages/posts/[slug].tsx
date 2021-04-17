@@ -1,20 +1,24 @@
-import { useRouter } from "next/router";
 import { getAllPostsWithSlug, getPost } from "../../lib/api";
 import Header from "../../components/header";
+import PostHeaderImage from "../../components/post-header-image";
 import Copyright from "../../components/copyright";
-import { Container, Box } from "@material-ui/core";
+import { Container, Box, Typography } from "@material-ui/core";
 
 const Post = ({ post, preview }) => {
-  const router = useRouter();
-  const { slug } = router.query;
-
   return (
     <>
       <Header element="p" />
       <Container maxWidth="sm">
         <Box my={4}>
-          <p>{slug}</p>
-          <p>{post?.title}</p>
+          <Typography variant="h5" component="h1">
+            {post?.title}
+          </Typography>
+          <PostHeaderImage
+            url={post.featuredImage?.node.sourceUrl}
+            height={post.featuredImage?.node.mediaDetails?.height}
+            width={post.featuredImage?.node.mediaDetails?.width}
+          />
+          <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
           <Copyright />
         </Box>
       </Container>

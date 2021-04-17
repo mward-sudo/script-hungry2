@@ -126,6 +126,7 @@ export async function getPost(slug, preview, previewData) {
     fragment PostFields on Post {
       title
       excerpt
+      content
       slug
       date
       featuredImage {
