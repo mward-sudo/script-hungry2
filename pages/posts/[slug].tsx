@@ -5,7 +5,7 @@ import Copyright from "../../components/copyright";
 import { Container, Box, Typography } from "@material-ui/core";
 
 const featuredImage = (post) => {
-  return post.featuredImage ? (
+  return post ? (
     <PostHeaderImage
       url={post.featuredImage?.node.sourceUrl}
       height={post.featuredImage?.node.mediaDetails?.height}
@@ -26,7 +26,7 @@ const Post = ({ post, preview }) => {
             {post?.title}
           </Typography>
           {featuredImage(post)}
-          <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
+          <div dangerouslySetInnerHTML={{ __html: post?.content }}></div>
           <Copyright />
         </Box>
       </Container>
