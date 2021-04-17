@@ -4,6 +4,18 @@ import PostHeaderImage from "../../components/post-header-image";
 import Copyright from "../../components/copyright";
 import { Container, Box, Typography } from "@material-ui/core";
 
+const featuredImage = (post) => {
+  return post.featuredImage ? (
+    <PostHeaderImage
+      url={post.featuredImage?.node.sourceUrl}
+      height={post.featuredImage?.node.mediaDetails?.height}
+      width={post.featuredImage?.node.mediaDetails?.width}
+    />
+  ) : (
+    <></>
+  );
+};
+
 const Post = ({ post, preview }) => {
   return (
     <>
@@ -13,11 +25,7 @@ const Post = ({ post, preview }) => {
           <Typography variant="h5" component="h1">
             {post?.title}
           </Typography>
-          <PostHeaderImage
-            url={post.featuredImage?.node.sourceUrl}
-            height={post.featuredImage?.node.mediaDetails?.height}
-            width={post.featuredImage?.node.mediaDetails?.width}
-          />
+          {featuredImage(post)}
           <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
           <Copyright />
         </Box>
