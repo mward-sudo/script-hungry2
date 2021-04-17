@@ -1,6 +1,12 @@
 import { FC, ElementType } from "react";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import { AppBar, Toolbar, Typography, IconButton } from "@material-ui/core";
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+  Container
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 
 type HeaderProps = {
@@ -27,6 +33,10 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: 20,
       flexGrow: 1,
       color: "#333"
+    },
+    toolbar: {
+      width: "100%",
+      padding: 0
     }
   })
 );
@@ -37,23 +47,25 @@ const Header: FC<HeaderProps> = ({ element = "h1" }) => {
   return (
     <div className={classes.root}>
       <AppBar className={classes.appBar}>
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="primary"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            component={element}
-            variant="h6"
-            className={classes.title}
-          >
-            scriptHungry
-          </Typography>
-        </Toolbar>
+        <Container maxWidth="sm">
+          <Toolbar className={classes.toolbar}>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="primary"
+              aria-label="menu"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography
+              component={element}
+              variant="h6"
+              className={classes.title}
+            >
+              scriptHungry
+            </Typography>
+          </Toolbar>
+        </Container>
       </AppBar>
     </div>
   );
