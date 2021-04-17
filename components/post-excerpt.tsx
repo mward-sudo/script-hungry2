@@ -1,12 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import {
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
-  Typography
-} from "@material-ui/core";
+import { Typography, Button, Box } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PostHeaderImage from "./post-header-image";
 
@@ -24,35 +18,53 @@ const PostExcerpt: React.FC<PostExcerptProps> = ({
   featuredImage
 }) => {
   const useStyles = makeStyles(() => ({
+    blogPost: {
+      margin: "5em 0"
+    },
+    postHeading: {
+      fontSize: 24,
+      fontWeight: 600,
+      color: "red",
+      textDecoration: "none"
+    },
     body: {
       fontSize: 16
     }
   }));
   const classes = useStyles();
 
+  const url = `/posts/${slug}`;
+
   return (
-    <Card>
-      <Link href={`/posts/${slug}`} passHref>
-        <CardActionArea>
-          <CardContent>
-            <Typography variant="h5" component="h2">
-              {title}
-            </Typography>
-          </CardContent>
-          <PostHeaderImage
-            url={featuredImage.node.sourceUrl}
-            height={featuredImage.node.mediaDetails?.height}
-            width={featuredImage.node.mediaDetails?.width}
-          />
-          <CardContent>
-            <div
-              className={classes.body}
-              dangerouslySetInnerHTML={{ __html: excerpt }}
-            ></div>
-          </CardContent>
-        </CardActionArea>
+    <Box className={classes.blogPost}>
+      <Typography variant="h5" component="h2">
+        <Link href={url}>
+          <a className={classes.postHeading}>{title}</a>
+        </Link>
+      </Typography>
+
+      <div>
+        <Link href={url}>
+          <a>
+            <PostHeaderImage
+              url={featuredImage.node.sourceUrl}
+              height={featuredImage.node.mediaDetails?.height}
+              width={featuredImage.node.mediaDetails?.width}
+            />
+          </a>
+        </Link>
+      </div>
+      <div
+        className={classes.body}
+        dangerouslySetInnerHTML={{ __html: excerpt }}
+      ></div>
+
+      <Link href={url} passHref>
+        <Button variant="outlined" color="primary">
+          Read more…
+        </Button>
       </Link>
-    </Card>
+    </Box>
   );
 };
 
