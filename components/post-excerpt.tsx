@@ -25,7 +25,8 @@ const PostExcerpt: React.FC<PostExcerptProps> = ({
       fontSize: 24,
       fontWeight: 600,
       color: "red",
-      textDecoration: "none"
+      textDecoration: "none",
+      marginBottom: ".5em"
     },
     body: {
       fontSize: 16
