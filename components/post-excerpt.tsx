@@ -22,11 +22,13 @@ const PostExcerpt: React.FC<PostExcerptProps> = ({
       margin: "5em 0"
     },
     postHeading: {
+      marginBottom: "1em"
+    },
+    postHeadingLink: {
       fontSize: 24,
       fontWeight: 600,
       color: "red",
-      textDecoration: "none",
-      marginBottom: ".5em"
+      textDecoration: "none"
     },
     body: {
       fontSize: 16
@@ -38,9 +40,9 @@ const PostExcerpt: React.FC<PostExcerptProps> = ({
 
   return (
     <Box className={classes.blogPost}>
-      <Typography variant="h5" component="h2">
+      <Typography variant="h5" component="h2" className={classes.postHeading}>
         <Link href={url}>
-          <a className={classes.postHeading}>{title}</a>
+          <a className={classes.postHeadingLink}>{title}</a>
         </Link>
       </Typography>
 

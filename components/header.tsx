@@ -35,7 +35,6 @@ const useStyles = makeStyles((theme: Theme) =>
       color: "#333"
     },
     toolbar: {
-      width: "100%",
       padding: 0
     }
   })
