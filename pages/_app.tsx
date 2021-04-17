@@ -4,6 +4,8 @@ import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import theme from "../components/theme";
+import "@fontsource/roboto/100.css";
+import "@fontsource/roboto/500.css";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
