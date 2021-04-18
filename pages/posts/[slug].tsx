@@ -28,7 +28,8 @@ const Post = ({ post, preview }) => {
       top: "1em",
       left: "1em",
       width: "50%",
-      lineHeight: "1.3"
+      lineHeight: "1.3",
+      zIndex: 100
     },
     postHeadingSpan: {
       backgroundColor: "red",
