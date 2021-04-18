@@ -1,16 +1,16 @@
 import { DiscussionEmbed } from "disqus-react";
 
 const Disqus = ({ pageID, pageURL, pageTitle }) => {
+  const disqusConfig = {
+    url: pageURL,
+    identifier: pageID,
+    title: pageTitle
+  };
+
   return (
-    <DiscussionEmbed
-      shortname="scripthungry.disqus.com"
-      config={{
-        url: pageURL,
-        identifier: pageID,
-        title: pageTitle,
-        language: "en_GB"
-      }}
-    />
+    <div>
+      <DiscussionEmbed shortname="scripthungry" config={disqusConfig} />
+    </div>
   );
 };
 

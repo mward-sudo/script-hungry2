@@ -34,7 +34,7 @@ const Post = ({ post, preview }) => {
           <Disqus
             pageTitle={post?.title}
             pageID={post?.id}
-            pageURL={router.pageURL}
+            pageURL={`https://scripthungr2.vercel.app${router.asPath}`}
           />
           <Copyright />
         </Box>
