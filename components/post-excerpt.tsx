@@ -11,6 +11,25 @@ type PostExcerptProps = {
   featuredImage: any;
 };
 
+const featuredImageBox = (featuredImage, url) => {
+  console.log(featuredImage);
+  return featuredImage ? (
+    <div>
+      <Link href={url}>
+        <a>
+          <PostHeaderImage
+            url={featuredImage?.node.sourceUrl}
+            height={featuredImage?.node.mediaDetails?.height}
+            width={featuredImage?.node.mediaDetails?.width}
+          />
+        </a>
+      </Link>
+    </div>
+  ) : (
+    <></>
+  );
+};
+
 const PostExcerpt: React.FC<PostExcerptProps> = ({
   title,
   excerpt,
@@ -45,18 +64,7 @@ const PostExcerpt: React.FC<PostExcerptProps> = ({
           <a className={classes.postHeadingLink}>{title}</a>
         </Link>
       </Typography>
-
-      <div>
-        <Link href={url}>
-          <a>
-            <PostHeaderImage
-              url={featuredImage.node.sourceUrl}
-              height={featuredImage.node.mediaDetails?.height}
-              width={featuredImage.node.mediaDetails?.width}
-            />
-          </a>
-        </Link>
-      </div>
+      {featuredImageBox(featuredImage, url)}
       <div
         className={classes.body}
         dangerouslySetInnerHTML={{ __html: excerpt }}
