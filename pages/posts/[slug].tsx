@@ -22,18 +22,18 @@ const Post = ({ post, preview }) => {
       <Header element="p" />
       <Container maxWidth="sm">
         <Box my={4}>
-          {post.featuredImage ? (
+          {post?.featuredImage ? (
             <PostHeaderWithImage
-              title={post.title}
-              image={post.featuredImage}
+              title={post?.title}
+              image={post?.featuredImage}
             />
           ) : (
-            <PostHeader title={post.title} />
+            <PostHeader title={post?.title} />
           )}
           <div dangerouslySetInnerHTML={{ __html: post?.content }}></div>
           <Disqus
-            pageTitle={post.title}
-            pageID={post.id}
+            pageTitle={post?.title}
+            pageID={post?.id}
             pageURL={router.pageURL}
           />
           <Copyright />
