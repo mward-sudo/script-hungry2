@@ -1,8 +1,10 @@
-import { getAllPostsWithSlug, getPost } from "../../lib/api";
+import { Box, Container, makeStyles, Typography } from "@material-ui/core";
+import Head from "next/head";
+import Copyright from "../../components/copyright";
 import Header from "../../components/header";
 import PostHeaderImage from "../../components/post-header-image";
-import Copyright from "../../components/copyright";
-import { Container, Box, Typography, makeStyles } from "@material-ui/core";
+import { getAllPostsWithSlug, getPost } from "../../lib/api";
+import Constants from "../../lib/consts";
 
 const featuredImage = (post) => {
   return post ? (
@@ -37,6 +39,11 @@ const Post = ({ post, preview }) => {
 
   return (
     <>
+      <Head>
+        <title>
+          {post?.title} | {Constants.SITE_NAME}
+        </title>
+      </Head>
       <Header element="p" />
       <Container maxWidth="sm">
         <Box my={4} className={classes.rootPosition}>
