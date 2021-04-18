@@ -12,7 +12,6 @@ type PostExcerptProps = {
 };
 
 const featuredImageBox = (featuredImage, url) => {
-  console.log(featuredImage);
   return featuredImage ? (
     <div>
       <Link href={url}>

@@ -7,7 +7,6 @@ import { getAllPostsWithSlug, getPost } from "../../lib/api";
 import Constants from "../../lib/consts";
 import Disqus from "../../components/disqus";
 import { useRouter } from "next/router";
-import { Router } from "next/router";
 
 const featuredImage = (post) => {
   return post?.featuredImage ? (
@@ -44,7 +43,9 @@ const Post = ({ post, preview }) => {
   const classes = useStyles();
 
   const ftImg = !!(post.featuredImage);
-
+  
+  console.log(post);
+  
   return (
     <>
       <Head>
