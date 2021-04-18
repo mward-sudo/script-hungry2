@@ -5,6 +5,9 @@ import Header from "../../components/header";
 import PostHeaderImage from "../../components/post-header-image";
 import { getAllPostsWithSlug, getPost } from "../../lib/api";
 import Constants from "../../lib/consts";
+import Disqus from "../../components/disqus";
+import { useRouter } from "next/router";
+import { Router } from "next/router";
 
 const featuredImage = (post) => {
   return post?.featuredImage ? (
@@ -19,6 +22,7 @@ const featuredImage = (post) => {
 };
 
 const Post = ({ post, preview }) => {
+  const router = useRouter();
   const useStyles = makeStyles(() => ({
     rootPosition: {
       position: "relative"
@@ -62,6 +66,7 @@ const Post = ({ post, preview }) => {
           </Typography>
           {featuredImage(post)}
           <div dangerouslySetInnerHTML={{ __html: post?.content }}></div>
+          <Disqus pageTitle={post.title} pageID={post.id} pageURL={router.pageURL} /> 
           <Copyright />
         </Box>
       </Container>

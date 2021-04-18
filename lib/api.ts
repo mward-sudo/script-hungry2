@@ -124,6 +124,7 @@ export async function getPost(slug, preview, previewData) {
       }
     }
     fragment PostFields on Post {
+      id
       title
       excerpt
       content
