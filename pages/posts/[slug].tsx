@@ -7,7 +7,7 @@ import { getAllPostsWithSlug, getPost } from "../../lib/api";
 import Constants from "../../lib/consts";
 
 const featuredImage = (post) => {
-  return post ? (
+  return post?.featuredImage ? (
     <PostHeaderImage
       url={post.featuredImage?.node.sourceUrl}
       height={post.featuredImage?.node.mediaDetails?.height}
@@ -36,7 +36,10 @@ const Post = ({ post, preview }) => {
       color: "white"
     }
   }));
+
   const classes = useStyles();
+
+  const ftImg = !!(post.featuredImage);
 
   return (
     <>
@@ -47,13 +50,15 @@ const Post = ({ post, preview }) => {
       </Head>
       <Header element="p" />
       <Container maxWidth="sm">
-        <Box my={4} className={classes.rootPosition}>
+        <Box my={4} className={ftImg ? classes.rootPosition : ""}>
           <Typography
             variant="h5"
             component="h1"
-            className={classes.postHeading}
+            className={ftImg ? classes.postHeading : ""}
           >
-            <span className={classes.postHeadingSpan}>{post?.title}</span>
+            <span className={ftImg ? classes.postHeadingSpan : ""}>
+              {post?.title}
+            </span>
           </Typography>
           {featuredImage(post)}
           <div dangerouslySetInnerHTML={{ __html: post?.content }}></div>
