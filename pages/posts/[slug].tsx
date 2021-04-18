@@ -2,7 +2,7 @@ import { getAllPostsWithSlug, getPost } from "../../lib/api";
 import Header from "../../components/header";
 import PostHeaderImage from "../../components/post-header-image";
 import Copyright from "../../components/copyright";
-import { Container, Box, Typography } from "@material-ui/core";
+import { Container, Box, Typography, makeStyles } from "@material-ui/core";
 
 const featuredImage = (post) => {
   return post ? (
@@ -17,13 +17,35 @@ const featuredImage = (post) => {
 };
 
 const Post = ({ post, preview }) => {
+  const useStyles = makeStyles(() => ({
+    rootPosition: {
+      position: "relative"
+    },
+    postHeading: {
+      position: "absolute",
+      top: "1em",
+      left: "1em",
+      width: "50%",
+      lineHeight: "1.3"
+    },
+    postHeadingSpan: {
+      backgroundColor: "red",
+      color: "white"
+    }
+  }));
+  const classes = useStyles();
+
   return (
     <>
       <Header element="p" />
       <Container maxWidth="sm">
-        <Box my={4}>
-          <Typography variant="h5" component="h1">
-            {post?.title}
+        <Box my={4} className={classes.rootPosition}>
+          <Typography
+            variant="h5"
+            component="h1"
+            className={classes.postHeading}
+          >
+            <span className={classes.postHeadingSpan}>{post?.title}</span>
           </Typography>
           {featuredImage(post)}
           <div dangerouslySetInnerHTML={{ __html: post?.content }}></div>
