@@ -1,51 +1,17 @@
-import { Box, Container, makeStyles, Typography } from "@material-ui/core";
+import { Box, Container, Typography } from "@material-ui/core";
 import Head from "next/head";
 import Copyright from "../../components/copyright";
 import Header from "../../components/header";
-import PostHeaderImage from "../../components/post-header-image";
+import PostHeaderWithImage from "../../components/post-header-with-image";
+import PostHeader from "../../components/post-header";
 import { getAllPostsWithSlug, getPost } from "../../lib/api";
 import Constants from "../../lib/consts";
 import Disqus from "../../components/disqus";
 import { useRouter } from "next/router";
 
-const featuredImage = (post) => {
-  return post?.featuredImage ? (
-    <PostHeaderImage
-      url={post.featuredImage?.node.sourceUrl}
-      height={post.featuredImage?.node.mediaDetails?.height}
-      width={post.featuredImage?.node.mediaDetails?.width}
-    />
-  ) : (
-    <></>
-  );
-};
-
 const Post = ({ post, preview }) => {
   const router = useRouter();
-  const useStyles = makeStyles(() => ({
-    rootPosition: {
-      position: "relative"
-    },
-    postHeading: {
-      position: "absolute",
-      top: "1em",
-      left: "1em",
-      width: "50%",
-      lineHeight: "1.3",
-      zIndex: 100
-    },
-    postHeadingSpan: {
-      backgroundColor: "red",
-      color: "white"
-    }
-  }));
 
-  const classes = useStyles();
-
-  const ftImg = !!(post.featuredImage);
-  
-  console.log(post);
-  
   return (
     <>
       <Head>
@@ -55,19 +21,21 @@ const Post = ({ post, preview }) => {
       </Head>
       <Header element="p" />
       <Container maxWidth="sm">
-        <Box my={4} className={ftImg ? classes.rootPosition : ""}>
-          <Typography
-            variant="h5"
-            component="h1"
-            className={ftImg ? classes.postHeading : ""}
-          >
-            <span className={ftImg ? classes.postHeadingSpan : ""}>
-              {post?.title}
-            </span>
-          </Typography>
-          {featuredImage(post)}
+        <Box my={4}>
+          {post.featuredImage ? (
+            <PostHeaderWithImage
+              title={post.title}
+              image={post.featuredImage}
+            />
+          ) : (
+            <PostHeader title={post.title} />
+          )}
           <div dangerouslySetInnerHTML={{ __html: post?.content }}></div>
-          <Disqus pageTitle={post.title} pageID={post.id} pageURL={router.pageURL} /> 
+          <Disqus
+            pageTitle={post.title}
+            pageID={post.id}
+            pageURL={router.pageURL}
+          />
           <Copyright />
         </Box>
       </Container>
