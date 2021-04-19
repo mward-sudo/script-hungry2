@@ -11,9 +11,9 @@ import Constants from "../../lib/consts";
 // import Disqus from "../../components/disqus";
 import { useRouter } from "next/router";
 
-const Disqus = dynamic(
-() => import('../../components/disqus'), { loading: () => <p>...</p>}
-)
+const Disqus = dynamic(() => import("../../components/disqus"), {
+  loading: () => <p>...</p>
+});
 
 const Post = ({ post, comments = false, preview }) => {
   const [showComments, setShowComments] = useState(false);
@@ -45,7 +45,17 @@ const Post = ({ post, comments = false, preview }) => {
               pageTitle={post?.title}
               pageID={post?.id}
               pageURL={`https://scripthungr2.vercel.app${router.asPath}`}
-          /> ) : ( <Button variant="outlined" fullWidth color="primary" onClick={() => setShowComments(true)}>Show Comments</Button> ) }
+            />
+          ) : (
+            <Button
+              variant="outlined"
+              fullWidth
+              color="primary"
+              onClick={() => setShowComments(true)}
+            >
+              Show Comments
+            </Button>
+          )}
           <Copyright />
         </Box>
       </Container>
