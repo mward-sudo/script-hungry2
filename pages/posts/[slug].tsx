@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@material-ui/core";
+import { Box, Container } from "@material-ui/core";
 import Head from "next/head";
 import Copyright from "../../components/copyright";
 import Header from "../../components/header";
