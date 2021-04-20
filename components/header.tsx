@@ -1,4 +1,5 @@
 import { FC, ElementType } from "react";
+import Link from "next/link";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import {
   AppBar,
@@ -34,6 +35,10 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
       color: "#333"
     },
+    homeLink: {
+      color: "inherit",
+      textDecoration: "inherit"
+    },
     toolbar: {
       padding: 0
     }
@@ -61,7 +66,9 @@ const Header: FC<HeaderProps> = ({ element = "h1" }) => {
               variant="h6"
               className={classes.title}
             >
-              scriptHungry
+              <Link href="/">
+                <a className={classes.homeLink}>scriptHungry</a>
+              </Link>
             </Typography>
           </Toolbar>
         </Container>
