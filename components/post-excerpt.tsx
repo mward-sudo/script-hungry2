@@ -11,9 +11,9 @@ type PostExcerptProps = {
   featuredImage: any;
 };
 
-const featuredImageBox = (featuredImage, url) => {
+const featuredImageBox = (featuredImage, url, customClass) => {
   return featuredImage ? (
-    <div>
+    <div className={customClass}>
       <Link href={url}>
         <a>
           <PostHeaderImage
@@ -40,7 +40,7 @@ const PostExcerpt: React.FC<PostExcerptProps> = ({
       margin: "5em 0"
     },
     postHeading: {
-      marginBottom: "1em"
+      marginBottom: 0
     },
     postHeadingLink: {
       fontSize: 24,
@@ -48,8 +48,14 @@ const PostExcerpt: React.FC<PostExcerptProps> = ({
       color: "red",
       textDecoration: "none"
     },
+    featuredImage: {
+      marginBottom: "1em"
+    },
     body: {
-      fontSize: 16
+      fontSize: 16,
+      "& p": {
+        marginTop: 0
+      }
     }
   }));
   const classes = useStyles();
@@ -63,7 +69,7 @@ const PostExcerpt: React.FC<PostExcerptProps> = ({
           <a className={classes.postHeadingLink}>{title}</a>
         </Link>
       </Typography>
-      {featuredImageBox(featuredImage, url)}
+      {featuredImageBox(featuredImage, url, classes.featuredImage)}
       <div
         className={classes.body}
         dangerouslySetInnerHTML={{ __html: excerpt }}
