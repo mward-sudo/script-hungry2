@@ -4,8 +4,9 @@ import Link from 'next/link'
 import { Typography, Button, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import PostHeaderImage from './post-header-image'
+import iFeaturedImage from '../types/featured-image'
 
-const featuredImageBox = (featuredImage: any, url: string, customClass: string) => (
+const featuredImageBox = (featuredImage: iFeaturedImage, url: string, customClass: string) => (
   featuredImage ? (
     <div className={customClass}>
       <Link href={url}>
@@ -27,10 +28,12 @@ type PostExcerptProps = {
   title: string
   excerpt: string
   slug: string
-  featuredImage: any
+  featuredImage: iFeaturedImage
 }
 
-const PostExcerpt: FC<PostExcerptProps> = ({ title, excerpt, slug, featuredImage,}) => {
+const PostExcerpt: FC<PostExcerptProps> = ({
+  title, excerpt, slug, featuredImage,
+}) => {
   const useStyles = makeStyles(() => ({
     blogPost: {
       margin: '5em 0',
@@ -81,10 +84,18 @@ const PostExcerpt: FC<PostExcerptProps> = ({ title, excerpt, slug, featuredImage
 }
 
 PostExcerpt.propTypes = {
-  title: PropTypes.string,
-  excerpt: PropTypes.string,
-  slug: PropTypes.string,
-  featuredImage: PropTypes.any,
+  title: PropTypes.string.isRequired,
+  excerpt: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  featuredImage: PropTypes.shape({
+    node: PropTypes.shape({
+      sourceUrl: PropTypes.string,
+      mediaDetails: PropTypes.shape({
+        height: PropTypes.number,
+        width: PropTypes.number,
+      }),
+    }),
+  }).isRequired,
 }
 
 export default PostExcerpt
