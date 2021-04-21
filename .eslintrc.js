@@ -43,6 +43,7 @@ module.exports = {
     '@typescript-eslint/no-shadow': ['error'],
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
+    'jsx-a11y/anchor-is-valid': ['warn'],
   },
   settings: {
     'import/resolver': {
