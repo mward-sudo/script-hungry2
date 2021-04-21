@@ -1,15 +1,15 @@
-import React from "react";
-import { Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { FC } from 'react'
+import { Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
-export default function Copyright() {
+const Copyright: FC = () => {
   const useStyles = makeStyles(() => ({
     copyright: {
-      marginTop: "3em",
-      fontSize: 10
-    }
-  }));
-  const classes = useStyles();
+      marginTop: '3em',
+      fontSize: 10,
+    },
+  }))
+  const classes = useStyles()
 
   return (
     <Typography
@@ -18,7 +18,10 @@ export default function Copyright() {
       color="textSecondary"
       align="center"
     >
-      &copy; Copyright Michael Ward {new Date().getFullYear()}
+      &copy; Copyright Michael Ward
+      {' '}
+      {new Date().getFullYear()}
     </Typography>
-  );
+  )
 }
+export default Copyright
