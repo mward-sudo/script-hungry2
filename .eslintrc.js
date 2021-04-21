@@ -34,6 +34,10 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    semi: [
+      'error',
+      'never',
+    ],
   },
   settings: {
     'import/resolver': {
