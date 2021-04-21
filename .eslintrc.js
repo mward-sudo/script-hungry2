@@ -7,6 +7,12 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
+    'plugin:react/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:jsx-a11y/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:prettier'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -46,4 +52,4 @@ module.exports = {
       },
     },
   },
-};
+}
