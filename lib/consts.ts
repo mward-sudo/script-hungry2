@@ -1,5 +1,5 @@
 const Constants = {
-  SITE_NAME: "scriptHungry"
-};
+  SITE_NAME: 'scriptHungry',
+}
 
-export default Constants;
+export default Constants
