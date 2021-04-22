@@ -1,9 +1,8 @@
+import iMediaDetails from './media-details'
+
 export default interface iFeaturedImage {
     node: {
         sourceUrl: string,
-        mediaDetails: {
-            height: number,
-            width: number
-        },
+        mediaDetails: iMediaDetails,
     },
 }
