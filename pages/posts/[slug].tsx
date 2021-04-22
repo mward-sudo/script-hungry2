@@ -1,6 +1,6 @@
 import { FC, useState } from 'react'
 import { Box, Container, Button } from '@material-ui/core'
-import { GetStaticProps, GetStaticPaths } from 'next'
+import { GetStaticProps, GetStaticPaths, InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
@@ -10,17 +10,12 @@ import PostHeaderWithImage from '../../components/post-header-with-image'
 import PostHeader from '../../components/post-header'
 import { getAllPostsWithSlug, getPost } from '../../lib/api'
 import Constants from '../../lib/consts'
-import iPost from '../../types/post'
 
 const Disqus = dynamic(() => import('../../components/disqus'), {
   loading: () => <p>...</p>,
 })
 
-type PostProps = {
-  post: iPost
-}
-
-const Post: FC<PostProps> = ({ post }) => {
+const Post: InferGetStaticPropsType<typeof getStaticProps> = ({ post }) => {
   const [showComments, setShowComments] = useState(false)
 
   const router = useRouter()
