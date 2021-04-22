@@ -47,6 +47,7 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'jsx-a11y/anchor-is-valid': ['warn'],
+    'react/jsx-props-no-spreading': ['warn'],
   },
   settings: {
     'import/resolver': {
