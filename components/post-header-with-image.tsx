@@ -20,9 +20,10 @@ const PostHeaderWithImage: FC<PostHeaderWithImageProps> = ({ title, image }) => 
       top: '1em',
       left: '1em',
       zIndex: 100,
+      transform: 'rotate(-2.5deg)',
     },
     headingSpan: {
-      backgroundColor: 'red',
+      backgroundColor: 'rgba(255,0,0,0.75)',
       color: '#fff',
       lineHeight: '1.4',
     },

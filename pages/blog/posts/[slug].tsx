@@ -4,14 +4,14 @@ import { GetStaticProps, GetStaticPaths, InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import Copyright from '../../components/copyright'
-import Header from '../../components/header'
-import PostHeaderWithImage from '../../components/post-header-with-image'
-import PostHeader from '../../components/post-header'
-import { getAllPostsWithSlug, getPost } from '../../lib/api'
-import Constants from '../../lib/consts'
+import Copyright from '../../../components/copyright'
+import Header from '../../../components/header'
+import PostHeaderWithImage from '../../../components/post-header-with-image'
+import PostHeader from '../../../components/post-header'
+import { getAllPostsWithSlug, getPost } from '../../../lib/api'
+import Constants from '../../../lib/consts'
 
-const Disqus = dynamic(() => import('../../components/disqus'), {
+const Disqus = dynamic(() => import('../../../components/disqus'), {
   loading: () => <p>...</p>,
 })
 
@@ -83,7 +83,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const allPosts = await getAllPostsWithSlug()
 
   return {
-    paths: allPosts.edges.map(({ node }) => `/posts/${node.slug}`) || [],
+    paths: allPosts.edges.map(({ node }) => `/blog/posts/${node.slug}`) || [],
     fallback: true,
   }
 }

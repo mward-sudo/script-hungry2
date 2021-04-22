@@ -40,7 +40,7 @@ const PostExcerpt: FC<PostExcerptProps> = ({
   }))
   const classes = useStyles()
 
-  const url = `/posts/${slug}`
+  const url = `/blog/posts/${slug}`
 
   return (
     <Box className={classes.blogPost}>
@@ -49,7 +49,11 @@ const PostExcerpt: FC<PostExcerptProps> = ({
           <a className={classes.postHeadingLink}>{title}</a>
         </Link>
       </Typography>
-      <FeaturedImageBox featuredImage={featuredImage} url={url} customClass={classes.featuredImage} />
+      <FeaturedImageBox
+        featuredImage={featuredImage}
+        url={url}
+        customClass={classes.featuredImage}
+      />
       <div
         className={classes.body}
         dangerouslySetInnerHTML={{ __html: excerpt }}

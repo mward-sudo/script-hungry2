@@ -1,13 +1,11 @@
-import { Container, Box } from '@material-ui/core'
-import { InferGetStaticPropsType, GetStaticProps } from 'next'
+import { FC } from 'react'
+import { Container, Box, Link } from '@material-ui/core'
 import Head from 'next/head'
-import { getAllPostsForHome } from '../lib/api'
 import Header from '../components/header'
-import PostExcerptList from '../components/post-excerpt-list'
 import Copyright from '../components/copyright'
 import Constants from '../lib/consts'
 
-const Index: InferGetStaticPropsType<typeof getStaticProps> = ({ allPosts }) => (
+const Index: FC = () => (
   <>
     <Head>
       <title>{Constants.SITE_NAME}</title>
@@ -15,19 +13,11 @@ const Index: InferGetStaticPropsType<typeof getStaticProps> = ({ allPosts }) => 
     <Header />
     <Container maxWidth="sm">
       <Box my={4}>
-        <PostExcerptList posts={allPosts} />
+        <p><Link href="/blog"><a>Go to Blog</a></Link></p>
         <Copyright />
       </Box>
     </Container>
   </>
 )
-
-export const getStaticProps: GetStaticProps = async () => {
-  const allPosts = await getAllPostsForHome()
-  return {
-    props: { allPosts },
-    revalidate: 60,
-  }
-}
 
 export default Index
