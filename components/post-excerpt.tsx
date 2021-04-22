@@ -1,28 +1,9 @@
 import { FC } from 'react'
-import PropTypes from 'prop-types'
 import Link from 'next/link'
 import { Typography, Button, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import PostHeaderImage from './post-header-image'
 import iFeaturedImage from '../types/featured-image'
-
-const featuredImageBox = (featuredImage: iFeaturedImage, url: string, customClass: string) => (
-  featuredImage ? (
-    <div className={customClass}>
-      <Link href={url}>
-        <a>
-          <PostHeaderImage
-            url={featuredImage?.node.sourceUrl}
-            height={featuredImage?.node.mediaDetails?.height}
-            width={featuredImage?.node.mediaDetails?.width}
-          />
-        </a>
-      </Link>
-    </div>
-  ) : (
-    <></>
-  )
-)
+import FeaturedImageBox from './featured-image-box'
 
 type PostExcerptProps = {
   title: string
@@ -68,7 +49,7 @@ const PostExcerpt: FC<PostExcerptProps> = ({
           <a className={classes.postHeadingLink}>{title}</a>
         </Link>
       </Typography>
-      {featuredImageBox(featuredImage, url, classes.featuredImage)}
+      <FeaturedImageBox featuredImage={featuredImage} url={url} customClass={classes.featuredImage} />
       <div
         className={classes.body}
         dangerouslySetInnerHTML={{ __html: excerpt }}
@@ -81,21 +62,6 @@ const PostExcerpt: FC<PostExcerptProps> = ({
       </Link>
     </Box>
   )
-}
-
-PostExcerpt.propTypes = {
-  title: PropTypes.string.isRequired,
-  excerpt: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
-  featuredImage: PropTypes.shape({
-    node: PropTypes.shape({
-      sourceUrl: PropTypes.string,
-      mediaDetails: PropTypes.shape({
-        height: PropTypes.number,
-        width: PropTypes.number,
-      }),
-    }),
-  }).isRequired,
 }
 
 export default PostExcerpt
