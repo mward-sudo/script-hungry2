@@ -1,27 +1,24 @@
-import React from "react";
-import PostExcerpt from "./post-excerpt";
+import React from 'react'
+import PostExcerpt from './post-excerpt'
+import Posts, { edges as PostEdges } from '../types/posts'
 
-type PostsExcerptListProps = {
-  posts: undefined;
-};
+const PostExcerptList: React.FC<Posts> = ({ posts }) => (
+  <>
+    {posts.edges.map((post: PostEdges) => {
+      let {
+        title, excerpt, slug, featuredImage,
+      } = post.node
+      return (
+        <PostExcerpt
+          key={slug}
+          title={title}
+          excerpt={excerpt}
+          slug={slug}
+          featuredImage={featuredImage}
+        />
+      )
+    })}
+  </>
+)
 
-const PostExcerptList: React.FC<PostsExcerptListProps> = ({ posts }) => {
-  return (
-    <>
-      {posts.edges.map((post) => {
-        const { title, excerpt, slug, featuredImage } = post.node;
-        return (
-          <PostExcerpt
-            key={slug}
-            title={title}
-            excerpt={excerpt}
-            slug={slug}
-            featuredImage={featuredImage}
-          />
-        );
-      })}
-    </>
-  );
-};
-
-export default PostExcerptList;
+export default PostExcerptList
