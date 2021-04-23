@@ -10,12 +10,17 @@ import PostHeaderWithImage from '../../../components/post-header-with-image'
 import PostHeader from '../../../components/post-header'
 import { getAllPostsWithSlug, getPost } from '../../../lib/api'
 import Constants from '../../../lib/consts'
+import { iPostWithContent } from '../../../types/post'
 
 const Disqus = dynamic(() => import('../../../components/disqus'), {
   loading: () => <p>...</p>,
 })
 
-const Post: InferGetStaticPropsType<typeof getStaticProps> = ({ post }) => {
+type PostProps = {
+  post: iPostWithContent
+}
+
+const Post: InferGetStaticPropsType<typeof getStaticProps> = ({ post }: PostProps) => {
   const [showComments, setShowComments] = useState(false)
 
   const router = useRouter()
@@ -53,9 +58,9 @@ const Post: InferGetStaticPropsType<typeof getStaticProps> = ({ post }) => {
           ) : (
             <Button
               variant="outlined"
+              onClick={() => setShowComments(true)}
               fullWidth
               color="primary"
-              onClick={() => setShowComments(true)}
             >
               Show Comments
             </Button>
@@ -67,15 +72,20 @@ const Post: InferGetStaticPropsType<typeof getStaticProps> = ({ post }) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ params, preview = false, previewData }) => {
-  const data = await getPost(params.slug, preview, previewData)
+export const getStaticProps:GetStaticProps = async ({ params }) => {
+  const data = await getPost(params?.slug)
 
   return {
     props: {
-      preview,
       post: data.post,
     },
     revalidate: 60,
+  }
+}
+
+type postNodes = {
+  node: {
+    slug: string
   }
 }
 
@@ -83,7 +93,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const allPosts = await getAllPostsWithSlug()
 
   return {
-    paths: allPosts.edges.map(({ node }) => `/blog/posts/${node.slug}`) || [],
+    paths: allPosts.edges.map(({ node }: postNodes) => `/blog/posts/${node.slug}`) || [],
     fallback: true,
   }
 }
