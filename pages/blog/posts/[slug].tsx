@@ -82,11 +82,10 @@ export const getStaticProps:GetStaticProps = async ({ params }) => {
   }
 }
 
-type nodesType = {
-  slug: string
-}
 type postNodes = {
-  node: nodesType
+  node: {
+    slug: string
+  }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
