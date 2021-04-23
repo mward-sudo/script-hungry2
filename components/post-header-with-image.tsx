@@ -15,17 +15,25 @@ const PostHeaderWithImage: FC<PostHeaderWithImageProps> = ({ title, image }) => 
       position: 'relative',
     },
     heading: {
+      fontSize: 'calc(1em + 3vh)',
       position: 'absolute',
       width: '50%',
-      top: '1em',
-      left: '1em',
+      minWidth: '9em',
+      top: '.5em',
+      left: '.5em',
       zIndex: 100,
-      transform: 'rotate(-2.5deg)',
+      transform: 'rotate(-5deg)',
+      textAlign: 'center',
     },
     headingSpan: {
+      display: 'inline-block',
       backgroundColor: 'rgba(255,0,0,0.75)',
       color: '#fff',
       lineHeight: '1.4',
+    },
+    headingReset: {
+      display: 'inline-block',
+      transform: 'rotate(5deg)',
     },
   }))
   const classes = useStyles()
@@ -33,7 +41,11 @@ const PostHeaderWithImage: FC<PostHeaderWithImageProps> = ({ title, image }) => 
   return (
     <Box className={classes.positionRoot}>
       <Typography variant="h5" component="h1" className={classes.heading}>
-        <span className={classes.headingSpan}>{title}</span>
+        <span className={classes.headingSpan}>
+          <span className={classes.headingReset}>
+            {title}
+          </span>
+        </span>
       </Typography>
       <PostHeaderImage
         url={image.node.sourceUrl}
