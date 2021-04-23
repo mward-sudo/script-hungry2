@@ -19,12 +19,14 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    'jam3',
   ],
   rules: {
     semi: [
       'error',
       'never',
     ],
+    'react/no-danger': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     'react/jsx-filename-extension': [

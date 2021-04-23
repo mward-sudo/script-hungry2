@@ -2,6 +2,7 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { Typography, Button, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import iFeaturedImage from '../types/featured-image'
 import FeaturedImageBox from './featured-image-box'
 
@@ -56,7 +57,7 @@ const PostExcerpt: FC<PostExcerptProps> = ({
       />
       <div
         className={classes.body}
-        dangerouslySetInnerHTML={{ __html: excerpt }}
+        dangerouslySetInnerHTML={{ __html: sanitizer(excerpt) }}
       />
 
       <Link href={url} passHref>

@@ -1,9 +1,10 @@
-import { FC, useState } from 'react'
+import { useState } from 'react'
 import { Box, Container, Button } from '@material-ui/core'
 import { GetStaticProps, GetStaticPaths, InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
+import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import Copyright from '../../../components/copyright'
 import Header from '../../../components/header'
 import PostHeaderWithImage from '../../../components/post-header-with-image'
@@ -47,7 +48,7 @@ const Post: InferGetStaticPropsType<typeof getStaticProps> = ({ post }: PostProp
           ) : (
             <PostHeader title={post?.title} />
           )}
-          <div dangerouslySetInnerHTML={{ __html: post?.content }} />
+          <div dangerouslySetInnerHTML={{ __html: sanitizer(post?.content) }} />
           {showComments ? (
             <Disqus
               key={post?.id}
