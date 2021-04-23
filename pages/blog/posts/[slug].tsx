@@ -74,7 +74,6 @@ const Post: InferGetStaticPropsType<typeof getStaticProps> = ({ post }: PostProp
 
 export const getStaticProps:GetStaticProps = async ({ params }) => {
   const data = await getPost(params?.slug)
-
   return {
     props: {
       post: data.post,
@@ -83,17 +82,17 @@ export const getStaticProps:GetStaticProps = async ({ params }) => {
   }
 }
 
+type nodesType = {
+  slug: string
+}
 type postNodes = {
-  node: {
-    slug: string
-  }
+  node: nodesType
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const allPosts = await getAllPostsWithSlug()
-
   return {
-    paths: allPosts.edges.map(({ node }: postNodes) => `/blog/posts/${node?.slug}`) || [],
+    paths: allPosts.edges.map(({ node }: postNodes) => (`/blog/posts/${node?.slug}` || [])),
     fallback: true,
   }
 }
