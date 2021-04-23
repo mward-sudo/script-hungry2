@@ -11,5 +11,7 @@
 "zenMode.centerLayout": false,
 "prettier.printWidth": 100,
 "editor.tabSize": 2,
-"html.format.wrapLineLength": 100
+"html.format.wrapLineLength": 100,
+"terminal.integrated.fontSize": 9,
+"debug.console.fontSize": 9,
 }
