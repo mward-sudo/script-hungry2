@@ -1,11 +1,14 @@
 {
   "editor.wordWrap": "wordWrapColumn",
   "editor.wordWrapColumn": 120,
-  "editor.fontSize": 9
+  "editor.fontSize": 9,
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "editor.formatOnSave": true,
   "eslint.alwaysShowStatus": true,
   "editor.codeActionsOnSave": {
   "source.fixAll.eslint": true
-}
+},
+"zenMode.centerLayout": false,
+"prettier.printWidth": 120,
+"editor.tabSize": 2
 }
