@@ -16,14 +16,13 @@ type HeaderProps = {
 
 const useStyles = makeStyles((theme: Theme) => createStyles({
   root: {
+    position: 'sticky',
+    top: 0,
     flexGrow: 1,
-    marginBottom: '6em',
   },
   appBar: {
-    display: 'sticky',
     backgroundColor: 'rgba(255,255,255,0.75)',
     backdropFilter: 'blur(6px)',
-    zIndex: 1000,
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -48,7 +47,7 @@ const Header: FC<HeaderProps> = ({ element = 'h1' }) => {
 
   return (
     <div className={classes.root}>
-      <AppBar className={classes.appBar}>
+      <AppBar position="relative" className={classes.appBar}>
         <Container maxWidth="sm">
           <Toolbar className={classes.toolbar}>
             <IconButton
