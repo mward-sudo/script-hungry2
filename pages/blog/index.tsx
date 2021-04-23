@@ -6,8 +6,15 @@ import Header from '../../components/header'
 import PostExcerptList from '../../components/post-excerpt-list'
 import Copyright from '../../components/copyright'
 import Constants from '../../lib/consts'
+import { edges as PostEdges } from '../../types/posts'
 
-const Index: InferGetStaticPropsType<typeof getStaticProps> = ({ allPosts }) => (
+type IndexProps = {
+  allPosts: {
+    edges: PostEdges[]
+  }
+}
+
+const Index: InferGetStaticPropsType<typeof getStaticProps> = ({ allPosts }: IndexProps) => (
   <>
     <Head>
       <title>{Constants.SITE_NAME}</title>
@@ -23,7 +30,7 @@ const Index: InferGetStaticPropsType<typeof getStaticProps> = ({ allPosts }) => 
 )
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPosts = await getAllPostsForHome()
+  const allPosts:IndexProps = await getAllPostsForHome()
   return {
     props: { allPosts },
     revalidate: 60,
