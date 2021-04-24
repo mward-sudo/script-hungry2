@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     marginRight: theme.spacing(2),
   },
   title: {
-    fontFamily: 'monospace',
+    fontFamily: '"Proza Libre", sans-serif',
     fontSize: 20,
     flexGrow: 1,
     color: '#333',
