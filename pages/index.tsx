@@ -1,28 +1,16 @@
 import { FC } from 'react'
-import {
-  Container, Box, Grid, Card, CardContent, CardMedia, CardActionArea, Button,
-} from '@material-ui/core'
-import { makeStyles, createStyles, Theme } from '@material-ui/core/styles'
-import Image from 'next/image'
+import { Container, Box, Grid } from '@material-ui/core'
+import { makeStyles, createStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
-import Link from 'next/link'
 import Header from '../components/header'
 import HomeIntro from '../components/home-intro'
 import HomeMediaCard from '../components/home-media-card'
 import Copyright from '../components/copyright'
 import Constants from '../lib/consts'
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
+const useStyles = makeStyles(() => createStyles({
   root: {
     flexGrow: 1,
-  },
-  card: {
-    fontSize: 12,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-  cardContent: {
-    padding: '.5em',
   },
 }))
 
