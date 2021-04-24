@@ -13,7 +13,6 @@ const HomeIntro: FC = () => {
       maxHeight: '60vh',
     },
     text: {
-      borderRadius: 2,
       position: 'absolute',
       top: '50%',
       left: '50%',
