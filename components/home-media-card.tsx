@@ -50,7 +50,7 @@ const HomeMediaCard: FC<HomeMediaCardProps> = ({
 }) => {
   const classes = useStyles()
 
-  const sizes = '(max-width: 600px): 0.5vw, (max-width: 1200px): 0.25vw'
+  const sizes = '(max-width: 600px): 50vw, 25vw'
 
   return (
     <Card className={classes.card}>
