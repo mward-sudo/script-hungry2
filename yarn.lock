@@ -1224,6 +1224,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fontsource/proza-libre@^4.2.2":
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/proza-libre/-/proza-libre-4.2.2.tgz#557c41be105b63ffc272f5527c47f6618a28264d"
+  integrity sha512-v1B/jzlcVx82o1r13/jyVnwSW01im3tOHkusyh13PUtuYlImkqUsT/JxfYWVmNcptDlx7x5+58eqsIQnAnqsew==
+
 "@fontsource/roboto@4.2.3":
   version "4.2.3"
   resolved "https://registry.npmjs.org/@fontsource/roboto/-/roboto-4.2.3.tgz"

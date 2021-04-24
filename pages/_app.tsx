@@ -6,6 +6,8 @@ import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from '../components/theme'
 import '@fontsource/roboto/100.css'
 import '@fontsource/roboto/500.css'
+import '@fontsource/proza-libre/600-italic.css'
+import '@fontsource/proza-libre/400.css'
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   useEffect(() => {

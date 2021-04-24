@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme: Theme) => createStyles({
     position: 'sticky',
     top: 0,
     flexGrow: 1,
+    zIndex: 1000,
   },
   appBar: {
     backgroundColor: 'rgba(255,255,255,0.75)',
