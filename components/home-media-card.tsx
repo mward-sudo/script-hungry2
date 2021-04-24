@@ -56,7 +56,7 @@ const HomeMediaCard: FC<HomeMediaCardProps> = ({
     <Card className={classes.card}>
       <ConditionalLink href={href}>
         <CardMedia>
-          <Image src={imgSrc} width={imgWidth} height={imgHeight} sizes={sizes} layout="responsive" />
+          <Image src={imgSrc} width={imgWidth} height={imgHeight} sizes={sizes} />
         </CardMedia>
         <CardContent className={classes.cardContent}>
           <Button variant="text">
