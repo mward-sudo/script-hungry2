@@ -50,13 +50,13 @@ const HomeMediaCard: FC<HomeMediaCardProps> = ({
 }) => {
   const classes = useStyles()
 
-  const sizes = '100w 120w 150w 200w 250w 300w 500w 700w 1000w'
+  const sizes = '(max-width: 600px): 0.5vw, (max-width: 1200px): 0.25vw'
 
   return (
     <Card className={classes.card}>
       <ConditionalLink href={href}>
         <CardMedia>
-          <Image src={imgSrc} width={imgWidth} height={imgHeight} sizes={sizes} />
+          <Image src={imgSrc} width={imgWidth} height={imgHeight} sizes={sizes} layout="responsive" />
         </CardMedia>
         <CardContent className={classes.cardContent}>
           <Button variant="text">
