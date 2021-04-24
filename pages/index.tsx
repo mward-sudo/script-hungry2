@@ -8,6 +8,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Header from '../components/header'
 import HomeIntro from '../components/home-intro'
+import HomeMediaCard from '../components/home-media-card'
 import Copyright from '../components/copyright'
 import Constants from '../lib/consts'
 
@@ -40,56 +41,16 @@ const Index: FC = () => {
           <div className={classes.root}>
             <Grid container spacing={3}>
               <Grid item xs={6} sm={3}>
-                <Card className={classes.card}>
-                  <Link href="/blog/" passHref>
-                    <CardActionArea>
-                      <CardMedia>
-                        <Image src="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0058-scaled.jpg" width="2560" height="1440" layout="responsive" />
-                      </CardMedia>
-                      <CardContent className={classes.cardContent}>
-                        <Button variant="text">Blog &gt;</Button>
-                      </CardContent>
-                    </CardActionArea>
-                  </Link>
-                </Card>
+                <HomeMediaCard href="/blog/" imgSrc="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0058-scaled.jpg" imgWidth={2560} imgHeight={1440} btnText="Blog" />
               </Grid>
               <Grid item xs={6} sm={3}>
-                <Card className={classes.card}>
-                  <Link href="/portfolio/" passHref>
-                    <CardActionArea>
-                      <CardMedia>
-                        <Image src="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0055.jpg" width="1199" height="674" layout="responsive" />
-                      </CardMedia>
-                      <CardContent className={classes.cardContent}>
-                        <Button variant="text">Portfolio &gt;</Button>
-                      </CardContent>
-                    </CardActionArea>
-                  </Link>
-                </Card>
+                <HomeMediaCard href="/portfolio/" imgSrc="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0055.jpg" imgWidth={1199} imgHeight={674} btnText="Portfolio" />
               </Grid>
               <Grid item xs={6} sm={3}>
-                <Card className={classes.card}>
-                  <CardActionArea href="https://github.com/mward-sudo">
-                    <CardMedia>
-                      <Image src="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0057.jpg" width="1917" height="1078" layout="responsive" />
-                    </CardMedia>
-                    <CardContent className={classes.cardContent}>
-                      <Button variant="text">Github &gt;</Button>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
+                <HomeMediaCard href="https://github.com/mward-sudo" imgSrc="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0057.jpg" imgWidth={1917} imgHeight={1078} btnText="Github" />
               </Grid>
               <Grid item xs={6} sm={3}>
-                <Card className={classes.card}>
-                  <CardActionArea href="https://www.linkedin.com/in/michael-ward-ba003622">
-                    <CardMedia>
-                      <Image src="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0056-scaled.jpg" width="2560" height="1440" layout="responsive" />
-                    </CardMedia>
-                    <CardContent className={classes.cardContent}>
-                      <Button variant="text">LinkedIn &gt;</Button>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
+                <HomeMediaCard href="https://www.linkedin.com/in/michael-ward-ba003622" imgSrc="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0056-scaled.jpg" imgWidth={2560} imgHeight={1440} btnText="LinkedIn" />
               </Grid>
 
             </Grid>
