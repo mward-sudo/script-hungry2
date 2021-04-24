@@ -6,6 +6,7 @@ import Image from 'next/image'
 const HomeIntro: FC = () => {
   const useStyles = makeStyles(() => ({
     intro: {
+      backgroundColor: 'black',
       position: 'relative',
       textAlign: 'center',
       overflow: 'hidden',
