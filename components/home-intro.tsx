@@ -22,7 +22,7 @@ const HomeIntro: FC = () => {
       fontStyle: 'italic',
       color: 'rgba(255,255,255,0.9)',
       fontSize: 48,
-      textShadow: '2px 2px 2px rgba(0,0,0,0.7)',
+      textShadow: '1px 1px 1px rgba(0,0,0,0.7)',
       lineHeight: 1,
       backgroundColor: 'red',
       margin: 0,
