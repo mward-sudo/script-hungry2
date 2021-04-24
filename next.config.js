@@ -5,6 +5,7 @@ module.exports = {
       'secure.gravatar.com',
       'scripthungry.cloudaccess.host',
     ],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
   },
   future: {
     webpack5: true,
