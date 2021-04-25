@@ -54,7 +54,9 @@ const HomeIntro: FC = (): JSX.Element => {
   const titleInitial = { opacity: 0 }
   const titleAnimate = { opacity: 1 }
   const titleTransition = {
-    delay: 1, duration: 1.5, type: 'spring',
+    delay: 1,
+    duration: 1.5,
+    type: 'spring',
   }
 
   const [headingFinalState, setHeadingFinalState] = useState(false)
@@ -73,7 +75,9 @@ const HomeIntro: FC = (): JSX.Element => {
       />
       <motion.div
         transition={titleTransition}
-        className={`${classes.gridContainer} ${headingFinalState && classes.gridContainerFinal}`}
+        className={`${classes.gridContainer} ${
+          headingFinalState && classes.gridContainerFinal
+        }`}
         initial={titleInitial}
         animate={titleAnimate}
       >

@@ -1,3 +1,3 @@
 export default interface iAvatar {
-  url: string;
+  url: string
 }

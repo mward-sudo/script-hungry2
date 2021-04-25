@@ -14,7 +14,9 @@ type IndexProps = {
   }
 }
 
-const Index: InferGetStaticPropsType<typeof getStaticProps> = ({ allPosts }: IndexProps) => (
+const Index: InferGetStaticPropsType<typeof getStaticProps> = ({
+  allPosts,
+}: IndexProps) => (
   <>
     <Head>
       <title>{Constants.SITE_NAME}</title>
@@ -30,7 +32,7 @@ const Index: InferGetStaticPropsType<typeof getStaticProps> = ({ allPosts }: Ind
 )
 
 export const getStaticProps: GetStaticProps = async () => {
-  const allPosts:IndexProps = await getAllPostsForHome()
+  const allPosts: IndexProps = await getAllPostsForHome()
   return {
     props: { allPosts },
     revalidate: 60,

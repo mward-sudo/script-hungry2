@@ -8,11 +8,13 @@ import HomeMediaCard from '../components/home-media-card'
 import Copyright from '../components/copyright'
 import Constants from '../lib/consts'
 
-const useStyles = makeStyles(() => createStyles({
-  root: {
-    flexGrow: 1,
-  },
-}))
+const useStyles = makeStyles(() =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+  })
+)
 
 const Index: FC = () => {
   const classes = useStyles()
@@ -29,18 +31,41 @@ const Index: FC = () => {
           <div className={classes.root}>
             <Grid container spacing={3}>
               <Grid item xs={6} sm={3}>
-                <HomeMediaCard href="/blog/" imgSrc="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0058-scaled.jpg" imgWidth={2560} imgHeight={1440} btnText="Blog" />
+                <HomeMediaCard
+                  href="/blog/"
+                  imgSrc="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0058-scaled.jpg"
+                  imgWidth={2560}
+                  imgHeight={1440}
+                  btnText="Blog"
+                />
               </Grid>
               <Grid item xs={6} sm={3}>
-                <HomeMediaCard href="/portfolio/" imgSrc="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0055.jpg" imgWidth={1199} imgHeight={674} btnText="Portfolio" />
+                <HomeMediaCard
+                  href="/portfolio/"
+                  imgSrc="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0055.jpg"
+                  imgWidth={1199}
+                  imgHeight={674}
+                  btnText="Portfolio"
+                />
               </Grid>
               <Grid item xs={6} sm={3}>
-                <HomeMediaCard href="https://github.com/mward-sudo" imgSrc="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/0981F9B0-84D5-4987-95B4-08592290985C.png" imgWidth={1917} imgHeight={1078} btnText="Github" />
+                <HomeMediaCard
+                  href="https://github.com/mward-sudo"
+                  imgSrc="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/0981F9B0-84D5-4987-95B4-08592290985C.png"
+                  imgWidth={1917}
+                  imgHeight={1078}
+                  btnText="Github"
+                />
               </Grid>
               <Grid item xs={6} sm={3}>
-                <HomeMediaCard href="https://www.linkedin.com/in/michael-ward-ba003622" imgSrc="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0056-scaled.jpg" imgWidth={2560} imgHeight={1440} btnText="LinkedIn" />
+                <HomeMediaCard
+                  href="https://www.linkedin.com/in/michael-ward-ba003622"
+                  imgSrc="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/img_0056-scaled.jpg"
+                  imgWidth={2560}
+                  imgHeight={1440}
+                  btnText="LinkedIn"
+                />
               </Grid>
-
             </Grid>
           </div>
           <Copyright />

@@ -12,36 +12,38 @@ import MenuIcon from '@material-ui/icons/Menu'
 
 type HeaderProps = {
   element?: ElementType
-};
+}
 
-const useStyles = makeStyles((theme: Theme) => createStyles({
-  root: {
-    position: 'sticky',
-    top: 0,
-    flexGrow: 1,
-    zIndex: 1000,
-  },
-  appBar: {
-    backgroundColor: 'rgba(255,255,255,0.75)',
-    backdropFilter: 'blur(6px)',
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    fontFamily: '"Proza Libre", sans-serif',
-    fontSize: 20,
-    flexGrow: 1,
-    color: '#333',
-  },
-  homeLink: {
-    color: 'inherit',
-    textDecoration: 'inherit',
-  },
-  toolbar: {
-    padding: 0,
-  },
-}))
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      position: 'sticky',
+      top: 0,
+      flexGrow: 1,
+      zIndex: 1000,
+    },
+    appBar: {
+      backgroundColor: 'rgba(255,255,255,0.75)',
+      backdropFilter: 'blur(6px)',
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      fontFamily: '"Proza Libre", sans-serif',
+      fontSize: 20,
+      flexGrow: 1,
+      color: '#333',
+    },
+    homeLink: {
+      color: 'inherit',
+      textDecoration: 'inherit',
+    },
+    toolbar: {
+      padding: 0,
+    },
+  })
+)
 
 const Header: FC<HeaderProps> = ({ element = 'h1' }) => {
   const classes = useStyles()

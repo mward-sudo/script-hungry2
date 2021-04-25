@@ -9,7 +9,11 @@ type featuredImageBoxProps = {
   customClass: string
 }
 
-const FeaturedImageBox: FC<featuredImageBoxProps> = ({ featuredImage, url, customClass }) => (
+const FeaturedImageBox: FC<featuredImageBoxProps> = ({
+  featuredImage,
+  url,
+  customClass,
+}) =>
   featuredImage ? (
     <div className={customClass}>
       <Link href={url}>
@@ -25,6 +29,5 @@ const FeaturedImageBox: FC<featuredImageBoxProps> = ({ featuredImage, url, custo
   ) : (
     <></>
   )
-)
 
 export default FeaturedImageBox

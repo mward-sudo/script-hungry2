@@ -1,4 +1,4 @@
 export default interface iMediaDetails {
-    height: number;
-    width: number;
+  height: number
+  width: number
 }

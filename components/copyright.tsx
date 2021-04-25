@@ -18,9 +18,7 @@ const Copyright: FC = () => {
       color="textSecondary"
       align="center"
     >
-      &copy; Copyright Michael Ward
-      {' '}
-      {new Date().getFullYear()}
+      &copy; Copyright Michael Ward {new Date().getFullYear()}
     </Typography>
   )
 }

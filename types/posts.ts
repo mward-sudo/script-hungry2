@@ -6,5 +6,5 @@ export type edges = {
 export default interface iPosts {
   posts: {
     edges: edges[]
-  },
+  }
 }

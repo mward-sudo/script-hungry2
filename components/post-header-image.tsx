@@ -5,7 +5,7 @@ type PostHeaderImageProps = {
   url: string
   height: number
   width: number
-};
+}
 
 const PostHeaderImage: FC<PostHeaderImageProps> = ({ url, height, width }) => (
   <>

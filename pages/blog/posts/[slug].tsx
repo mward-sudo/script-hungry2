@@ -21,7 +21,9 @@ type PostProps = {
   post: iPostWithContent
 }
 
-const Post: InferGetStaticPropsType<typeof getStaticProps> = ({ post }: PostProps) => {
+const Post: InferGetStaticPropsType<typeof getStaticProps> = ({
+  post,
+}: PostProps) => {
   const [showComments, setShowComments] = useState(false)
 
   const router = useRouter()
@@ -30,11 +32,7 @@ const Post: InferGetStaticPropsType<typeof getStaticProps> = ({ post }: PostProp
     <>
       <Head>
         <title>
-          {post?.title}
-          {' '}
-          |
-          {' '}
-          {Constants.SITE_NAME}
+          {post?.title} | {Constants.SITE_NAME}
         </title>
       </Head>
       <Header element="p" />
@@ -73,7 +71,7 @@ const Post: InferGetStaticPropsType<typeof getStaticProps> = ({ post }: PostProp
   )
 }
 
-export const getStaticProps:GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const data = await getPost(params?.slug)
   return {
     props: {
@@ -92,7 +90,9 @@ type postNodes = {
 export const getStaticPaths: GetStaticPaths = async () => {
   const allPosts = await getAllPostsWithSlug()
   return {
-    paths: allPosts.edges.map(({ node }: postNodes) => (`/blog/posts/${node?.slug}` || [])),
+    paths: allPosts.edges.map(
+      ({ node }: postNodes) => `/blog/posts/${node?.slug}` || []
+    ),
     fallback: true,
   }
 }

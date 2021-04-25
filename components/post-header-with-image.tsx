@@ -9,7 +9,10 @@ type PostHeaderWithImageProps = {
   image: iFeaturedImage
 }
 
-const PostHeaderWithImage: FC<PostHeaderWithImageProps> = ({ title, image }) => {
+const PostHeaderWithImage: FC<PostHeaderWithImageProps> = ({
+  title,
+  image,
+}) => {
   const useStyles = makeStyles(() => ({
     positionRoot: {
       position: 'relative',
@@ -42,9 +45,7 @@ const PostHeaderWithImage: FC<PostHeaderWithImageProps> = ({ title, image }) => 
     <Box className={classes.positionRoot}>
       <Typography variant="h5" component="h1" className={classes.heading}>
         <span className={classes.headingSpan}>
-          <span className={classes.headingReset}>
-            {title}
-          </span>
+          <span className={classes.headingReset}>{title}</span>
         </span>
       </Typography>
       <PostHeaderImage

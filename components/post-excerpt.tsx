@@ -14,7 +14,10 @@ type PostExcerptProps = {
 }
 
 const PostExcerpt: FC<PostExcerptProps> = ({
-  title, excerpt, slug, featuredImage,
+  title,
+  excerpt,
+  slug,
+  featuredImage,
 }) => {
   const useStyles = makeStyles(() => ({
     blogPost: {
