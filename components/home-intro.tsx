@@ -41,7 +41,7 @@ const HomeIntro: FC = (): JSX.Element => {
       padding: 0,
     },
     unrotate: {
-      transform: 'rotate(6.5deg)',
+      transform: 'rotate(5deg)',
     },
     smaller: {
       fontSize: 24,
@@ -54,15 +54,13 @@ const HomeIntro: FC = (): JSX.Element => {
   const titleInitial = { opacity: 0 }
   const titleAnimate = { opacity: 1 }
   const titleTransition = {
-    delay: 0.5, duration: 1, type: 'spring', stiffness: 100,
+    delay: 1, duration: 1.5, type: 'spring',
   }
 
   const [headingFinalState, setHeadingFinalState] = useState(false)
 
   useEffect(() => {
-    setTimeout(() => {
-      setHeadingFinalState(true)
-    }, 1)
+    setHeadingFinalState(true)
   })
 
   return (
