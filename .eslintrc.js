@@ -7,6 +7,10 @@ module.exports = {
     'plugin:react/recommended',
     'airbnb',
     'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'prettier/react',
+    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -19,16 +23,14 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
+    'react-hooks',
     'jam3',
   ],
   rules: {
-    semi: [
-      'error',
-      'never',
-    ],
-    'react/no-danger': 'off',
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['error'],
+    '@typescript-eslint/no-use-before-define': [
+      'error',
+    ],
     'react/jsx-filename-extension': [
       'warn', {
         extensions: ['.tsx'],
@@ -44,10 +46,32 @@ module.exports = {
       },
     ],
     'no-shadow': 'off',
-    '@typescript-eslint/no-shadow': ['error'],
+    '@typescript-eslint/no-shadow': [
+      'error',
+    ],
+    '@typescript-eslint/explicit-function-return-type': [
+      'error',
+      {
+        allowExpressions: true,
+      },
+    ],
+    'max-len': [
+      'warn',
+      {
+        code: 80,
+      },
+    ],
+    semi: [
+      'error',
+      'never',
+    ],
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    'import/prefer-default-export': 'off',
+    'react/prop-types': 'off',
+    'react/no-danger': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
-    'react/prop-types': 'off',
     'jsx-a11y/anchor-is-valid': ['warn'],
     'react/jsx-props-no-spreading': ['warn'],
   },
