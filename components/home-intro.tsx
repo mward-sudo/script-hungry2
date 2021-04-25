@@ -1,22 +1,34 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import { motion } from 'framer-motion'
 import Image from 'next/image'
 
-const HomeIntro: FC = () => {
+const HomeIntro: FC = (): JSX.Element => {
   const useStyles = makeStyles(() => ({
     intro: {
-      backgroundColor: 'black',
       position: 'relative',
-      textAlign: 'center',
-      overflow: 'hidden',
       maxHeight: '60vh',
+      backgroundColor: 'black',
+      overflow: 'hidden',
     },
-    text: {
+    gridContainer: {
       position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%) rotate(-5deg)',
+      top: 0,
+      height: '100%',
+      width: '100%',
+      display: 'grid',
+      gridTemplateColumns: 'auto',
+      textAlign: 'center',
+      justifyContent: 'center',
+      alignContent: 'end',
+    },
+    gridContainerFinal: {
+      alignContent: 'center',
+    },
+    heading: {
+      width: '6.5em',
+      transform: 'rotate(-5deg)',
       zIndex: 1,
       fontFamily: '"Proza Libre", sans-serif',
       fontStyle: 'italic',
@@ -39,16 +51,44 @@ const HomeIntro: FC = () => {
   }))
   const classes = useStyles()
 
+  const titleInitial = { opacity: 0 }
+  const titleAnimate = { opacity: 1 }
+  const titleTransition = {
+    delay: 0.5, duration: 1, type: 'spring', stiffness: 100,
+  }
+
+  const [headingFinalState, setHeadingFinalState] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setHeadingFinalState(true)
+    }, 1)
+  })
+
   return (
     <section className={classes.intro}>
-      <Typography variant="h4" component="h3" className={classes.text}>
-        <div className={classes.unrotate}>
-          <span className={classes.smaller}>Michael Ward&rsquo;s</span>
-          <br />
-          scriptHungry
-        </div>
-      </Typography>
-      <Image src="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/123A0A22-8417-43E5-AE1F-27B2D300B35B.jpeg" width="2560" height="1707" layout="responsive" />
+      <Image
+        src="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/123A0A22-8417-43E5-AE1F-27B2D300B35B.jpeg"
+        width="2560"
+        height="1707"
+        layout="responsive"
+      />
+      <motion.div
+        transition={titleTransition}
+        className={`${classes.gridContainer} ${headingFinalState && classes.gridContainerFinal}`}
+        initial={titleInitial}
+        animate={titleAnimate}
+      >
+        <motion.div layout transition={titleTransition}>
+          <Typography variant="h4" component="h3" className={classes.heading}>
+            <div className={classes.unrotate}>
+              <span className={classes.smaller}>Michael Ward&rsquo;s</span>
+              <br />
+              scriptHungry
+            </div>
+          </Typography>
+        </motion.div>
+      </motion.div>
     </section>
   )
 }
