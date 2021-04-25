@@ -51,7 +51,7 @@ module.exports = {
     'react/no-danger': 'off',
     'react/jsx-uses-react': 'off',
     'react/react-in-jsx-scope': 'off',
-    'jsx-a11y/anchor-is-valid': ['warn'],
+    'jsx-a11y/anchor-is-valid': ['off'],
     'react/jsx-props-no-spreading': ['warn'],
   },
   settings: {
