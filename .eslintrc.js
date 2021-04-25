@@ -6,10 +6,6 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
-    'plugin:@typescript-eslint/recommended',
-    'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
     'plugin:prettier/recommended',
   ],
   parser: '@typescript-eslint/parser',
@@ -20,25 +16,20 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-    '@typescript-eslint',
-    'react-hooks',
-    'jam3',
-  ],
+  plugins: ['react', '@typescript-eslint', 'react-hooks', 'jam3'],
   rules: {
     'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': [
-      'error',
-    ],
+    '@typescript-eslint/no-use-before-define': ['error'],
     'react/jsx-filename-extension': [
-      'warn', {
+      'warn',
+      {
         extensions: ['.tsx'],
       },
     ],
     'import/extensions': [
       'error',
-      'ignorePackages', {
+      'ignorePackages',
+      {
         ts: 'never',
         tsx: 'never',
         js: 'never',
@@ -46,24 +37,12 @@ module.exports = {
       },
     ],
     'no-shadow': 'off',
-    '@typescript-eslint/no-shadow': [
-      'error',
-    ],
+    '@typescript-eslint/no-shadow': ['error'],
     '@typescript-eslint/explicit-function-return-type': [
       'error',
       {
         allowExpressions: true,
       },
-    ],
-    'max-len': [
-      'warn',
-      {
-        code: 80,
-      },
-    ],
-    semi: [
-      'error',
-      'never',
     ],
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
