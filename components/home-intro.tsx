@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react'
+import { FC } from 'react'
 import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { motion } from 'framer-motion'
@@ -21,9 +21,6 @@ const HomeIntro: FC = (): JSX.Element => {
       gridTemplateColumns: 'auto',
       textAlign: 'center',
       justifyContent: 'center',
-      alignContent: 'end',
-    },
-    gridContainerFinal: {
       alignContent: 'center',
     },
     heading: {
@@ -51,19 +48,21 @@ const HomeIntro: FC = (): JSX.Element => {
   }))
   const classes = useStyles()
 
-  const titleInitial = { opacity: 0 }
-  const titleAnimate = { opacity: 1 }
-  const titleTransition = {
-    delay: 1,
-    duration: 1.5,
-    type: 'spring',
+  const titleVariants = {
+    initial: {
+      opacity: 0,
+      y: 400,
+    },
+    animate: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 1,
+        duration: 1.5,
+        type: 'spring',
+      },
+    },
   }
-
-  const [headingFinalState, setHeadingFinalState] = useState(false)
-
-  useEffect(() => {
-    setHeadingFinalState(true)
-  })
 
   return (
     <section className={classes.intro}>
@@ -73,15 +72,13 @@ const HomeIntro: FC = (): JSX.Element => {
         height="1707"
         layout="responsive"
       />
-      <motion.div
-        transition={titleTransition}
-        className={`${classes.gridContainer} ${
-          headingFinalState && classes.gridContainerFinal
-        }`}
-        initial={titleInitial}
-        animate={titleAnimate}
-      >
-        <motion.div layout transition={titleTransition}>
+
+      <div className={classes.gridContainer}>
+        <motion.div
+          initial="initial"
+          animate="animate"
+          variants={titleVariants}
+        >
           <Typography variant="h4" component="h3" className={classes.heading}>
             <div className={classes.unrotate}>
               <span className={classes.smaller}>Michael Ward&rsquo;s</span>
@@ -90,7 +87,7 @@ const HomeIntro: FC = (): JSX.Element => {
             </div>
           </Typography>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   )
 }
