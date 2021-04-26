@@ -19,6 +19,9 @@ const PostHeaderWithImage: FC<PostHeaderWithImageProps> = ({
     },
     heading: {
       fontSize: 'calc(1em + 3vh)',
+      fontFamily: '"Proza Libre", sans-serif',
+      fontStyle: 'italic',
+      textShadow: '1px 1px 1px rgba(0,0,0,0.7)',
       position: 'absolute',
       width: '50%',
       minWidth: '9em',

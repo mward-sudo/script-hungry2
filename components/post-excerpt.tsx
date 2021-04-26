@@ -28,17 +28,28 @@ const PostExcerpt: FC<PostExcerptProps> = ({
     },
     postHeading: {
       marginBottom: 0,
+      display: 'inline-block',
+      fontFamily: '"Proza Libre", sans-serif',
+      fontStyle: 'italic',
+      backgroundColor: 'red',
+      textShadow: '1px 1px 1px rgba(0,0,0,0.7)',
+      transform: 'rotate(-2deg)',
     },
     postHeadingLink: {
-      fontSize: 24,
+      display: 'inline-block',
+      fontSize: 32,
       fontWeight: 600,
-      color: 'red',
+      color: 'white',
       textDecoration: 'none',
+      transform: 'rotate(2deg)',
     },
     byLine: {
-      fontSize: 9,
+      display: 'inline-block',
+      fontFamily: '"Proza Libre", sans-serif',
+      fontSize: 18,
       color: '#999',
       marginBottom: '1em',
+      paddingRight: '1em',
     },
     featuredImage: {
       marginBottom: '1em',
@@ -56,13 +67,19 @@ const PostExcerpt: FC<PostExcerptProps> = ({
 
   return (
     <Box className={classes.blogPost}>
-      <Typography variant="h5" component="h2" className={classes.postHeading}>
-        <Link href={url}>
-          <a className={classes.postHeadingLink}>{title}</a>
-        </Link>
-      </Typography>
-      <Typography variant="subtitle1" component="p" className={classes.byLine}>
-        Written by {author?.name}
+      <Typography variant="h5" component="h2">
+        <span className={classes.postHeading}>
+          <Link href={url}>
+            <a className={classes.postHeadingLink}>{title}</a>
+          </Link>
+        </span>{' '}
+        <Typography
+          variant="subtitle1"
+          component="p"
+          className={classes.byLine}
+        >
+          by {author?.name}
+        </Typography>
       </Typography>
       <FeaturedImageBox
         featuredImage={featuredImage}
