@@ -17,14 +17,6 @@ const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
     jssStyles?.parentElement?.removeChild(jssStyles)
   }, [])
 
-  const pageVariant = {
-    pageInitial: {
-      opacity: 0,
-    },
-    pageAnimate: {
-      opacity: 1,
-    },
-  }
   return (
     <>
       <Head>
@@ -38,13 +30,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <AnimatePresence exitBeforeEnter>
-          <motion.div
-            initial="pageInitial"
-            animate="pageAnimate"
-            variants={pageVariant}
-          >
-            <Component {...pageProps} key={router.route} />
-          </motion.div>
+          <Component {...pageProps} key={router.route} />
         </AnimatePresence>
       </ThemeProvider>
     </>
