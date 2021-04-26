@@ -9,6 +9,7 @@ import '@fontsource/roboto/100.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/proza-libre/600-italic.css'
 import '@fontsource/proza-libre/400.css'
+import { fadeIn } from '../animations/animations'
 
 const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
   useEffect(() => {
@@ -30,7 +31,14 @@ const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <AnimatePresence exitBeforeEnter>
-          <Component {...pageProps} key={router.route} />
+          <motion.div
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={fadeIn()}
+          >
+            <Component {...pageProps} key={router.route} />
+          </motion.div>
         </AnimatePresence>
       </ThemeProvider>
     </>
