@@ -34,8 +34,9 @@ const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
           <motion.div
             initial="initial"
             animate="animate"
-            exit="exit"
+            exit="initial"
             variants={fadeIn()}
+            key={router.route}
           >
             <Component {...pageProps} key={router.route} />
           </motion.div>
