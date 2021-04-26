@@ -5,12 +5,14 @@ import { makeStyles } from '@material-ui/core/styles'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import iFeaturedImage from '../types/featured-image'
 import FeaturedImageBox from './featured-image-box'
+import iAuthor from '../types/author'
 
 type PostExcerptProps = {
   title: string
   excerpt: string
   slug: string
   featuredImage: iFeaturedImage
+  author: iAuthor
 }
 
 const PostExcerpt: FC<PostExcerptProps> = ({
@@ -18,6 +20,7 @@ const PostExcerpt: FC<PostExcerptProps> = ({
   excerpt,
   slug,
   featuredImage,
+  author,
 }) => {
   const useStyles = makeStyles(() => ({
     blogPost: {
@@ -31,6 +34,11 @@ const PostExcerpt: FC<PostExcerptProps> = ({
       fontWeight: 600,
       color: 'red',
       textDecoration: 'none',
+    },
+    byLine: {
+      fontSize: 9,
+      color: '#999',
+      marginBottom: '1em',
     },
     featuredImage: {
       marginBottom: '1em',
@@ -52,6 +60,9 @@ const PostExcerpt: FC<PostExcerptProps> = ({
         <Link href={url}>
           <a className={classes.postHeadingLink}>{title}</a>
         </Link>
+      </Typography>
+      <Typography variant="subtitle1" component="p" className={classes.byLine}>
+        Written by {author?.name}
       </Typography>
       <FeaturedImageBox
         featuredImage={featuredImage}

@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme: Theme) =>
       top: 0,
       flexGrow: 1,
       zIndex: 1000,
+      minHeight: '42px',
     },
     appBar: {
       backgroundColor: 'rgba(255,255,255,0.75)',
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const Header: FC<HeaderProps> = ({ element = 'h1' }) => {
   const classes = useStyles()
+  const myString = 'My String'
 
   return (
     <div className={classes.root}>
