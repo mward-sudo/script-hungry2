@@ -27,11 +27,12 @@ const PostExcerpt: FC<PostExcerptProps> = ({
       margin: '5em 0',
     },
     postHeading: {
+      textAlign: 'center',
       marginBottom: 0,
       display: 'inline-block',
       fontFamily: '"Proza Libre", sans-serif',
-      fontStyle: 'italic',
       backgroundColor: 'red',
+      fontStyle: 'italic',
       textShadow: '1px 1px 1px rgba(0,0,0,0.7)',
       transform: 'rotate(-2deg)',
     },
