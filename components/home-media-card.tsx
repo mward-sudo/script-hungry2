@@ -9,6 +9,8 @@ import {
   CardContent,
   Button,
 } from '@material-ui/core'
+import { motion } from 'framer-motion'
+import { fadeIn } from '../animations/animations'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -29,6 +31,7 @@ type HomeMediaCardProps = {
   imgWidth: number
   imgHeight: number
   btnText: string
+  delayLength: number
 }
 
 type ConditionalLinkProps = {
@@ -53,27 +56,34 @@ const HomeMediaCard: FC<HomeMediaCardProps> = ({
   imgWidth,
   imgHeight,
   btnText,
+  delayLength,
 }) => {
   const classes = useStyles()
 
   const sizes = '(max-width: 600px): 50vw, 25vw'
 
   return (
-    <Card className={classes.card}>
-      <ConditionalLink href={href}>
-        <CardMedia>
-          <Image
-            src={imgSrc}
-            width={imgWidth}
-            height={imgHeight}
-            sizes={sizes}
-          />
-        </CardMedia>
-        <CardContent className={classes.cardContent}>
-          <Button variant="text">{btnText} &gt;</Button>
-        </CardContent>
-      </ConditionalLink>
-    </Card>
+    <motion.div
+      initial="initial"
+      animate="animate"
+      variants={fadeIn(0.5, delayLength)}
+    >
+      <Card className={classes.card}>
+        <ConditionalLink href={href}>
+          <CardMedia>
+            <Image
+              src={imgSrc}
+              width={imgWidth}
+              height={imgHeight}
+              sizes={sizes}
+            />
+          </CardMedia>
+          <CardContent className={classes.cardContent}>
+            <Button variant="text">{btnText} &gt;</Button>
+          </CardContent>
+        </ConditionalLink>
+      </Card>
+    </motion.div>
   )
 }
 

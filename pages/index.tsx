@@ -37,6 +37,8 @@ const Index: FC = () => {
                   imgWidth={2560}
                   imgHeight={1440}
                   btnText="Blog"
+                  key="/blog/"
+                  delayLength={0.5}
                 />
               </Grid>
               <Grid item xs={6} sm={3}>
@@ -46,6 +48,8 @@ const Index: FC = () => {
                   imgWidth={1199}
                   imgHeight={674}
                   btnText="Portfolio"
+                  key="/portfolio/"
+                  delayLength={0.7}
                 />
               </Grid>
               <Grid item xs={6} sm={3}>
@@ -55,6 +59,8 @@ const Index: FC = () => {
                   imgWidth={1917}
                   imgHeight={1078}
                   btnText="Github"
+                  key="github"
+                  delayLength={0.9}
                 />
               </Grid>
               <Grid item xs={6} sm={3}>
@@ -64,6 +70,8 @@ const Index: FC = () => {
                   imgWidth={2560}
                   imgHeight={1440}
                   btnText="LinkedIn"
+                  key="linkedin"
+                  delayLength={1.1}
                 />
               </Grid>
             </Grid>
