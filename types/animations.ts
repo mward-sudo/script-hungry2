@@ -1,18 +1,34 @@
 import { Variants } from 'framer-motion'
 
+export type FadeParams = {
+  durationLength?: number
+  delayLength?: number
+  initialOpacity?: number
+  animateOpacity?: number
+}
 export interface Fade {
-  (
-    durationLength?: number,
-    delayLength?: number,
-    initialOpacity?: number,
-    animateOpacity?: number
-  ): Variants
+  (params?: FadeParams): Variants
 }
 
-export interface FadeInAndUp extends Fade {
-  (initialYOffset?: number): Variants
+export type FadeInAndUpParams = FadeParams & {
+  initialYOffset?: number
+  transitionType?: 'tween' | 'spring' | 'inertia'
+}
+export interface FadeInAndUp {
+  (params?: FadeInAndUpParams): Variants
 }
 
+export type ZoomParams = {
+  zoomInAmount?: number
+  zoomOutAmount?: number
+}
 export interface Zoom {
-  (zoomInAmount?: number, zoomOutAmount?: number): Variants
+  (params?: ZoomParams): Variants
+}
+
+export type StaggerParams = {
+  staggerTime?: number
+}
+export interface Stagger {
+  (params?: StaggerParams): Variants
 }
