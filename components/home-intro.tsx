@@ -3,6 +3,7 @@ import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { fadeInAndUp } from '../animations/animations'
 
 const HomeIntro: FC = (): JSX.Element => {
   const useStyles = makeStyles(() => ({
@@ -48,20 +49,10 @@ const HomeIntro: FC = (): JSX.Element => {
   }))
   const classes = useStyles()
 
-  const titleVariants = {
-    initial: {
-      opacity: 0,
-      y: 400,
-    },
-    animate: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 1,
-        duration: 1.5,
-        type: 'spring',
-      },
-    },
+  const titleTransition = {
+    delay: 1,
+    duration: 1.5,
+    type: 'spring',
   }
 
   return (
@@ -77,7 +68,8 @@ const HomeIntro: FC = (): JSX.Element => {
         <motion.div
           initial="initial"
           animate="animate"
-          variants={titleVariants}
+          variants={fadeInAndUp(400)}
+          transition={titleTransition}
         >
           <Typography variant="h4" component="h3" className={classes.heading}>
             <div className={classes.unrotate}>
