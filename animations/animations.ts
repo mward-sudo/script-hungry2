@@ -34,11 +34,14 @@ export const fadeIn: Fade = (durationLength = 0.5, delayLength = 0) =>
 export const fadeOut: Fade = (durationLength = 0.5, delayLength = 0) =>
   fade(durationLength, delayLength, 1, 0)
 
-export const zoom: Zoom = (zoomAmount = 1.1) => ({
+export const zoom: Zoom = (zoomInAmount = 1.1, zoomOutAmount = 0.9) => ({
   initial: {
     zoom: 1,
   },
-  animate: {
-    zoom: zoomAmount,
+  zoomIn: {
+    zoom: zoomInAmount,
+  },
+  zoomOut: {
+    zoom: zoomOutAmount,
   },
 })

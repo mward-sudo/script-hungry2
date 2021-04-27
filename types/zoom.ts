@@ -1,5 +1,5 @@
 import { Variants } from 'framer-motion'
 
 export interface Zoom {
-  (zoomAmount?: number): Variants
+  (zoomInAmount?: number, zoomOutAmount?: number): Variants
 }
