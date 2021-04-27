@@ -32,7 +32,7 @@ const Index: FC = () => {
           <div className={classes.root}>
             <Grid container spacing={3}>
               {cards.map((card, i) => (
-                <Grid item xs={6} sm={3}>
+                <Grid item xs={6} sm={3} key={card.href}>
                   <HomeMediaCard
                     href={card.href}
                     imgSrc={card.imgSrc}
