@@ -1,6 +1,5 @@
 import { AnimationProps } from 'framer-motion'
-import { Fade } from '../types/fade'
-import { Zoom } from '../types/zoom'
+import { Fade, FadeInAndUp, Zoom } from '../types/animations'
 
 export const stagger = (staggerTime = 0.2): AnimationProps => ({
   animate: {
@@ -43,5 +42,16 @@ export const zoom: Zoom = (zoomInAmount = 1.1, zoomOutAmount = 0.9) => ({
   },
   zoomOut: {
     zoom: zoomOutAmount,
+  },
+})
+
+export const fadeInAndUp: FadeInAndUp = (initialYOffset = 200) => ({
+  initial: {
+    opacity: 0,
+    y: initialYOffset,
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
   },
 })
