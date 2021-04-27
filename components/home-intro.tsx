@@ -49,12 +49,6 @@ const HomeIntro: FC = (): JSX.Element => {
   }))
   const classes = useStyles()
 
-  const titleTransition = {
-    delay: 1,
-    duration: 1.5,
-    type: 'spring',
-  }
-
   return (
     <section className={classes.intro}>
       <Image
@@ -68,8 +62,11 @@ const HomeIntro: FC = (): JSX.Element => {
         <motion.div
           initial="initial"
           animate="animate"
-          variants={fadeInAndUp(400)}
-          transition={titleTransition}
+          variants={fadeInAndUp({
+            initialYOffset: 400,
+            delayLength: 1,
+            durationLength: 1.5,
+          })}
         >
           <Typography variant="h4" component="h3" className={classes.heading}>
             <div className={classes.unrotate}>
