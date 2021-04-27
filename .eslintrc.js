@@ -18,7 +18,13 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'react-hooks', 'jam3'],
+  plugins: [
+    'react',
+    '@typescript-eslint',
+    'react-hooks',
+    'jam3',
+    'unused-imports',
+  ],
   rules: {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
@@ -55,6 +61,17 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'jsx-a11y/anchor-is-valid': ['off'],
     'react/jsx-props-no-spreading': ['warn'],
+    'no-unused-vars': 'off',
+    'unused-imports/no-unused-imports': 'error',
+    'unused-imports/no-unused-vars': [
+      'warn',
+      {
+        vars: 'all',
+        varsIgnorePattern: '^_',
+        args: 'after-used',
+        argsIgnorePattern: '^_',
+      },
+    ],
   },
   settings: {
     'import/resolver': {
