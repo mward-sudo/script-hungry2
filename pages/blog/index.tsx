@@ -4,11 +4,11 @@ import Head from 'next/head'
 import { motion } from 'framer-motion'
 import { getAllPostsForHome } from '../../lib/api'
 import Header from '../../components/header'
-import PostExcerptList from '../../components/post-excerpt-list'
 import Copyright from '../../components/copyright'
 import Constants from '../../lib/consts'
 import { edges as PostEdges } from '../../types/posts'
 import { stagger } from '../../animations/animations'
+import PostExcerpt from '../../components/post-excerpt'
 
 type IndexProps = {
   allPosts: {
@@ -27,7 +27,19 @@ const Index: InferGetStaticPropsType<typeof getStaticProps> = ({
     <Container maxWidth="sm">
       <Box my={4}>
         <motion.div variants={stagger({ staggerTime: 1 })}>
-          <PostExcerptList posts={allPosts} />
+          {allPosts.edges.map((post: PostEdges) => {
+            const { title, excerpt, slug, featuredImage, author } = post.node
+            return (
+              <PostExcerpt
+                key={slug}
+                title={title}
+                excerpt={excerpt}
+                slug={slug}
+                featuredImage={featuredImage}
+                author={author.node}
+              />
+            )
+          })}
         </motion.div>
         <Copyright />
       </Box>
