@@ -1,12 +1,14 @@
 import { Container, Box } from '@material-ui/core'
 import { InferGetStaticPropsType, GetStaticProps } from 'next'
 import Head from 'next/head'
+import { motion } from 'framer-motion'
 import { getAllPostsForHome } from '../../lib/api'
 import Header from '../../components/header'
 import PostExcerptList from '../../components/post-excerpt-list'
 import Copyright from '../../components/copyright'
 import Constants from '../../lib/consts'
 import { edges as PostEdges } from '../../types/posts'
+import { stagger } from '../../animations/animations'
 
 type IndexProps = {
   allPosts: {
@@ -24,7 +26,9 @@ const Index: InferGetStaticPropsType<typeof getStaticProps> = ({
     <Header />
     <Container maxWidth="sm">
       <Box my={4}>
-        <PostExcerptList posts={allPosts} />
+        <motion.div variants={stagger({ staggerTime: 1 })}>
+          <PostExcerptList posts={allPosts} />
+        </motion.div>
         <Copyright />
       </Box>
     </Container>

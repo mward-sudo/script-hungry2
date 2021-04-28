@@ -3,9 +3,11 @@ import Link from 'next/link'
 import { Typography, Button, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
+import { motion } from 'framer-motion'
 import iFeaturedImage from '../types/featured-image'
 import FeaturedImageBox from './featured-image-box'
 import iAuthor from '../types/author'
+import { fadeInAndUp } from '../animations/animations'
 
 type PostExcerptProps = {
   title: string
@@ -67,37 +69,39 @@ const PostExcerpt: FC<PostExcerptProps> = ({
   const url = `/blog/posts/${slug}`
 
   return (
-    <Box className={classes.blogPost}>
-      <Typography variant="h5" component="h2">
-        <span className={classes.postHeading}>
-          <Link href={url}>
-            <a className={classes.postHeadingLink}>{title}</a>
-          </Link>
-        </span>{' '}
-        <Typography
-          variant="subtitle1"
-          component="p"
-          className={classes.byLine}
-        >
-          by {author?.name}
+    <motion.div variants={fadeInAndUp()}>
+      <Box className={classes.blogPost}>
+        <Typography variant="h5" component="h2">
+          <span className={classes.postHeading}>
+            <Link href={url}>
+              <a className={classes.postHeadingLink}>{title}</a>
+            </Link>
+          </span>{' '}
+          <Typography
+            variant="subtitle1"
+            component="p"
+            className={classes.byLine}
+          >
+            by {author?.name}
+          </Typography>
         </Typography>
-      </Typography>
-      <FeaturedImageBox
-        featuredImage={featuredImage}
-        url={url}
-        customClass={classes.featuredImage}
-      />
-      <div
-        className={classes.body}
-        dangerouslySetInnerHTML={{ __html: sanitizer(excerpt) }}
-      />
+        <FeaturedImageBox
+          featuredImage={featuredImage}
+          url={url}
+          customClass={classes.featuredImage}
+        />
+        <div
+          className={classes.body}
+          dangerouslySetInnerHTML={{ __html: sanitizer(excerpt) }}
+        />
 
-      <Link href={url} passHref>
-        <Button variant="outlined" color="primary">
-          Read more…
-        </Button>
-      </Link>
-    </Box>
+        <Link href={url} passHref>
+          <Button variant="outlined" color="primary">
+            Read more…
+          </Button>
+        </Link>
+      </Box>
+    </motion.div>
   )
 }
 

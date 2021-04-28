@@ -64,8 +64,8 @@ const HomeIntro: FC = (): JSX.Element => {
           animate="animate"
           variants={fadeInAndUp({
             initialYOffset: 400,
-            delayLength: 1,
-            durationLength: 1.5,
+            delay: 1,
+            duration: 1.5,
           })}
         >
           <Typography variant="h4" component="h3" className={classes.heading}>

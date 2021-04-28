@@ -2,12 +2,14 @@ import { FC } from 'react'
 import { Container, Box, Grid } from '@material-ui/core'
 import { makeStyles, createStyles } from '@material-ui/core/styles'
 import Head from 'next/head'
+import { motion } from 'framer-motion'
 import Header from '../components/header'
 import HomeIntro from '../components/home-intro'
 import HomeMediaCard from '../components/home-media-card'
 import Copyright from '../components/copyright'
 import Constants from '../lib/consts'
 import { cards } from '../data/cards'
+import { stagger } from '../animations/animations'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -29,9 +31,9 @@ const Index: FC = () => {
       <HomeIntro />
       <Container maxWidth="sm">
         <Box my={4}>
-          <div className={classes.root}>
+          <motion.div variants={stagger()} className={classes.root}>
             <Grid container spacing={3}>
-              {cards.map((card, i) => (
+              {cards.map((card) => (
                 <Grid item xs={6} sm={3} key={card.href}>
                   <HomeMediaCard
                     href={card.href}
@@ -40,12 +42,11 @@ const Index: FC = () => {
                     imgHeight={card.imgHeight}
                     btnText={card.btnText}
                     key={card.href}
-                    delayLength={0.5 + i * 0.2}
                   />
                 </Grid>
               ))}
             </Grid>
-          </div>
+          </motion.div>
           <Copyright />
         </Box>
       </Container>
