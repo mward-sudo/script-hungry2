@@ -7,7 +7,6 @@ import { useRouter } from 'next/router'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import Copyright from '../../../components/copyright'
 import Header from '../../../components/header'
-import PostHeaderWithImage from '../../../components/post-header-with-image'
 import PostHeader from '../../../components/post-header'
 import { getAllPostsWithSlug, getPost } from '../../../lib/api'
 import Constants from '../../../lib/consts'
@@ -38,14 +37,11 @@ const Post: InferGetStaticPropsType<typeof getStaticProps> = ({
       <Header element="p" />
       <Container maxWidth="sm">
         <Box my={4}>
-          {post?.featuredImage ? (
-            <PostHeaderWithImage
-              title={post?.title}
-              image={post?.featuredImage}
-            />
-          ) : (
-            <PostHeader title={post?.title} />
-          )}
+          <PostHeader
+            title={post.title}
+            image={post?.featuredImage}
+            author={post.author?.node}
+          />
           <div dangerouslySetInnerHTML={{ __html: sanitizer(post?.content) }} />
           {showComments ? (
             <Disqus
