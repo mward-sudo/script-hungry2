@@ -1,3 +1,4 @@
+import { Variants } from 'framer-motion'
 import {
   Fade,
   FadeParams,
@@ -16,6 +17,7 @@ import {
  */
 const staggerDefaultProps: StaggerParams = {
   staggerTime: 0.2,
+  delayChildren: 0,
 }
 
 /**
@@ -33,12 +35,13 @@ export const stagger: Stagger = (params) => {
    * The amount of time between each child animation starting in the stagger
    * @constant staggerTime number
    */
-  const { staggerTime } = { ...staggerDefaultProps, ...params }
+  const { staggerTime, delayChildren } = { ...staggerDefaultProps, ...params }
 
   return {
     animate: {
       transition: {
         staggerChildren: staggerTime,
+        delayChildren,
       },
     },
   }
@@ -52,8 +55,7 @@ export const stagger: Stagger = (params) => {
 const fadeDefaultProps: FadeParams = {
   initialOpacity: 0,
   animateOpacity: 1,
-  durationLength: 0.5,
-  delayLength: 0,
+  duration: 0.5,
 }
 /**
  * Non-exported utility function for fade functionality.
@@ -65,23 +67,26 @@ const fadeDefaultProps: FadeParams = {
 const fade: Fade = (params) => {
   // Spreading the default props and the params gives us an object with
   // default values, overridden by any that were passed in via params
-  const { initialOpacity, animateOpacity, durationLength, delayLength } = {
+  const { initialOpacity, animateOpacity, duration, delay } = {
     ...fadeDefaultProps,
     ...params,
   }
 
-  return {
+  const variants: Variants = {
     initial: {
       opacity: initialOpacity,
     },
     animate: {
       opacity: animateOpacity,
       transition: {
-        duration: durationLength,
-        delay: delayLength,
+        duration,
       },
     },
   }
+
+  if (delay !== undefined) variant.animate.transition.delay = delay
+
+  return variants
 }
 
 const fadeInDefaultProps: FadeParams = {
@@ -90,10 +95,10 @@ const fadeInDefaultProps: FadeParams = {
 export const fadeIn: Fade = (props) => {
   // Spreading the default props and the params gives us an object with
   // default values, overridden by any that were passed in via params
-  const { durationLength, delayLength } = { ...fadeInDefaultProps, ...props }
+  const { duration, delay } = { ...fadeInDefaultProps, ...props }
   return fade({
-    durationLength,
-    delayLength,
+    duration,
+    delay,
     initialOpacity: 0,
     animateOpacity: 1,
   })
@@ -103,11 +108,11 @@ const fadeOutDefaultProps: FadeParams = { ...fadeDefaultProps }
 export const fadeOut: Fade = (props) => {
   // Spreading the default props and the params gives us an object with
   // default values, overridden by any that were passed in via params
-  const { durationLength, delayLength } = { ...fadeOutDefaultProps, ...props }
+  const { duration, delay } = { ...fadeOutDefaultProps, ...props }
 
   return fade({
-    durationLength,
-    delayLength,
+    duration,
+    delay,
     initialOpacity: 1,
     animateOpacity: 0,
   })
@@ -125,11 +130,11 @@ export const fadeInAndUp: FadeInAndUp = (props) => {
     initialOpacity,
     initialYOffset,
     animateOpacity,
-    delayLength,
-    durationLength,
+    delay,
+    duration,
     transitionType,
   } = { ...fadeInAndUpDefaultProps, ...props }
-  return {
+  const variants: Variants = {
     initial: {
       opacity: initialOpacity,
       y: initialYOffset,
@@ -138,12 +143,15 @@ export const fadeInAndUp: FadeInAndUp = (props) => {
       opacity: animateOpacity,
       y: 0,
       transition: {
-        delay: delayLength,
-        duration: durationLength,
         type: transitionType,
+        duration,
       },
     },
   }
+
+  if (delay !== undefined) variants.animate.transition.delay = delay
+
+  return variants
 }
 
 const zoomDefaultProps: ZoomParams = {

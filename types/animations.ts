@@ -1,8 +1,8 @@
 import { Variants } from 'framer-motion'
 
 export type FadeParams = {
-  durationLength?: number
-  delayLength?: number
+  duration?: number
+  delay?: number
   initialOpacity?: number
   animateOpacity?: number
 }
@@ -28,6 +28,7 @@ export interface Zoom {
 
 export type StaggerParams = {
   staggerTime?: number
+  delayChildren?: number
 }
 export interface Stagger {
   (params?: StaggerParams): Variants
