@@ -1,4 +1,3 @@
-import { Variants } from 'framer-motion'
 import {
   Fade,
   FadeParams,
@@ -72,7 +71,7 @@ const fade: Fade = (params) => {
     ...params,
   }
 
-  const variants: Variants = {
+  return {
     initial: {
       opacity: initialOpacity,
     },
@@ -80,13 +79,10 @@ const fade: Fade = (params) => {
       opacity: animateOpacity,
       transition: {
         duration,
+        ...(delay !== undefined && { delay }),
       },
     },
   }
-
-  if (delay !== undefined) variants.animate.transition.delay = delay
-
-  return variants
 }
 
 const fadeInDefaultProps: FadeParams = {
@@ -134,7 +130,7 @@ export const fadeInAndUp: FadeInAndUp = (props) => {
     duration,
     transitionType,
   } = { ...fadeInAndUpDefaultProps, ...props }
-  const variants: Variants = {
+  return {
     initial: {
       opacity: initialOpacity,
       y: initialYOffset,
@@ -145,13 +141,10 @@ export const fadeInAndUp: FadeInAndUp = (props) => {
       transition: {
         type: transitionType,
         duration,
+        ...(delay !== undefined && { delay }),
       },
     },
   }
-
-  if (delay !== undefined) variants.animate.transition.delay = delay
-
-  return variants
 }
 
 const zoomDefaultProps: ZoomParams = {
