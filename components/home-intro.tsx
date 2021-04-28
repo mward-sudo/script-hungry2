@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { fadeInAndUp } from '../animations/animations'
+import { fadeInAndUp, stagger } from '../animations/animations'
 
 const HomeIntro: FC = (): JSX.Element => {
   const useStyles = makeStyles(() => ({
@@ -58,25 +58,24 @@ const HomeIntro: FC = (): JSX.Element => {
         layout="responsive"
       />
 
-      <div className={classes.gridContainer}>
+      <motion.div variants={stagger()} className={classes.gridContainer}>
         <motion.div
-          initial="initial"
-          animate="animate"
-          variants={fadeInAndUp({
-            initialYOffset: 400,
-            delay: 1,
-            duration: 1.5,
-          })}
+          variants={fadeInAndUp({ initialYOffset: 400, duration: 1 })}
         >
           <Typography variant="h4" component="h3" className={classes.heading}>
-            <div className={classes.unrotate}>
-              <span className={classes.smaller}>Michael Ward&rsquo;s</span>
-              <br />
-              scriptHungry
-            </div>
+            <motion.div
+              variants={fadeInAndUp({ initialYOffset: 400, duration: 1 })}
+              className={classes.unrotate}
+            >
+              <div className={classes.unrotate}>
+                <span className={classes.smaller}>Michael Ward&rsquo;s</span>
+                <br />
+                scriptHungry
+              </div>
+            </motion.div>
           </Typography>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   )
 }
