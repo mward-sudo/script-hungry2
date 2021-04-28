@@ -84,7 +84,7 @@ const fade: Fade = (params) => {
     },
   }
 
-  if (delay !== undefined) variant.animate.transition.delay = delay
+  if (delay !== undefined) variants.animate.transition.delay = delay
 
   return variants
 }
