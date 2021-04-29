@@ -7,7 +7,7 @@ export type FadeParams = {
   animateOpacity?: number
 }
 export interface Fade {
-  (params?: FadeParams): Variants
+  ({ duration, delay, initialOpacity, animateOpacity }: FadeParams): Variants
 }
 
 export type FadeInAndUpParams = FadeParams & {
@@ -15,7 +15,14 @@ export type FadeInAndUpParams = FadeParams & {
   transitionType?: 'tween' | 'spring' | 'inertia'
 }
 export interface FadeInAndUp {
-  (params?: FadeInAndUpParams): Variants
+  ({
+    duration,
+    delay,
+    initialOpacity,
+    animateOpacity,
+    initialYOffset,
+    transitionType,
+  }: FadeInAndUpParams): Variants
 }
 
 export type ZoomParams = {
@@ -23,7 +30,7 @@ export type ZoomParams = {
   zoomOutAmount?: number
 }
 export interface Zoom {
-  (params?: ZoomParams): Variants
+  ({ zoomInAmount, zoomOutAmount }: ZoomParams): Variants
 }
 
 export type StaggerParams = {
@@ -31,5 +38,5 @@ export type StaggerParams = {
   delayChildren?: number
 }
 export interface Stagger {
-  (params?: StaggerParams): Variants
+  ({ staggerTime, delayChildren }: StaggerParams): Variants
 }

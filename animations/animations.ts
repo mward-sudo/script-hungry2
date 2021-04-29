@@ -1,41 +1,9 @@
-import {
-  Fade,
-  FadeParams,
-  FadeInAndUp,
-  Zoom,
-  Stagger,
-  StaggerParams,
-  FadeInAndUpParams,
-  ZoomParams,
-} from '../types/animations'
+import { Fade, FadeInAndUp, Zoom, Stagger } from '../types/animations'
 
-/**
- * Default parameters of the stagger function
- * @constant staggerDefaultProps
- * @type StaggerParams
- */
-const staggerDefaultProps: StaggerParams = {
-  staggerTime: 0.2,
-  delayChildren: 0,
-}
-
-/**
- * Allows framer-motion to stagger the animation of child elemenets.
- * Returns an obejct of type Variants which should be passed to the
- * variants property of a framer-motion motion tag.
- * @param params @type StaggerParams
- * @returns Variants
- */
-export const stagger: Stagger = (params) => {
-  // Spreading the default props and the params gives us an object with
-  // default values, overridden by any that were passed in via params
-
-  /**
-   * The amount of time between each child animation starting in the stagger
-   * @constant staggerTime number
-   */
-  const { staggerTime, delayChildren } = { ...staggerDefaultProps, ...params }
-
+export const stagger: Stagger = ({
+  staggerTime = 0.2,
+  delayChildren = 0,
+} = {}) => {
   return {
     animate: {
       transition: {
@@ -46,31 +14,12 @@ export const stagger: Stagger = (params) => {
   }
 }
 
-/**
- * The default properties for the fade function
- * @constant fadeDefaultProps
- * @returns FadeParams
- */
-const fadeDefaultProps: FadeParams = {
-  initialOpacity: 0,
-  animateOpacity: 1,
-  duration: 0.5,
-}
-/**
- * Non-exported utility function for fade functionality.
- * Returns an obejct of type Variants which should be passed to the
- * variants property of a framer-motion motion tag.
- * @param params FadeParams
- * @returns Variants
- */
-const fade: Fade = (params) => {
-  // Spreading the default props and the params gives us an object with
-  // default values, overridden by any that were passed in via params
-  const { initialOpacity, animateOpacity, duration, delay } = {
-    ...fadeDefaultProps,
-    ...params,
-  }
-
+const fade: Fade = ({
+  duration = 0.5,
+  delay = undefined,
+  initialOpacity = 0,
+  animateOpacity = 1,
+} = {}) => {
   return {
     initial: {
       opacity: initialOpacity,
@@ -85,51 +34,42 @@ const fade: Fade = (params) => {
   }
 }
 
-const fadeInDefaultProps: FadeParams = {
-  ...fadeDefaultProps,
-}
-export const fadeIn: Fade = (props) => {
-  // Spreading the default props and the params gives us an object with
-  // default values, overridden by any that were passed in via params
-  const { duration, delay } = { ...fadeInDefaultProps, ...props }
+export const fadeIn: Fade = ({
+  duration = 0.5,
+  delay = undefined,
+  initialOpacity = 0,
+  animateOpacity = 1,
+} = {}) => {
   return fade({
     duration,
     delay,
-    initialOpacity: 0,
-    animateOpacity: 1,
-  })
-}
-
-const fadeOutDefaultProps: FadeParams = { ...fadeDefaultProps }
-export const fadeOut: Fade = (props) => {
-  // Spreading the default props and the params gives us an object with
-  // default values, overridden by any that were passed in via params
-  const { duration, delay } = { ...fadeOutDefaultProps, ...props }
-
-  return fade({
-    duration,
-    delay,
-    initialOpacity: 1,
-    animateOpacity: 0,
-  })
-}
-
-const fadeInAndUpDefaultProps: FadeInAndUpParams = {
-  ...fadeInDefaultProps,
-  initialYOffset: 200,
-  transitionType: 'spring',
-}
-export const fadeInAndUp: FadeInAndUp = (props) => {
-  // Spreading the default props and the params gives us an object with
-  // default values, overridden by any that were passed in via params
-  const {
     initialOpacity,
-    initialYOffset,
     animateOpacity,
-    delay,
+  })
+}
+
+export const fadeOut: Fade = ({
+  duration = 0.5,
+  delay = undefined,
+  initialOpacity = 1,
+  animateOpacity = 0,
+} = {}) => {
+  return fade({
     duration,
-    transitionType,
-  } = { ...fadeInAndUpDefaultProps, ...props }
+    delay,
+    initialOpacity,
+    animateOpacity,
+  })
+}
+
+export const fadeInAndUp: FadeInAndUp = ({
+  duration = 0.5,
+  delay = undefined,
+  initialOpacity = 0,
+  animateOpacity = 1,
+  initialYOffset = 200,
+  transitionType = 'spring',
+} = {}) => {
   return {
     initial: {
       opacity: initialOpacity,
@@ -147,15 +87,10 @@ export const fadeInAndUp: FadeInAndUp = (props) => {
   }
 }
 
-const zoomDefaultProps: ZoomParams = {
-  zoomInAmount: 1.1,
-  zoomOutAmount: 0.9,
-}
-export const zoom: Zoom = (params) => {
-  // Spreading the default props and the params gives us an object with
-  // default values, overridden by any that were passed in via params
-  const { zoomInAmount, zoomOutAmount } = { ...zoomDefaultProps, ...params }
-
+export const zoom: Zoom = ({
+  zoomInAmount = 1.1,
+  zoomOutAmount = 0.9,
+} = {}) => {
   return {
     initial: {
       zoom: 1,
