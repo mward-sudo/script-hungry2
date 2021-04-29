@@ -38,9 +38,9 @@ const Post: InferGetStaticPropsType<typeof getStaticProps> = ({
       <Container maxWidth="sm">
         <Box my={4}>
           <PostHeader
-            title={post.title}
+            title={post?.title}
             image={post?.featuredImage}
-            author={post.author?.node}
+            author={post?.author?.node}
           />
           <div dangerouslySetInnerHTML={{ __html: sanitizer(post?.content) }} />
           {showComments ? (
