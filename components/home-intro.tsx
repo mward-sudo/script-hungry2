@@ -25,24 +25,27 @@ const HomeIntro: FC = () => {
       alignContent: 'center',
     },
     heading: {
-      width: '6.5em',
       transform: 'rotate(-5deg)',
       zIndex: 1,
       fontFamily: '"Proza Libre", sans-serif',
       fontStyle: 'italic',
       color: 'rgba(255,255,255,0.9)',
-      fontSize: 48,
       textShadow: '1px 1px 1px rgba(0,0,0,0.7)',
       lineHeight: 1,
       backgroundColor: 'red',
       margin: 0,
-      padding: 0,
+      padding: '0.4em',
     },
     unrotate: {
       transform: 'rotate(5deg)',
     },
+    bigger: {
+      display: 'block',
+      fontSize: '8vw',
+    },
     smaller: {
-      fontSize: 24,
+      display: 'block',
+      fontSize: '3vw',
       fontStyle: 'normal',
       fontWeight: 400,
     },
@@ -68,9 +71,8 @@ const HomeIntro: FC = () => {
               className={classes.unrotate}
             >
               <div className={classes.unrotate}>
-                <span className={classes.smaller}>Michael Ward&rsquo;s</span>
-                <br />
-                scriptHungry
+                <span className={classes.smaller}>Michael Ward presents</span>
+                <span className={classes.bigger}>scriptHungry</span>
               </div>
             </motion.div>
           </Typography>
