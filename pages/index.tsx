@@ -29,7 +29,7 @@ const Index: FC = () => {
       </Head>
       <Header />
       <HomeIntro />
-      <Container maxWidth="sm">
+      <Container maxWidth="lg">
         <Box my={4}>
           <motion.div variants={stagger()} className={classes.root}>
             <Grid container spacing={3}>
