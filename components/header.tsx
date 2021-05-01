@@ -45,8 +45,10 @@ const useStyles = makeStyles((theme: Theme) =>
       backgroundColor: 'rgba(255,255,255,0.75)',
       backdropFilter: 'blur(6px)',
       zIndex: theme.zIndex.drawer + 1,
-      marginLeft: -DRAWER_WIDTH,
-      width: `calc(100% + ${DRAWER_WIDTH}px)`,
+      [theme.breakpoints.up('md')]: {
+        marginLeft: -DRAWER_WIDTH,
+        width: `calc(100% + ${DRAWER_WIDTH}px)`,
+      },
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -136,7 +138,7 @@ const Header: FC<HeaderProps> = ({ element = 'h1' }) => {
       </div>
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="js">
+        <Hidden mdUp implementation="js">
           <Drawer
             variant="temporary"
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
@@ -152,7 +154,7 @@ const Header: FC<HeaderProps> = ({ element = 'h1' }) => {
             {drawer}
           </Drawer>
         </Hidden>
-        <Hidden smDown implementation="js">
+        <Hidden mdDown implementation="css">
           <Drawer
             classes={{
               paper: classes.drawerPaper,
