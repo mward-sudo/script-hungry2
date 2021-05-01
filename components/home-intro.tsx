@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { fadeInAndUp, stagger } from '../animations/animations'
 
-const HomeIntro: FC = (): JSX.Element => {
+const HomeIntro: FC = () => {
   const useStyles = makeStyles(() => ({
     intro: {
       position: 'relative',
