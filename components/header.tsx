@@ -85,7 +85,7 @@ const handleDrawerToggle = (): void => {
 }
 
 type HeaderProps = {
-  element: ElementType
+  element?: ElementType
 }
 
 const Header: FC<HeaderProps> = ({ element = 'h1' }) => {
