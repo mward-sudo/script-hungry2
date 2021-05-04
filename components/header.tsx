@@ -1,27 +1,25 @@
 import { FC, ElementType, useState, useEffect } from 'react'
 import Link from 'next/link'
-import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Button,
-} from '@material-ui/core'
+import dynamic from 'next/dynamic'
+import { AppBar, Toolbar, Typography } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import MenuIcon from '@material-ui/icons/Menu'
+import { motion } from 'framer-motion'
+import MenuToggle from './menu-toggle'
+import { navLinks } from '../data/nav-links'
+import DesktopNavLinks from './desktop-nav-links'
+
+const MobileNavLinks = dynamic(() => import('./mobile-nav-links'))
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       position: 'sticky',
       top: 0,
+      zIndex: 1000,
     },
     appBar: {
       backgroundColor: 'rgba(255,255,255,0.75)',
       backdropFilter: 'blur(6px)',
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
     },
     toolbar: theme.mixins.toolbar,
     title: {
@@ -33,14 +31,6 @@ const useStyles = makeStyles((theme: Theme) =>
     homeLink: {
       color: 'inherit',
       textDecoration: 'inherit',
-    },
-    siteNavLink: {
-      color: '#999',
-      textTransform: 'none',
-      '&:hover': {
-        borderBottom: '4px solid red',
-        borderTop: '2px solid red',
-      },
     },
   })
 )
@@ -80,10 +70,6 @@ function isDesktop(width: number | undefined): boolean {
   return width === undefined || width > 600
 }
 
-const handleDrawerToggle = (): void => {
-  console.log('nothing')
-}
-
 type HeaderProps = {
   element?: ElementType
 }
@@ -91,48 +77,50 @@ type HeaderProps = {
 const Header: FC<HeaderProps> = ({ element = 'h1' }) => {
   const { width } = useWindowSize()
   const classes = useStyles()
+
+  // Tracks the state of the mobile menu
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const menuToggle = (): void => {
+    setMenuOpen(!menuOpen)
+  }
+
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [])
+
   return (
-    <div className={classes.root}>
-      <AppBar position="relative" className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
-          <Typography
-            component={element}
-            variant="h6"
-            className={classes.title}
-          >
-            <Link href="/">
-              <a className={classes.homeLink}>scriptHungry</a>
-            </Link>
-          </Typography>
-          {isDesktop(width) ? (
-            <>
-              <Link href="/blog/" passHref>
-                <Button className={classes.siteNavLink}>Blog</Button>
-              </Link>
-              <Link href="/porfolio/" passHref>
-                <Button className={classes.siteNavLink}>Portfolio</Button>
-              </Link>
-              <Link href="/" passHref>
-                <Button className={classes.siteNavLink}>Github</Button>
-              </Link>
-              <Link href="/" passHref>
-                <Button className={classes.siteNavLink}>LinkedIn</Button>
-              </Link>
-            </>
-          ) : (
-            <IconButton
-              edge="start"
-              className={classes.menuButton}
-              color="primary"
-              aria-label="menu"
-              onClick={handleDrawerToggle}
+    <>
+      <div className={classes.root}>
+        <AppBar position="relative" className={classes.appBar}>
+          <Toolbar className={classes.toolbar}>
+            <Typography
+              component={element}
+              variant="h6"
+              className={classes.title}
             >
-              <MenuIcon />
-            </IconButton>
-          )}
-        </Toolbar>
-      </AppBar>
-    </div>
+              <Link href="/">
+                <a className={classes.homeLink}>scriptHungry</a>
+              </Link>
+            </Typography>
+            {isDesktop(width) ? (
+              <>
+                <DesktopNavLinks navLinks={navLinks} />
+              </>
+            ) : (
+              <>
+                <motion.div animate={menuOpen ? 'open' : 'closed'}>
+                  <MenuToggle toggle={menuToggle} />
+                </motion.div>
+              </>
+            )}
+          </Toolbar>
+        </AppBar>
+      </div>
+      {!isDesktop(width) && (
+        <MobileNavLinks navLinks={navLinks} menuOpen={menuOpen} />
+      )}
+    </>
   )
 }
 
