@@ -6,8 +6,10 @@ import styles from './mobile-nav-links.module.css'
 const menuRootVariants = {
   closed: {
     opacity: 0,
+    x: '100%',
   },
   open: {
+    x: 0,
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
