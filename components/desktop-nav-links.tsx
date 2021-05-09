@@ -31,7 +31,9 @@ const DesktopNavLinks: FC<DesktopNavLinksProps> = ({ navLinks }) => {
   return (
     <>
       {navLinks.map(({ href, text }) => (
-        <ConditionalLink href={href}>{text}</ConditionalLink>
+        <ConditionalLink href={href} key={href}>
+          {text}
+        </ConditionalLink>
       ))}
     </>
   )

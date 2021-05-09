@@ -70,7 +70,9 @@ const MobileNavLinks: FC<MobileNavLinksProps> = ({ navLinks, menuOpen }) => {
       className={styles.navRoot}
     >
       {navLinks.map(({ href, text }) => (
-        <ConditionalLink href={href}>{text}</ConditionalLink>
+        <ConditionalLink href={href} key={href}>
+          {text}
+        </ConditionalLink>
       ))}
     </motion.div>
   )
