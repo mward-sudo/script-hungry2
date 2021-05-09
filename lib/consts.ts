@@ -1,7 +1,6 @@
 const Constants = {
   SITE_NAME: 'scriptHungry',
+  POSTS_PER_PAGE: 2,
 }
-
-export const DRAWER_WIDTH = 200
 
 export default Constants

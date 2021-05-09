@@ -5,19 +5,19 @@ import { makeStyles } from '@material-ui/core/styles'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import { motion } from 'framer-motion'
 import iFeaturedImage from '../types/featured-image'
-import iAuthor from '../types/author'
 import { fadeInAndUp } from '../animations/animations'
 import PostHeader from './post-header'
+import { Author } from '../types/graphcms-api'
 
 type PostExcerptProps = {
   title: string
   excerpt: string
   slug: string
-  featuredImage: iFeaturedImage
-  author: iAuthor
+  featuredImage?: iFeaturedImage
+  author: Author
 }
 
-const PostExcerpt: FC<PostExcerptProps> = ({
+export const PostExcerpt: FC<PostExcerptProps> = ({
   title,
   excerpt,
   slug,

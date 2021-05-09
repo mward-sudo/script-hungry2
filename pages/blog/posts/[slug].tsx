@@ -8,9 +8,10 @@ import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import Copyright from '../../../components/copyright'
 import Header from '../../../components/header'
 import PostHeader from '../../../components/post-header'
-import { getAllPostsWithSlug, getPost } from '../../../lib/api'
 import Constants from '../../../lib/consts'
 import { iPostWithContent } from '../../../types/post'
+import { getAllPostSlugs, getPostBySlug } from '../../../lib/graphcms-api'
+import { PostData, PostSlugs } from '../../../types/graphcms-api'
 
 const Disqus = dynamic(() => import('../../../components/disqus'), {
   loading: () => <p>...</p>,
@@ -39,15 +40,17 @@ const Post: InferGetStaticPropsType<typeof getStaticProps> = ({
         <Box my={4}>
           <PostHeader
             title={post?.title}
-            image={post?.featuredImage}
-            author={post?.author?.node}
+            // image={post?.featuredImage}
+            author={post?.author}
           />
-          <div dangerouslySetInnerHTML={{ __html: sanitizer(post?.content) }} />
+          <div
+            dangerouslySetInnerHTML={{ __html: sanitizer(post?.content?.html) }}
+          />
           {showComments ? (
             <Disqus
-              key={post?.id}
+              key={post?.slug}
               pageTitle={post?.title}
-              pageID={post?.id}
+              pageID={post?.slug}
               pageURL={`https://scripthungry.com${router.asPath}`}
             />
           ) : (
@@ -68,27 +71,34 @@ const Post: InferGetStaticPropsType<typeof getStaticProps> = ({
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const data = await getPost(params?.slug)
+  let slug = ''
+  if (params !== undefined && params.slug !== undefined) {
+    if (typeof params.slug === 'string') {
+      slug = params.slug
+    } else if (typeof params.slug === 'object') {
+      // eslint-disable-next-line prefer-destructuring
+      slug = params.slug[0]
+    }
+  }
+
+  const post: PostData = await getPostBySlug(slug)
   return {
     props: {
-      post: data.post,
+      post: post.data.post,
     },
     revalidate: 60,
   }
 }
 
-type postNodes = {
-  node: {
-    slug: string
-  }
-}
-
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allPosts = await getAllPostsWithSlug()
+  const postSlugs: PostSlugs | null = await getAllPostSlugs()
+  const paths: Array<string> =
+    postSlugs !== null
+      ? postSlugs?.data.posts.map((post) => `/blog/posts/${post.slug}`)
+      : []
+
   return {
-    paths: allPosts.edges.map(
-      ({ node }: postNodes) => `/blog/posts/${node?.slug}` || []
-    ),
+    paths,
     fallback: true,
   }
 }
