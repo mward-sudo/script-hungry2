@@ -68,7 +68,6 @@ const HomeIntro: FC = () => {
           <Typography variant="h4" component="h3" className={classes.heading}>
             <motion.div
               variants={fadeInAndUp({ initialYOffset: 400, duration: 1 })}
-              className={classes.unrotate}
             >
               <div className={classes.unrotate}>
                 <span className={classes.smaller}>Michael Ward presents</span>
