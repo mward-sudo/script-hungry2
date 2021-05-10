@@ -1,4 +1,4 @@
-import { Fade, FadeInAndUp, Zoom, Stagger } from '../types/animations'
+import { Fade, FadeInAndUp, Zoom, Stagger } from '@root/types/animations'
 
 export const stagger: Stagger = ({
   staggerTime = 0.2,

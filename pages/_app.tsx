@@ -4,12 +4,12 @@ import Head from 'next/head'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import theme from '../components/theme'
+import theme from '@root/components/theme'
 import '@fontsource/roboto/100.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/proza-libre/600-italic.css'
 import '@fontsource/proza-libre/400.css'
-import { fadeIn } from '../animations/animations'
+import { fadeIn } from '@root/animations/animations'
 
 const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
   useEffect(() => {

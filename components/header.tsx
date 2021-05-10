@@ -4,8 +4,8 @@ import dynamic from 'next/dynamic'
 import { AppBar, Toolbar, Typography } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { motion } from 'framer-motion'
+import { navLinks } from '@root/data/nav-links'
 import MenuToggle from './menu-toggle'
-import { navLinks } from '../data/nav-links'
 import DesktopNavLinks from './desktop-nav-links'
 
 const MobileNavLinks = dynamic(() => import('./mobile-nav-links'))

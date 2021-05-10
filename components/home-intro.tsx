@@ -3,7 +3,7 @@ import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { fadeInAndUp, stagger } from '../animations/animations'
+import { fadeInAndUp, stagger } from '@root/animations/animations'
 
 const HomeIntro: FC = () => {
   const useStyles = makeStyles(() => ({

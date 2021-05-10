@@ -4,7 +4,7 @@ import {
   PostData,
   PostsTotal,
   PostSlugs,
-} from '../types/graphcms-api'
+} from '@root/types/graphcms-api'
 import Constants from './consts'
 
 const postsPerPage = Constants.POSTS_PER_PAGE
