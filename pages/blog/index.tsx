@@ -64,7 +64,7 @@ export const getStaticProps: GetStaticProps = async () => {
     ? indexPostsData.data.postsConnection.aggregate.count
     : 1
 
-  const pagesTotal = postsTotal / Constants.POSTS_PER_PAGE
+  const pagesTotal = Math.ceil(postsTotal / Constants.POSTS_PER_PAGE)
   const indexPosts = indexPostsData?.data.posts
   return {
     props: { indexPosts, pagesTotal },
