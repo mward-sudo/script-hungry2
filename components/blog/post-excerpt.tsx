@@ -4,9 +4,9 @@ import { Button, Box } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import { motion } from 'framer-motion'
-import iFeaturedImage from '@root/types/featured-image'
-import { fadeInAndUp } from '@root/animations/animations'
-import { Author } from '@root/types/graphcms-api'
+import iFeaturedImage from '@/types/featured-image'
+import { fadeInAndUp } from '@/animations/animations'
+import { Author } from '@/types/graphcms-api'
 import PostHeader from './post-header'
 
 type PostExcerptProps = {

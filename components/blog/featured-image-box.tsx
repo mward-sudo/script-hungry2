@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import Link from 'next/link'
-import iFeaturedImage from '@root/types/featured-image'
+import iFeaturedImage from '@/types/featured-image'
 import PostHeaderImage from './post-header-image'
 
 type featuredImageBoxProps = {

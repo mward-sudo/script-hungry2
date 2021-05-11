@@ -10,7 +10,7 @@ import {
   Button,
 } from '@material-ui/core'
 import { motion } from 'framer-motion'
-import { fadeInAndUp } from '@root/animations/animations'
+import { fadeInAndUp } from '@/animations/animations'
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

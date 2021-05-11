@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import Head from 'next/head'
 import { Container } from '@material-ui/core'
-import Header from '@root/components/header'
+import Header from '@/components/header'
 
 const Index: FC = () => (
   <>

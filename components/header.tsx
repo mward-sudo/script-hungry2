@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { AppBar, Toolbar, Typography } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { motion } from 'framer-motion'
-import { navLinks } from '@root/data/nav-links'
+import { navLinks } from '@/data/nav-links'
 import NavMobileToggle from './nav/mobile-toggle'
 import NavDesktop from './nav/desktop'
 

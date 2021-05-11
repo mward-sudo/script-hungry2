@@ -2,8 +2,8 @@ import { FC } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import Link from 'next/link'
-import iFeaturedImage from '@root/types/featured-image'
-import iAuthor from '@root/types/author'
+import iFeaturedImage from '@/types/featured-image'
+import iAuthor from '@/types/author'
 import PostHeaderImage from './post-header-image'
 
 type PostHeaderProps = {
