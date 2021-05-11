@@ -7,13 +7,13 @@ import { useRouter } from 'next/router'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import Copyright from '@root/components/copyright'
 import Header from '@root/components/header'
-import PostHeader from '@root/components/post-header'
+import PostHeader from '@root/components/blog/post-header'
 import Constants from '@root/lib/consts'
 import { iPostWithContent } from '@root/types/post'
 import { getAllPostSlugs, getPostBySlug } from '@root/lib/graphcms-api'
 import { PostData, PostSlugs } from '@root/types/graphcms-api'
 
-const Disqus = dynamic(() => import('@root/components/disqus'), {
+const Disqus = dynamic(() => import('@root/components/blog/disqus'), {
   loading: () => <p>...</p>,
 })
 

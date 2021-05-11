@@ -3,13 +3,13 @@ import { InferGetStaticPropsType, GetStaticProps } from 'next'
 import Head from 'next/head'
 import { motion } from 'framer-motion'
 import Header from '@root/components/header'
-import { PostExcerpt as PostExcerptComponent } from '@root/components/post-excerpt'
+import { PostExcerpt as PostExcerptComponent } from '@root/components/blog/post-excerpt'
 import Copyright from '@root/components/copyright'
 import Constants from '@root/lib/consts'
 import { stagger } from '@root/animations/animations'
 import { getIndexPosts } from '@root/lib/graphcms-api'
 import { PostExcerpt } from '@root/types/graphcms-api'
-import Pagination from '@root/components/pagination'
+import Pagination from '@root/components/blog/pagination'
 
 type IndexProps = {
   indexPosts: PostExcerpt[]
