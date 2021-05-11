@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import styles from './mobile-nav-links.module.css'
+import styles from './mobile.module.css'
 
 const menuRootVariants = {
   closed: {
@@ -53,7 +53,7 @@ const ConditionalLink: FC<ConditionalLinkProps> = ({ href, children }) => {
   )
 }
 
-type MobileNavLinksProps = {
+type MobileNavProps = {
   navLinks: {
     href: string
     text: string
@@ -61,7 +61,7 @@ type MobileNavLinksProps = {
   menuOpen: boolean
 }
 
-const MobileNavLinks: FC<MobileNavLinksProps> = ({ navLinks, menuOpen }) => {
+const MobileNav: FC<MobileNavProps> = ({ navLinks, menuOpen }) => {
   return (
     <motion.div
       initial={false}
@@ -78,4 +78,4 @@ const MobileNavLinks: FC<MobileNavLinksProps> = ({ navLinks, menuOpen }) => {
   )
 }
 
-export default MobileNavLinks
+export default MobileNav

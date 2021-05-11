@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { motion, Transition, Variants } from 'framer-motion'
-import styles from './menu-toggle.module.css'
+import styles from './mobile-toggle.module.css'
 
 type PathProps = {
   variants: Variants
@@ -20,11 +20,11 @@ const Path: FC<PathProps> = ({ variants, transition, d }) => (
   />
 )
 
-type MenuToggleProps = {
+type NavMobileToggleProps = {
   toggle: VoidFunction
 }
 
-const MenuToggle: FC<MenuToggleProps> = ({ toggle }) => (
+const NavMobileToggle: FC<NavMobileToggleProps> = ({ toggle }) => (
   <button onClick={toggle} type="button" className={styles.menuToggle}>
     <svg width="23" height="23" viewBox="0 0 23 23">
       <Path
@@ -51,4 +51,4 @@ const MenuToggle: FC<MenuToggleProps> = ({ toggle }) => (
   </button>
 )
 
-export default MenuToggle
+export default NavMobileToggle

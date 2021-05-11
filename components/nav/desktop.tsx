@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import Link from 'next/link'
-import styles from './desktop-nav-links.module.css'
+import styles from './desktop.module.css'
 
 type ConditionalLinkProps = {
   href: string
@@ -20,14 +20,14 @@ const ConditionalLink: FC<ConditionalLinkProps> = ({ href, children }) => {
   )
 }
 
-type DesktopNavLinksProps = {
+type NavDesktopProps = {
   navLinks: {
     href: string
     text: string
   }[]
 }
 
-const DesktopNavLinks: FC<DesktopNavLinksProps> = ({ navLinks }) => {
+const NavDesktop: FC<NavDesktopProps> = ({ navLinks }) => {
   return (
     <>
       {navLinks.map(({ href, text }) => (
@@ -39,4 +39,4 @@ const DesktopNavLinks: FC<DesktopNavLinksProps> = ({ navLinks }) => {
   )
 }
 
-export default DesktopNavLinks
+export default NavDesktop

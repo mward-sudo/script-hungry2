@@ -5,10 +5,10 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { motion } from 'framer-motion'
 import { navLinks } from '@root/data/nav-links'
-import MenuToggle from './menu-toggle'
-import DesktopNavLinks from './desktop-nav-links'
+import NavMobileToggle from './nav/mobile-toggle'
+import NavDesktop from './nav/desktop'
 
-const MobileNavLinks = dynamic(() => import('./mobile-nav-links'))
+const NavMobile = dynamic(() => import('./nav/mobile'))
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -105,12 +105,12 @@ const Header: FC<HeaderProps> = ({ element = 'h1' }) => {
             </Typography>
             {isDesktop(width) ? (
               <>
-                <DesktopNavLinks navLinks={navLinks} />
+                <NavDesktop navLinks={navLinks} />
               </>
             ) : (
               <>
                 <motion.div animate={menuOpen ? 'open' : 'closed'}>
-                  <MenuToggle toggle={menuToggle} />
+                  <NavMobileToggle toggle={menuToggle} />
                 </motion.div>
               </>
             )}
@@ -118,7 +118,7 @@ const Header: FC<HeaderProps> = ({ element = 'h1' }) => {
         </AppBar>
       </div>
       {!isDesktop(width) && (
-        <MobileNavLinks navLinks={navLinks} menuOpen={menuOpen} />
+        <NavMobile navLinks={navLinks} menuOpen={menuOpen} />
       )}
     </>
   )
