@@ -37,19 +37,17 @@ const ConditionalLink: FC<ConditionalLinkProps> = ({ href, children }) => {
   const externalHref = href.indexOf('http') === 0
 
   return externalHref ? (
-    <motion.a
-      href={href}
-      className={styles.navLink}
-      variants={menuLinkVariants}
-    >
-      {children}
-    </motion.a>
-  ) : (
-    <Link href={href}>
-      <motion.a className={styles.navLink} variants={menuLinkVariants}>
+    <motion.div variants={menuLinkVariants}>
+      <a href={href} className={styles.navLink}>
         {children}
-      </motion.a>
-    </Link>
+      </a>
+    </motion.div>
+  ) : (
+    <motion.div variants={menuLinkVariants}>
+      <Link href={href}>
+        <a className={styles.navLink}>{children}</a>
+      </Link>
+    </motion.div>
   )
 }
 
