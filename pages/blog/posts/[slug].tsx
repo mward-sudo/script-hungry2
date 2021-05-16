@@ -10,7 +10,8 @@ import Header from '@/components/header'
 import PostHeader from '@/components/blog/post-header'
 import Constants from '@/lib/consts'
 import { iPostWithContent } from '@/types/post'
-import { getAllPostSlugs, getPostBySlug } from '@/lib/graphcms-api'
+import { getPostBySlug } from '@/lib/blog/post'
+import { getAllPostSlugs } from '@/lib/blog/post-slugs'
 import { PostData, PostSlugs } from '@/types/graphcms-api'
 
 const Disqus = dynamic(() => import('@/components/blog/disqus'), {

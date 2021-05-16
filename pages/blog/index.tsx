@@ -7,7 +7,7 @@ import { PostExcerpt as PostExcerptComponent } from '@/components/blog/post-exce
 import Copyright from '@/components/copyright'
 import Constants from '@/lib/consts'
 import { stagger } from '@/animations/animations'
-import { getIndexPosts } from '@/lib/graphcms-api'
+import { getIndexPosts } from '@/lib/blog/index-posts'
 import { PostExcerpt } from '@/types/graphcms-api'
 import Pagination from '@/components/blog/pagination'
 
