@@ -25,7 +25,7 @@ type PostProps = {
   navLinks: NavigationLinks
 }
 
-const Post: FC<PostProps> = ({ post, navLinks }: PostProps) => {
+const Post: FC<PostProps> = ({ post, navLinks }) => {
   const [showComments, setShowComments] = useState(false)
 
   const router = useRouter()
