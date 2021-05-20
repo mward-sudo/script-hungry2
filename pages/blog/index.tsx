@@ -10,15 +10,19 @@ import { stagger } from '@/animations/animations'
 import { getIndexPosts } from '@/lib/blog/index-posts'
 import { PostExcerpt } from '@/types/graphcms-api'
 import Pagination from '@/components/blog/pagination'
+import getNavigationLinks from '@/lib/navigation-links'
+import { NavigationLinks } from '@/types/navigations-links'
 
 type IndexProps = {
   indexPosts: PostExcerpt[]
   pagesTotal: number
+  navLinks: NavigationLinks
 }
 
 const Index: InferGetStaticPropsType<typeof getStaticProps> = ({
   indexPosts,
   pagesTotal,
+  navLinks,
 }: IndexProps) => {
   const nextDisabled = pagesTotal <= 1
 
@@ -27,7 +31,7 @@ const Index: InferGetStaticPropsType<typeof getStaticProps> = ({
       <Head>
         <title>{Constants.SITE_NAME}</title>
       </Head>
-      <Header />
+      <Header navLinks={navLinks} />
       <Container maxWidth="sm">
         <Box my={4}>
           <motion.div variants={stagger({ staggerTime: 1 })}>
@@ -58,6 +62,7 @@ const Index: InferGetStaticPropsType<typeof getStaticProps> = ({
 }
 
 export const getStaticProps: GetStaticProps = async () => {
+  const navLinks = await getNavigationLinks()
   const indexPostsData = await getIndexPosts(1)
   const postsTotal: number = indexPostsData?.data?.postsConnection?.aggregate
     ?.count
@@ -67,7 +72,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const pagesTotal = Math.ceil(postsTotal / Constants.POSTS_PER_PAGE)
   const indexPosts = indexPostsData?.data.posts
   return {
-    props: { indexPosts, pagesTotal },
+    props: { indexPosts, pagesTotal, navLinks },
     revalidate: 60,
   }
 }

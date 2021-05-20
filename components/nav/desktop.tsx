@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import Link from 'next/link'
+import { NavigationLink } from '@/types/navigations-links'
 import styles from './desktop.module.css'
 
 type ConditionalLinkProps = {
@@ -21,18 +22,15 @@ const ConditionalLink: FC<ConditionalLinkProps> = ({ href, children }) => {
 }
 
 type NavDesktopProps = {
-  navLinks: {
-    href: string
-    text: string
-  }[]
+  navLinks: NavigationLink[]
 }
 
 const NavDesktop: FC<NavDesktopProps> = ({ navLinks }) => {
   return (
     <>
-      {navLinks.map(({ href, text }) => (
-        <ConditionalLink href={href} key={href}>
-          {text}
+      {navLinks.map(({ url, linkText }) => (
+        <ConditionalLink href={url} key={linkText}>
+          {linkText}
         </ConditionalLink>
       ))}
     </>

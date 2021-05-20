@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic'
 import { AppBar, Toolbar, Typography } from '@material-ui/core'
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { motion } from 'framer-motion'
-import { navLinks } from '@/data/nav-links'
+import { NavigationLinks } from '@/types/navigations-links'
 import NavMobileToggle from './nav/mobile-toggle'
 import NavDesktop from './nav/desktop'
 
@@ -72,9 +72,10 @@ function isDesktop(width: number | undefined): boolean {
 
 type HeaderProps = {
   element?: ElementType
+  navLinks: NavigationLinks
 }
 
-const Header: FC<HeaderProps> = ({ element = 'h1' }) => {
+const Header: FC<HeaderProps> = ({ element = 'h1', navLinks }) => {
   const { width } = useWindowSize()
   const classes = useStyles()
 
@@ -105,7 +106,7 @@ const Header: FC<HeaderProps> = ({ element = 'h1' }) => {
             </Typography>
             {isDesktop(width) ? (
               <>
-                <NavDesktop navLinks={navLinks} />
+                <NavDesktop navLinks={navLinks.data.navigationLinks} />
               </>
             ) : (
               <>
@@ -118,7 +119,10 @@ const Header: FC<HeaderProps> = ({ element = 'h1' }) => {
         </AppBar>
       </div>
       {!isDesktop(width) && (
-        <NavMobile navLinks={navLinks} menuOpen={menuOpen} />
+        <NavMobile
+          navLinks={navLinks.data.navigationLinks}
+          menuOpen={menuOpen}
+        />
       )}
     </>
   )

@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { NavigationLink } from '@/types/navigations-links'
 import styles from './mobile.module.css'
 
 const menuRootVariants = {
@@ -52,10 +53,7 @@ const ConditionalLink: FC<ConditionalLinkProps> = ({ href, children }) => {
 }
 
 type MobileNavProps = {
-  navLinks: {
-    href: string
-    text: string
-  }[]
+  navLinks: NavigationLink[]
   menuOpen: boolean
 }
 
@@ -67,9 +65,9 @@ const MobileNav: FC<MobileNavProps> = ({ navLinks, menuOpen }) => {
       variants={menuRootVariants}
       className={styles.navRoot}
     >
-      {navLinks.map(({ href, text }) => (
-        <ConditionalLink href={href} key={href}>
-          {text}
+      {navLinks.map(({ url, linkText }) => (
+        <ConditionalLink href={url} key={linkText}>
+          {linkText}
         </ConditionalLink>
       ))}
     </motion.div>

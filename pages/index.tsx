@@ -10,6 +10,9 @@ import Copyright from '@/components/copyright'
 import Constants from '@/lib/consts'
 import { cards } from '@/data/cards'
 import { stagger } from '@/animations/animations'
+import { NavigationLinks } from '@/types/navigations-links'
+import { GetStaticProps } from 'next'
+import getNavigationLinks from '@/lib/navigation-links'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -19,7 +22,11 @@ const useStyles = makeStyles(() =>
   })
 )
 
-const Index: FC = () => {
+type IndexPropTypes = {
+  navLinks: NavigationLinks
+}
+
+const Index: FC<IndexPropTypes> = ({ navLinks }) => {
   const classes = useStyles()
 
   return (
@@ -27,7 +34,7 @@ const Index: FC = () => {
       <Head>
         <title>{Constants.SITE_NAME}</title>
       </Head>
-      <Header />
+      <Header navLinks={navLinks} />
       <HomeIntro />
       <Container maxWidth="lg">
         <Box my={4}>
@@ -52,6 +59,14 @@ const Index: FC = () => {
       </Container>
     </>
   )
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const navLinks = await getNavigationLinks()
+
+  return {
+    props: { navLinks },
+  }
 }
 
 export default Index

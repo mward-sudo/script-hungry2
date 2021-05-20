@@ -12,17 +12,21 @@ import { PostExcerpt as PostExcerptComponent } from '@/components/blog/post-exce
 import Copyright from '@/components/copyright'
 import { stagger } from '@/animations/animations'
 import Pagination from '@/components/blog/pagination'
+import getNavigationLinks from '@/lib/navigation-links'
+import { NavigationLinks } from '@/types/navigations-links'
 
 type BlogIndexPageProps = {
   indexPosts: PostExcerpt[]
   pagesTotal: number
   currentPage: number
+  navLinks: NavigationLinks
 }
 
 const BlogIndexPage: FC<BlogIndexPageProps> = ({
   indexPosts,
   pagesTotal,
   currentPage,
+  navLinks,
 }) => {
   const nextDisabled = currentPage === pagesTotal
   return (
@@ -31,7 +35,7 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
         <Head>
           <title>{Constants.SITE_NAME}</title>
         </Head>
-        <Header />
+        <Header navLinks={navLinks} />
         <Container maxWidth="sm">
           <Box my={4}>
             <motion.div variants={stagger({ staggerTime: 1 })}>
@@ -92,6 +96,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     pageNo = 2
   }
 
+  const navLinks = await getNavigationLinks()
   const indexPosts = await getIndexPosts(pageNo)
   const postsTotal = indexPosts?.data.postsConnection.aggregate.count || 1
   const pagesTotal = Math.ceil(postsTotal / Constants.POSTS_PER_PAGE)
@@ -101,6 +106,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       indexPosts: indexPosts?.data.posts,
       pagesTotal,
       currentPage: pageNo,
+      navLinks,
     },
   }
 }

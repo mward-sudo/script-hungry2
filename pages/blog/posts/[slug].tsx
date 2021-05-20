@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
 import { Box, Container, Button } from '@material-ui/core'
-import { GetStaticProps, GetStaticPaths, InferGetStaticPropsType } from 'next'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
@@ -13,6 +13,8 @@ import { iPostWithContent } from '@/types/post'
 import { getPostBySlug } from '@/lib/blog/post'
 import { getAllPostSlugs } from '@/lib/blog/post-slugs'
 import { PostData, PostSlugs } from '@/types/graphcms-api'
+import getNavigationLinks from '@/lib/navigation-links'
+import { NavigationLinks } from '@/types/navigations-links'
 
 const Disqus = dynamic(() => import('@/components/blog/disqus'), {
   loading: () => <p>...</p>,
@@ -20,11 +22,10 @@ const Disqus = dynamic(() => import('@/components/blog/disqus'), {
 
 type PostProps = {
   post: iPostWithContent
+  navLinks: NavigationLinks
 }
 
-const Post: InferGetStaticPropsType<typeof getStaticProps> = ({
-  post,
-}: PostProps) => {
+const Post: FC<PostProps> = ({ post, navLinks }: PostProps) => {
   const [showComments, setShowComments] = useState(false)
 
   const router = useRouter()
@@ -36,7 +37,7 @@ const Post: InferGetStaticPropsType<typeof getStaticProps> = ({
           {post?.title} | {Constants.SITE_NAME}
         </title>
       </Head>
-      <Header element="p" />
+      <Header element="p" navLinks={navLinks} />
       <Container maxWidth="sm">
         <Box my={4}>
           <PostHeader
@@ -72,6 +73,8 @@ const Post: InferGetStaticPropsType<typeof getStaticProps> = ({
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const navLinks = await getNavigationLinks()
+
   let slug = ''
   if (params !== undefined && params.slug !== undefined) {
     if (typeof params.slug === 'string') {
@@ -86,6 +89,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       post: post.data.post,
+      navLinks,
     },
     revalidate: 60,
   }
