@@ -8,6 +8,7 @@ import { NavigationLinks } from '@/types/navigations-links'
 import NavMobileToggle from './nav/mobile-toggle'
 import NavDesktop from './nav/desktop'
 
+/** Component ready to be dynamically loaded if required */
 const NavMobile = dynamic(() => import('./nav/mobile'))
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -104,9 +105,9 @@ const Header: FC<HeaderProps> = ({ element = 'h1', navLinks }) => {
                 <a className={classes.homeLink}>scriptHungry</a>
               </Link>
             </Typography>
-            {isDesktop(width) ? (
+            {isDesktop(width) && navLinks ? (
               <>
-                <NavDesktop navLinks={navLinks.data.navigationLinks} />
+                <NavDesktop navLinks={navLinks?.data.navigationLinks} />
               </>
             ) : (
               <>
@@ -118,9 +119,9 @@ const Header: FC<HeaderProps> = ({ element = 'h1', navLinks }) => {
           </Toolbar>
         </AppBar>
       </div>
-      {!isDesktop(width) && (
+      {!isDesktop(width) && navLinks && (
         <NavMobile
-          navLinks={navLinks.data.navigationLinks}
+          navLinks={navLinks?.data.navigationLinks}
           menuOpen={menuOpen}
         />
       )}
