@@ -1,6 +1,6 @@
 import { PostData } from '@/types/graphcms-api'
 import { callGraphCMS } from '@/lib/graphcms-api'
-import narrowType from '@/narrow-type'
+import narrowType from '@/lib/narrow-type'
 
 /**
  * Gets data for a single blog post, referenced by its' slug
