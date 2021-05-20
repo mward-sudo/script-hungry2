@@ -1,35 +1,13 @@
 import { IndexPostsData } from '@/types/graphcms-api'
 import { postsPerPage, callGraphCMS } from '@/lib/graphcms-api'
+import narrowType from '@/lib/narrow-type'
 
 /**
- * Type check for IndexPosts, required to convert from unknown type.
- * @param {any} indexPosts
- * @returns {boolean}
+ * Get paginated posts for index page
+ * @async
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isIndexPosts = (indexPosts: any): indexPosts is IndexPostsData => {
-  // Checks for the required data structure
-  return (
-    indexPosts &&
-    'data' in indexPosts &&
-    'posts' in indexPosts.data &&
-    'postsConnection' in indexPosts.data &&
-    'aggregate' in indexPosts.data.postsConnection &&
-    'count' in indexPosts.data.postsConnection.aggregate
-  )
-}
-/**
- * Asynchronous function returns the number total number of
- * blog posts
- * @returns {Promise<IndexPostsData | null>}
- */
-
-export const getIndexPosts = async (
-  pageNo = 1
-): Promise<IndexPostsData | null> => {
-  /**
-   * @constant {string} query GraphQL query to return
-   */
+export const getIndexPosts = async (pageNo = 1): Promise<IndexPostsData> => {
+  /** GraphQL query to be executed */
   const query = `
     query IndexPostsQuery {
       posts(
@@ -53,15 +31,8 @@ export const getIndexPosts = async (
     }
   `
 
-  /**
-   * @constant {unknown} response GraphQL JSON response
-   */
   const response = await callGraphCMS(query)
-  // Type check the response
-  if (response && isIndexPosts(response)) {
-    // The value of the total number of blog posts
-    return response
-  }
-  // Fallback if the query didn't work or returned an unexpected shape
-  return null
+  /** Return response or throw error if response is undefined OR null */
+  if (narrowType<IndexPostsData>(response)) return response
+  throw new Error('No response from CMS for IndexPostsData')
 }
