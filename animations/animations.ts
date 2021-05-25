@@ -1,5 +1,9 @@
 import { Fade, FadeInAndUp, Zoom, Stagger } from '@/types/animations'
 
+/**
+ * Returns a Variant for framer-motion to implement
+ * a staggered animation
+ */
 export const stagger: Stagger = ({
   staggerTime = 0.2,
   delayChildren = 0,
@@ -14,6 +18,10 @@ export const stagger: Stagger = ({
   }
 }
 
+/**
+ * Returns a Variant for framer-motion to implement
+ * a fade animation
+ */
 const fade: Fade = ({
   duration = 0.5,
   delay = undefined,
@@ -34,6 +42,10 @@ const fade: Fade = ({
   }
 }
 
+/**
+ * Returns a Variant for framer-motion to implement
+ * a fade in animation
+ */
 export const fadeIn: Fade = ({
   duration = 0.5,
   delay = undefined,
@@ -48,6 +60,10 @@ export const fadeIn: Fade = ({
   })
 }
 
+/**
+ * Returns a Variant for framer-motion to implement
+ * a fadeOut animation
+ */
 export const fadeOut: Fade = ({
   duration = 0.5,
   delay = undefined,
@@ -62,6 +78,10 @@ export const fadeOut: Fade = ({
   })
 }
 
+/**
+ * Returns a Variant for framer-motion to implement
+ * a fade in and up animation
+ */
 export const fadeInAndUp: FadeInAndUp = ({
   duration = 0.5,
   delay = undefined,
@@ -87,6 +107,10 @@ export const fadeInAndUp: FadeInAndUp = ({
   }
 }
 
+/**
+ * Returns a Variant for framer-motion to implement
+ * a zoom animation
+ */
 export const zoom: Zoom = ({
   zoomInAmount = 1.1,
   zoomOutAmount = 0.9,

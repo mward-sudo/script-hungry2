@@ -10,13 +10,19 @@ import { Author } from '@/types/graphcms-api'
 import PostHeader from './post-header'
 
 type PostExcerptProps = {
+  /** Title of the blog post excerpt */
   title: string
+  /** Blog post excerpt text */
   excerpt: string
+  /** Slug of the full blog post */
   slug: string
+  /** Hero image for the blog post */
   featuredImage?: iFeaturedImage
+  /** Author of the blog post */
   author: Author
 }
 
+/** Component to display an excerpt of a blog post */
 export const PostExcerpt: FC<PostExcerptProps> = ({
   title,
   excerpt,

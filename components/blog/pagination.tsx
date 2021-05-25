@@ -3,18 +3,27 @@ import Link from 'next/link'
 import { FC } from 'react'
 
 type PaginationProps = {
+  /** Total number of pages in the pagination set */
   totalPages: number
+  /** Number of the current page */
   currentPage: number
+  /** Disable the previous page button */
   prevDisabled?: boolean
+  /** Disable the next page button */
   nextDisabled?: boolean
 }
 
+/**
+ * Provides 'previous / next' pagination with display of current and total
+ * pages
+ */
 const Pagination: FC<PaginationProps> = ({
   totalPages,
   currentPage,
   prevDisabled = false,
   nextDisabled = false,
 }) => {
+  // Page 1 is /blog not /blog/page/1
   const prevPageUrl =
     currentPage === 2 ? '/blog' : `/blog/page/${currentPage - 1}`
 
