@@ -24,8 +24,6 @@ const Index: InferGetStaticPropsType<typeof getStaticProps> = ({
   pagesTotal,
   navLinks,
 }: IndexProps) => {
-  const nextDisabled = pagesTotal <= 1
-
   return (
     <>
       <Head>
@@ -48,12 +46,7 @@ const Index: InferGetStaticPropsType<typeof getStaticProps> = ({
               )
             })}
           </motion.div>
-          <Pagination
-            currentPage={1}
-            totalPages={pagesTotal}
-            nextDisabled={nextDisabled}
-            prevDisabled
-          />
+          <Pagination currentPage={1} totalPages={pagesTotal} />
           <Copyright />
         </Box>
       </Container>

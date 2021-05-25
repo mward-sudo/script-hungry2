@@ -28,7 +28,6 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
   currentPage,
   navLinks,
 }) => {
-  const nextDisabled = currentPage === pagesTotal
   return (
     <>
       <>
@@ -52,11 +51,7 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
                 )
               })}
             </motion.div>
-            <Pagination
-              currentPage={currentPage}
-              totalPages={pagesTotal}
-              nextDisabled={nextDisabled}
-            />
+            <Pagination currentPage={currentPage} totalPages={pagesTotal} />
             <Copyright />
           </Box>
         </Container>

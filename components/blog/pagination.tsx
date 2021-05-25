@@ -1,66 +1,79 @@
 import { Button, Grid } from '@material-ui/core'
 import Link from 'next/link'
 import { FC } from 'react'
+import PaginationPage from '@/lib/blog/pagination-page'
+
+/** Given the current page number, return details for the previous page */
+const getPrevPage = (currentPage: number): PaginationPage => {
+  const prevPage = new PaginationPage()
+  prevPage.no = currentPage - 1
+  // Page 1 is /blog not /blog/page/1
+  prevPage.url = prevPage.no === 1 ? '/blog' : `/blog/page/${prevPage.no}`
+  // PageNo must be positive
+  prevPage.exists = prevPage.no > 0
+
+  return prevPage
+}
+
+/** Given the current page number, return details for the next page */
+const getNextPage = (
+  currentPage: number,
+  totalPages: number
+): PaginationPage => {
+  const nextPage = new PaginationPage()
+  nextPage.no = currentPage + 1
+  nextPage.url = `/blog/page/${nextPage.no}`
+  /** Page doesn't exist if it exceeds the total number of pages */
+  nextPage.exists = nextPage.no <= totalPages
+
+  return nextPage
+}
 
 type PaginationProps = {
   /** Total number of pages in the pagination set */
   totalPages: number
   /** Number of the current page */
   currentPage: number
-  /** Disable the previous page button */
-  prevDisabled?: boolean
-  /** Disable the next page button */
-  nextDisabled?: boolean
 }
 
 /**
  * Provides 'previous / next' pagination with display of current and total
  * pages
  */
-const Pagination: FC<PaginationProps> = ({
-  totalPages,
-  currentPage,
-  prevDisabled = false,
-  nextDisabled = false,
-}) => {
-  // Page 1 is /blog not /blog/page/1
-  const prevPageUrl =
-    currentPage === 2 ? '/blog' : `/blog/page/${currentPage - 1}`
-
-  const nextPageUrl = `/blog/page/${currentPage + 1}`
+const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
+  const prevPage = getPrevPage(currentPage)
+  const nextPage = getNextPage(currentPage, totalPages)
 
   return (
     <>
       <Grid container>
         <Grid xs={4} item>
-          {prevDisabled && (
-            <Button disabled variant="contained" color="secondary">
-              Previous page
-            </Button>
-          )}
-          {!prevDisabled && (
-            <Link href={prevPageUrl} passHref>
+          {prevPage.exists ? (
+            <Link href={prevPage.url} passHref>
               <Button variant="contained" color="secondary">
                 Previous page
               </Button>
             </Link>
+          ) : (
+            <Button disabled variant="contained" color="secondary">
+              Previous page
+            </Button>
           )}
         </Grid>
         <Grid xs={4} item style={{ textAlign: 'center' }}>
           Page {currentPage} of {totalPages}
         </Grid>
         <Grid xs={4} item style={{ textAlign: 'right' }}>
-          {nextDisabled && (
-            <Button disabled variant="contained" color="secondary">
-              Next page
-            </Button>
-          )}
-          {!nextDisabled && (
-            <Link href={nextPageUrl} passHref>
+          {nextPage.exists ? (
+            <Link href={nextPage.url} passHref>
               <Button variant="contained" color="secondary">
                 Next page
               </Button>
             </Link>
+          ) : (
+            <Button disabled variant="contained" color="secondary">
+              Next page
+            </Button>
           )}
         </Grid>
       </Grid>
