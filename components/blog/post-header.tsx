@@ -7,13 +7,19 @@ import iAuthor from '@/types/author'
 import PostHeaderImage from './post-header-image'
 
 type PostHeaderProps = {
+  /** Title of post */
   title: string
+  /** Hero image for post */
   image?: iFeaturedImage
+  /** Post URL */
   link?: string
+  /** Post author */
   author?: iAuthor
 }
 
+/** Component that renders a Blog Post header */
 const PostHeader: FC<PostHeaderProps> = ({ title, image, link, author }) => {
+  /** Component styles */
   const useStyles = makeStyles(() => ({
     heading: {
       textAlign: 'center',

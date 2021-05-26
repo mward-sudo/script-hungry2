@@ -3,11 +3,15 @@ import { motion, Transition, Variants } from 'framer-motion'
 import styles from './mobile-toggle.module.css'
 
 type PathProps = {
+  /** framer motion Variants */
   variants: Variants
+  /** framer motion Transition type */
   transition?: Transition | undefined
+  /** SVG path definition */
   d?: string | undefined
 }
 
+/** Returns a motion.path component */
 const Path: FC<PathProps> = ({ variants, transition, d }) => (
   <motion.path
     fill="transparent"
@@ -21,9 +25,11 @@ const Path: FC<PathProps> = ({ variants, transition, d }) => (
 )
 
 type NavMobileToggleProps = {
+  /** Function to toggle the navigation menu state */
   toggle: VoidFunction
 }
 
+/** Component that renders the burger menu toggle button */
 const NavMobileToggle: FC<NavMobileToggleProps> = ({ toggle }) => (
   <button onClick={toggle} type="button" className={styles.menuToggle}>
     <svg width="23" height="23" viewBox="0 0 23 23">

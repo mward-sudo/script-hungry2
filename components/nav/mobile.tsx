@@ -1,10 +1,11 @@
 import { FC } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 import { NavigationLink } from '@/types/navigations-links'
 import styles from './mobile.module.css'
 
-const menuRootVariants = {
+/** Framer motion Variants for open and closed menu states */
+const menuRootVariants: Variants = {
   closed: {
     opacity: 0,
     x: '100%',
@@ -19,7 +20,8 @@ const menuRootVariants = {
   },
 }
 
-const menuLinkVariants = {
+/** Framer motion Variants for links in the open and closed menu states */
+const menuLinkVariants: Variants = {
   closed: {
     opacity: 0,
     x: 200,
@@ -31,6 +33,7 @@ const menuLinkVariants = {
 }
 
 type ConditionalLinkProps = {
+  /** URL for ConditionalLink */
   href: string
 }
 
@@ -57,6 +60,7 @@ type MobileNavProps = {
   menuOpen: boolean
 }
 
+/** Component that renders the mobile navigation pane */
 const MobileNav: FC<MobileNavProps> = ({ navLinks, menuOpen }) => {
   return (
     <motion.div

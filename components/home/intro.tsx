@@ -5,7 +5,9 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { fadeInAndUp, stagger } from '@/animations/animations'
 
+/** Component that renders the home page hero section */
 const HomeIntro: FC = () => {
+  /** Component styles */
   const useStyles = makeStyles(() => ({
     intro: {
       position: 'relative',

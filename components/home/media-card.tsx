@@ -12,6 +12,7 @@ import {
 import { motion } from 'framer-motion'
 import { fadeInAndUp } from '@/animations/animations'
 
+/** Component styles */
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     card: {
@@ -26,21 +27,30 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 type HomeMediaCardProps = {
+  /** Card link */
   href: string
+  /** URL of card image */
   imgSrc: string
+  /** Width of card image (used for ratio) */
   imgWidth: number
+  /** Height of card image (used for ratio) */
   imgHeight: number
+  /** Text for card link */
   btnText: string
 }
 
 type ConditionalLinkProps = {
+  /** URL for ConditionalLink */
   href: string
 }
 
+/** JSX code for internal or external links */
 const ConditionalLink: FC<ConditionalLinkProps> = ({ href, children }) => {
+  /** External link if it begins with http */
   const externalHref = href.indexOf('http') === 0
 
   return externalHref ? (
+    /** Use next/Link component for internal links */
     <Link href={href} passHref>
       <CardActionArea>{children}</CardActionArea>
     </Link>
@@ -58,6 +68,7 @@ const HomeMediaCard: FC<HomeMediaCardProps> = ({
 }) => {
   const classes = useStyles()
 
+  /** Sizes for responsive image, reflects page layout used */
   const sizes = '(max-width: 600px): 50vw, 25vw'
 
   return (
