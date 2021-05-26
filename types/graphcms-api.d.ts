@@ -29,7 +29,7 @@ export type IndexPostsData = {
     }
   }
 }
-export type PostData = PostsIndexData & {
+export type PostData = IndexPostsData & {
   data: {
     post: {
       content: {
