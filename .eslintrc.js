@@ -24,6 +24,7 @@ module.exports = {
     'react-hooks',
     'jam3',
     'unused-imports',
+    'eslint-plugin-tsdoc',
   ],
   rules: {
     'no-use-before-define': 'off',
@@ -72,6 +73,7 @@ module.exports = {
         argsIgnorePattern: '^_',
       },
     ],
+    'tsdoc/syntax': 'warn',
   },
   settings: {
     'import/resolver': {

@@ -41,8 +41,8 @@
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.23.2",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-tsdoc": "^0.2.14",
     "eslint-plugin-unused-imports": "^1.1.1",
-    "prettier": "^2.2.1",
-    "typedoc": "^0.20.36"
+    "prettier": "^2.2.1"
   }
 }
