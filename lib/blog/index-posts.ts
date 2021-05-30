@@ -3,8 +3,7 @@ import { postsPerPage, callGraphCMS } from '@/lib/graphcms-api'
 import narrowType from '@/lib/narrow-type'
 
 /**
- * Get paginated posts for index page
- * @async
+ * Get paginated posts for index page. Async
  */
 export const getIndexPosts = async (pageNo = 1): Promise<IndexPostsData> => {
   /** GraphQL query to be executed */

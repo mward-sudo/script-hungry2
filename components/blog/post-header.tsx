@@ -65,6 +65,7 @@ const PostHeader: FC<PostHeaderProps> = ({ title, image, link, author }) => {
         {author && <div className={classes.byLine}> {author.name}</div>}
       </Typography>
       {image && (
+        /** Display if there is an image supplied */
         <PostHeaderImage
           url={image.node.sourceUrl}
           height={image.node.mediaDetails?.height}

@@ -8,9 +8,10 @@ import { NavigationLinks } from '@/types/navigations-links'
 import NavMobileToggle from './nav/mobile-toggle'
 import NavDesktop from './nav/desktop'
 
-/** Component ready to be dynamically loaded if required */
+/** Mobile nav links component ready to be dynamically loaded if required */
 const NavMobile = dynamic(() => import('./nav/mobile'))
 
+/** Component styles */
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -37,13 +38,17 @@ const useStyles = makeStyles((theme: Theme) =>
 )
 
 type Size = {
+  /** Pixel width */
   height: number | undefined
+  /** Pixel height */
   width: number | undefined
 }
 
 function useWindowSize(): Size {
-  // Initialize state with undefined width/height so server and client renders match
-  // Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+  /**
+   * Initialize state with undefined width/height so server and client renders match
+   * Learn more here: https://joshwcomeau.com/react/the-perils-of-rehydration/
+   */
   const [windowSize, setWindowSize] = useState<Size>({
     width: undefined,
     height: undefined,
@@ -67,26 +72,36 @@ function useWindowSize(): Size {
   return windowSize
 }
 
-function isDesktop(width: number | undefined): boolean {
-  return width === undefined || width > 600
-}
+/**
+ * Returns true if width is undefined or over 600
+ * Undefined is handled for server side rendering purposes
+ * @param width - CSS pixel width
+ */
+const isDesktop = (width: number | undefined): boolean =>
+  width === undefined || width > 600
 
 type HeaderProps = {
+  /** The element for the site name, defaults to h1 */
   element?: ElementType
+  /** The navigation links to display on this section of the site */
   navLinks: NavigationLinks
 }
 
+/** Component to display the site wide header */
 const Header: FC<HeaderProps> = ({ element = 'h1', navLinks }) => {
+  /** CSS pixel width of the page from the state */
   const { width } = useWindowSize()
   const classes = useStyles()
 
   // Tracks the state of the mobile menu
   const [menuOpen, setMenuOpen] = useState(false)
 
+  /** Mobile menu state toggle */
   const menuToggle = (): void => {
     setMenuOpen(!menuOpen)
   }
 
+  /** Set menuOpen state to false by default */
   useEffect(() => {
     setMenuOpen(false)
   }, [])
@@ -106,10 +121,12 @@ const Header: FC<HeaderProps> = ({ element = 'h1', navLinks }) => {
               </Link>
             </Typography>
             {isDesktop(width) && navLinks ? (
+              /** Using desktop nav - default for server side rendering */
               <>
                 <NavDesktop navLinks={navLinks?.data.navigationLinks} />
               </>
             ) : (
+              /** Toggle control for mobile nav menu */
               <>
                 <motion.div animate={menuOpen ? 'open' : 'closed'}>
                   <NavMobileToggle toggle={menuToggle} />
@@ -120,6 +137,7 @@ const Header: FC<HeaderProps> = ({ element = 'h1', navLinks }) => {
         </AppBar>
       </div>
       {!isDesktop(width) && navLinks && (
+        /** Nav links for mobile menu */
         <NavMobile
           navLinks={navLinks?.data.navigationLinks}
           menuOpen={menuOpen}

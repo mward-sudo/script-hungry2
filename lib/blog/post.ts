@@ -3,8 +3,7 @@ import { callGraphCMS } from '@/lib/graphcms-api'
 import narrowType from '@/lib/narrow-type'
 
 /**
- * Gets data for a single blog post, referenced by its' slug
- * @async
+ * Gets data for a single blog post, referenced by its' slug. Async
  */
 export const getPostBySlug = async (slug: string): Promise<PostData> => {
   /** GraphQL query to be executed */

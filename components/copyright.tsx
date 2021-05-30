@@ -2,7 +2,9 @@ import { FC } from 'react'
 import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
+/** Component for site wide copyright footer */
 const Copyright: FC = () => {
+  /** Component styles */
   const useStyles = makeStyles(() => ({
     copyright: {
       marginTop: '3em',
