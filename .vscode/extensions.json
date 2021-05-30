@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "dsznajder.es7-react-js-snippets",
+    "dbaeumer.vscode-eslint",
+    "wix.glean",
+    "bradgashler.htmltagwrap",
+    "foxundermoon.next-js",
+    "rettimo.nextjs-vscode-snippets",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "tabnine.tabnine-vscode"
+  ]
+}
