@@ -8,7 +8,7 @@ const Copyright: FC = () => {
   const useStyles = makeStyles(() => ({
     copyright: {
       marginTop: '3em',
-      fontSize: 10,
+      fontSize: '0.9rem',
     },
   }))
   const classes = useStyles()
