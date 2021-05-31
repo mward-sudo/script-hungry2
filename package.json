@@ -19,7 +19,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "^4.0.3",
-    "typescript": "^4.3.0-beta"
+    "typescript": "^4.3.0"
   },
   "scripts": {
     "dev": "next",
