@@ -5,7 +5,6 @@ import Head from 'next/head'
 import { motion } from 'framer-motion'
 import Header from '@/components/header'
 import HomeIntro from '@/components/home/intro'
-import HomeMediaCard from '@/components/home/media-card'
 import Copyright from '@/components/copyright'
 import Constants from '@/lib/consts'
 import { cards } from '@/data/cards'
@@ -13,6 +12,7 @@ import { stagger } from '@/animations/animations'
 import { NavigationLinks } from '@/types/navigations-links'
 import { GetStaticProps } from 'next'
 import getNavigationLinks from '@/lib/navigation-links'
+import HomeMediaCard from '@/components/home/media-card'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -43,11 +43,11 @@ const Index: FC<IndexPropTypes> = ({ navLinks }) => {
               {cards.map((card) => (
                 <Grid item xs={6} sm={3} key={card.href}>
                   <HomeMediaCard
-                    href={card.href}
-                    imgSrc={card.imgSrc}
-                    imgWidth={card.imgWidth}
-                    imgHeight={card.imgHeight}
-                    btnText={card.btnText}
+                    image={card.imgSrc}
+                    imageHeight={card.imgHeight}
+                    imageWidth={card.imgWidth}
+                    link={card.href}
+                    linkText={card.btnText}
                     key={card.href}
                   />
                 </Grid>
