@@ -4,9 +4,14 @@ import { makeStyles } from '@material-ui/core/styles'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { fadeInAndUp, stagger } from '@/animations/animations'
+import { HomePageHero } from '@/types/graphcms-api'
+
+type HomeIntroProps = {
+  homePageHero: HomePageHero
+}
 
 /** Component that renders the home page hero section */
-const HomeIntro: FC = () => {
+const HomeIntro: FC<HomeIntroProps> = ({ homePageHero }) => {
   /** Component styles */
   const useStyles = makeStyles(() => ({
     intro: {
@@ -57,9 +62,9 @@ const HomeIntro: FC = () => {
   return (
     <section className={classes.intro}>
       <Image
-        src="https://scripthungry.cloudaccess.host/wp-content/uploads/2021/04/123A0A22-8417-43E5-AE1F-27B2D300B35B.jpeg"
-        width="2560"
-        height="1707"
+        src={homePageHero.backgroundImage.url}
+        width={homePageHero.backgroundImage.width}
+        height={homePageHero.backgroundImage.height}
         layout="responsive"
       />
 
@@ -72,8 +77,12 @@ const HomeIntro: FC = () => {
               variants={fadeInAndUp({ initialYOffset: 400, duration: 1 })}
             >
               <div className={classes.unrotate}>
-                <span className={classes.smaller}>Michael Ward presents</span>
-                <span className={classes.bigger}>scriptHungry</span>
+                <span className={classes.smaller}>
+                  {homePageHero.lineOneText}
+                </span>
+                <span className={classes.bigger}>
+                  {homePageHero.lineTwoText}
+                </span>
               </div>
             </motion.div>
           </Typography>

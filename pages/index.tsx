@@ -13,6 +13,8 @@ import { NavigationLinks } from '@/types/navigations-links'
 import { GetStaticProps } from 'next'
 import getNavigationLinks from '@/lib/navigation-links'
 import HomeMediaCard from '@/components/home/media-card'
+import { HomePageHero } from '@/types/graphcms-api'
+import { getHomePageHero } from '@/lib/blog/home-page-hero'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -24,9 +26,10 @@ const useStyles = makeStyles(() =>
 
 type IndexPropTypes = {
   navLinks: NavigationLinks
+  homePageHero: HomePageHero
 }
 
-const Index: FC<IndexPropTypes> = ({ navLinks }) => {
+const Index: FC<IndexPropTypes> = ({ navLinks, homePageHero }) => {
   const classes = useStyles()
 
   return (
@@ -35,7 +38,7 @@ const Index: FC<IndexPropTypes> = ({ navLinks }) => {
         <title>{Constants.SITE_NAME}</title>
       </Head>
       <Header navLinks={navLinks} />
-      <HomeIntro />
+      <HomeIntro homePageHero={homePageHero} />
       <Container maxWidth="lg">
         <Box my={4}>
           <motion.div variants={stagger()} className={classes.root}>
@@ -63,9 +66,10 @@ const Index: FC<IndexPropTypes> = ({ navLinks }) => {
 
 export const getStaticProps: GetStaticProps = async () => {
   const navLinks = await getNavigationLinks()
+  const homePageHero = await getHomePageHero()
 
   return {
-    props: { navLinks },
+    props: { navLinks, homePageHero },
   }
 }
 

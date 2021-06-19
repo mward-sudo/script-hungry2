@@ -56,3 +56,19 @@ export type PostExcerpt = {
   slug: string
   title: string
 }
+
+export interface HomePageHeroes {
+  data: {
+    homePageHeroes: HomePageHero[]
+  }
+}
+
+export interface HomePageHero {
+  backgroundImage: {
+    url: string
+    width: number
+    height: number
+  }
+  lineOneText: string
+  lineTwoText: string
+}
