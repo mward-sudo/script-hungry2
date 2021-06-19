@@ -4,6 +4,7 @@ module.exports = {
       'res.cloudinary.com',
       'secure.gravatar.com',
       'scripthungry.cloudaccess.host',
+      'media.graphcms.com',
     ],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     quality: 25,
