@@ -2,11 +2,11 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Run yarn dev on startup",
+      "label": "Run npm dev on startup",
       "type": "shell",
-      "command": "yarn run dev",
+      "command": "npm run dev",
       "windows": {
-        "command": "yarn run dev"
+        "command": "npm run dev"
       },
       "presentation": {
         "reveal": "always",
