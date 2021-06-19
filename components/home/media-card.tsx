@@ -28,6 +28,8 @@ type MediaCardProps = {
   imageWidth: number
   /** Image height in pixels, used for ratio calculation */
   imageHeight: number
+  /** Alternative text for image */
+  imageAlt?: string
 }
 
 const HomeMediaCard: FC<MediaCardProps> = ({
@@ -36,6 +38,7 @@ const HomeMediaCard: FC<MediaCardProps> = ({
   image,
   imageWidth,
   imageHeight,
+  imageAlt = '',
 }) => {
   return (
     <motion.div variants={fadeInAndUp()}>
@@ -53,6 +56,7 @@ const HomeMediaCard: FC<MediaCardProps> = ({
                 src={image}
                 height={imageHeight}
                 width={imageWidth}
+                alt={imageAlt}
               />
             </motion.div>
             <div className={styles.text}>{linkText} &gt;</div>

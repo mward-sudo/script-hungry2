@@ -7,14 +7,14 @@ import Header from '@/components/header'
 import HomeIntro from '@/components/home/intro'
 import Copyright from '@/components/copyright'
 import Constants from '@/lib/consts'
-import { cards } from '@/data/cards'
 import { stagger } from '@/animations/animations'
 import { NavigationLinks } from '@/types/navigations-links'
 import { GetStaticProps } from 'next'
 import getNavigationLinks from '@/lib/navigation-links'
 import HomeMediaCard from '@/components/home/media-card'
-import { HomePageHero } from '@/types/graphcms-api'
+import { HomePageCards, HomePageHero } from '@/types/graphcms-api'
 import { getHomePageHero } from '@/lib/blog/home-page-hero'
+import { getHomePageCards } from '@/lib/blog/home-page-cards'
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -27,9 +27,14 @@ const useStyles = makeStyles(() =>
 type IndexPropTypes = {
   navLinks: NavigationLinks
   homePageHero: HomePageHero
+  homePageCards: HomePageCards
 }
 
-const Index: FC<IndexPropTypes> = ({ navLinks, homePageHero }) => {
+const Index: FC<IndexPropTypes> = ({
+  navLinks,
+  homePageHero,
+  homePageCards,
+}) => {
   const classes = useStyles()
 
   return (
@@ -43,15 +48,16 @@ const Index: FC<IndexPropTypes> = ({ navLinks, homePageHero }) => {
         <Box my={4}>
           <motion.div variants={stagger()} className={classes.root}>
             <Grid container spacing={3}>
-              {cards.map((card) => (
-                <Grid item xs={6} sm={3} key={card.href}>
+              {homePageCards.data.homePageCards.map((card) => (
+                <Grid item xs={6} sm={3} key={card.url}>
                   <HomeMediaCard
-                    image={card.imgSrc}
-                    imageHeight={card.imgHeight}
-                    imageWidth={card.imgWidth}
-                    link={card.href}
-                    linkText={card.btnText}
-                    key={card.href}
+                    image={card.image.url}
+                    imageHeight={card.image.height}
+                    imageWidth={card.image.width}
+                    imageAlt={card.image.caption}
+                    link={card.url}
+                    linkText={card.text}
+                    key={card.url}
                   />
                 </Grid>
               ))}
@@ -67,9 +73,10 @@ const Index: FC<IndexPropTypes> = ({ navLinks, homePageHero }) => {
 export const getStaticProps: GetStaticProps = async () => {
   const navLinks = await getNavigationLinks()
   const homePageHero = await getHomePageHero()
+  const homePageCards = await getHomePageCards()
 
   return {
-    props: { navLinks, homePageHero },
+    props: { navLinks, homePageHero, homePageCards },
   }
 }
 

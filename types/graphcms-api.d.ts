@@ -72,3 +72,20 @@ export interface HomePageHero {
   lineOneText: string
   lineTwoText: string
 }
+
+export interface HomePageCards {
+  data: {
+    homePageCards: HomePageCard[]
+  }
+}
+
+export interface HomePageCard {
+  image: {
+    url: string
+    width: number
+    height: number
+    caption: string
+  }
+  url: string
+  text: string
+}
