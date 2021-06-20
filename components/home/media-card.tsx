@@ -10,10 +10,10 @@ const hoverImgVariant: Variants = {
     transform: 'scale(1)',
   },
   hover: {
-    transform: 'scale(1.05)',
+    transform: 'scale(1.1)',
   },
   tap: {
-    transform: 'scale(0.95)',
+    transform: 'scale(1.05)',
   },
 }
 
@@ -44,21 +44,18 @@ const HomeMediaCard: FC<MediaCardProps> = ({
     <motion.div variants={fadeInAndUp()}>
       <Link href={link}>
         <a className={styles.mediaCard}>
-          <motion.div
-            initial="initial"
-            whileHover="hover"
-            whileTap="tap"
-            variants={hoverImgVariant}
-          >
-            <motion.div className={styles.img}>
-              <Image
-                layout="responsive"
-                src={image}
-                height={imageHeight}
-                width={imageWidth}
-                alt={imageAlt}
-              />
-            </motion.div>
+          <motion.div initial="initial" whileHover="hover" whileTap="tap">
+            <div className={styles.img} style={{ overflow: 'hidden' }}>
+              <motion.div variants={hoverImgVariant}>
+                <Image
+                  layout="responsive"
+                  src={image}
+                  height={imageHeight}
+                  width={imageWidth}
+                  alt={imageAlt}
+                />
+              </motion.div>
+            </div>
             <div className={styles.text}>{linkText} &gt;</div>
           </motion.div>
         </a>
