@@ -27,6 +27,6 @@ export const callGraphCMS: CallGraphCMS = async (query) => {
     )
     return data
   } catch (error) {
-    throw new Error('Could not fetch data from Contentful!')
+    throw new Error('Could not fetch data from GraphCMS!')
   }
 }
