@@ -1,23 +1,15 @@
-import { useEffect, FC } from 'react'
+import { FC } from 'react'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import theme from '@/components/theme'
 import '@fontsource/roboto/100.css'
 import '@fontsource/roboto/500.css'
 import '@fontsource/proza-libre/600-italic.css'
 import '@fontsource/proza-libre/400.css'
+import 'tailwindcss/tailwind.css'
 import { fadeIn } from '@/animations/animations'
 
 const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
-  useEffect(() => {
-    // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side')
-    jssStyles?.parentElement?.removeChild(jssStyles)
-  }, [])
-
   return (
     <>
       <Head>
@@ -27,23 +19,19 @@ const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-      <ThemeProvider theme={theme}>
-        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-        <CssBaseline />
-        <AnimatePresence exitBeforeEnter>
-          <motion.div
-            initial="initial"
-            animate="animate"
-            exit="initial"
-            variants={fadeIn()}
-            key={router.route}
-          >
-            <main>
-              <Component {...pageProps} key={router.route} />
-            </main>
-          </motion.div>
-        </AnimatePresence>
-      </ThemeProvider>
+      <AnimatePresence exitBeforeEnter>
+        <motion.div
+          initial="initial"
+          animate="animate"
+          exit="initial"
+          variants={fadeIn()}
+          key={router.route}
+        >
+          <main>
+            <Component {...pageProps} key={router.route} />
+          </main>
+        </motion.div>
+      </AnimatePresence>
     </>
   )
 }
