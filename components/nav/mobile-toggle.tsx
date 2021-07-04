@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import { motion, Transition, Variants } from 'framer-motion'
-import styles from './mobile-toggle.module.css'
 
 type PathProps = {
   /** framer motion Variants */
@@ -31,7 +30,11 @@ type NavMobileToggleProps = {
 
 /** Component that renders the burger menu toggle button */
 const NavMobileToggle: FC<NavMobileToggleProps> = ({ toggle }) => (
-  <button onClick={toggle} type="button" className={styles.menuToggle}>
+  <button
+    onClick={toggle}
+    type="button"
+    className="inline-block border-0 pt-2 px-2 pb-0 m-0 no-underline bg-transparent text-white text-base cursor-pointer text-center appearance-none"
+  >
     <svg width="23" height="23" viewBox="0 0 23 23">
       <Path
         variants={{

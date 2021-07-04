@@ -2,9 +2,7 @@ import { FC } from 'react'
 import Link from 'next/link'
 import { motion, Variants } from 'framer-motion'
 import { NavigationLink } from '@/types/navigations-links'
-import styles from './mobile.module.css'
 
-/** Framer motion Variants for open and closed menu states */
 const menuRootVariants: Variants = {
   closed: {
     opacity: 0,
@@ -39,17 +37,19 @@ type ConditionalLinkProps = {
 
 const ConditionalLink: FC<ConditionalLinkProps> = ({ href, children }) => {
   const externalHref = href.indexOf('http') === 0
+  const navLinkClasses =
+    'block text-center py-6 px-0 text-5xl text-white no-underline'
 
   return externalHref ? (
     <motion.div variants={menuLinkVariants}>
-      <a href={href} className={styles.navLink}>
+      <a href={href} className={navLinkClasses}>
         {children}
       </a>
     </motion.div>
   ) : (
     <motion.div variants={menuLinkVariants}>
       <Link href={href}>
-        <a className={styles.navLink}>{children}</a>
+        <a className={navLinkClasses}>{children}</a>
       </Link>
     </motion.div>
   )
@@ -67,7 +67,7 @@ const MobileNav: FC<MobileNavProps> = ({ navLinks, menuOpen }) => {
       initial={false}
       animate={menuOpen ? 'open' : 'closed'}
       variants={menuRootVariants}
-      className={styles.navRoot}
+      className="fixed top-16 right-0 bottom-0 left-0 bg-black bg-opacity-90 z-50 grid justify-center content-center"
     >
       {navLinks.map(({ url, linkText }) => (
         <ConditionalLink href={url} key={linkText}>

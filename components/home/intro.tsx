@@ -1,6 +1,4 @@
 import { FC } from 'react'
-import { Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { fadeInAndUp, stagger } from '@/animations/animations'
@@ -12,55 +10,11 @@ type HomeIntroProps = {
 
 /** Component that renders the home page hero section */
 const HomeIntro: FC<HomeIntroProps> = ({ homePageHero }) => {
-  /** Component styles */
-  const useStyles = makeStyles(() => ({
-    intro: {
-      position: 'relative',
-      maxHeight: '60vh',
-      backgroundColor: 'black',
-      overflow: 'hidden',
-    },
-    gridContainer: {
-      position: 'absolute',
-      top: 0,
-      height: '100%',
-      width: '100%',
-      display: 'grid',
-      gridTemplateColumns: 'auto',
-      textAlign: 'center',
-      justifyContent: 'center',
-      alignContent: 'center',
-    },
-    heading: {
-      transform: 'rotate(-5deg)',
-      zIndex: 1,
-      fontFamily: '"Proza Libre", sans-serif',
-      fontStyle: 'italic',
-      color: 'rgba(255,255,255,0.9)',
-      textShadow: '1px 1px 1px rgba(0,0,0,0.7)',
-      lineHeight: 1,
-      backgroundColor: 'red',
-      margin: 0,
-      padding: '0.4em',
-    },
-    unrotate: {
-      transform: 'rotate(5deg)',
-    },
-    bigger: {
-      display: 'block',
-      fontSize: '8vw',
-    },
-    smaller: {
-      display: 'block',
-      fontSize: '3vw',
-      fontStyle: 'normal',
-      fontWeight: 400,
-    },
-  }))
-  const classes = useStyles()
-
   return (
-    <section className={classes.intro}>
+    <section
+      className="relative bg-black overflow-hidden"
+      style={{ maxHeight: '60vh' }}
+    >
       <Image
         src={homePageHero.backgroundImage.url}
         width={homePageHero.backgroundImage.width}
@@ -68,24 +22,27 @@ const HomeIntro: FC<HomeIntroProps> = ({ homePageHero }) => {
         layout="responsive"
       />
 
-      <motion.div variants={stagger()} className={classes.gridContainer}>
+      <motion.div
+        variants={stagger()}
+        className="absolute top-0 h-full w-full grid text-center justify-center content-center"
+      >
         <motion.div
           variants={fadeInAndUp({ initialYOffset: 400, duration: 1 })}
         >
-          <Typography variant="h4" component="h3" className={classes.heading}>
+          <h3 className="font-display bg-red-600 transform -rotate-6 z-10 italic text-white m-0 p-2 leading-none text-shadow-md">
             <motion.div
               variants={fadeInAndUp({ initialYOffset: 400, duration: 1 })}
             >
-              <div className={classes.unrotate}>
-                <span className={classes.smaller}>
+              <div className="transform rotate-6">
+                <span className="block text-headingVwS not-italic font-normal">
                   {homePageHero.lineOneText}
                 </span>
-                <span className={classes.bigger}>
+                <span className="block text-headingVwL">
                   {homePageHero.lineTwoText}
                 </span>
               </div>
             </motion.div>
-          </Typography>
+          </h3>
         </motion.div>
       </motion.div>
     </section>

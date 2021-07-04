@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { FC } from 'react'
 import { motion, Variants } from 'framer-motion'
 import { fadeInAndUp } from '@/animations/animations'
-import styles from './media-card.module.css'
 
 const hoverImgVariant: Variants = {
   initial: {
@@ -43,9 +42,14 @@ const HomeMediaCard: FC<MediaCardProps> = ({
   return (
     <motion.div variants={fadeInAndUp()}>
       <Link href={link}>
-        <a className={styles.mediaCard}>
-          <motion.div initial="initial" whileHover="hover" whileTap="tap">
-            <div className={styles.img} style={{ overflow: 'hidden' }}>
+        <a className="no-underline uppercase text-base">
+          <motion.div
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            className="border-2 border-solid border-gray-100 rounded-md overflow-hidden drop-shadow-sm"
+          >
+            <div style={{ overflow: 'hidden' }}>
               <motion.div variants={hoverImgVariant}>
                 <Image
                   layout="responsive"
@@ -56,7 +60,9 @@ const HomeMediaCard: FC<MediaCardProps> = ({
                 />
               </motion.div>
             </div>
-            <div className={styles.text}>{linkText} &gt;</div>
+            <div className="text-black text-center no-underline py-1 px-4">
+              {linkText} &gt;
+            </div>
           </motion.div>
         </a>
       </Link>

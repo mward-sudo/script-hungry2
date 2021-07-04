@@ -1,7 +1,6 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import { NavigationLink } from '@/types/navigations-links'
-import styles from './desktop.module.css'
 
 type ConditionalLinkProps = {
   /** URL for ConditionalLink */
@@ -14,13 +13,18 @@ const ConditionalLink: FC<ConditionalLinkProps> = ({ href, children }) => {
 
   return externalHref ? (
     /** Use a tag for external link */
-    <a href={href} className={styles.navLink}>
+    <a
+      href={href}
+      className="box-border inline-block px-4 py-2 text-gray-700 no-underline transition-all duration-200 ease-in-out border-red-600 border-solid hover:border-b-4"
+    >
       {children}
     </a>
   ) : (
     /** Use next/Link for internal link */
     <Link href={href} passHref>
-      <a className={styles.navLink}>{children}</a>
+      <a className="box-border inline-block px-4 py-2 text-gray-700 no-underline transition-all duration-200 ease-in-out border-red-600 border-solid hover:border-b-4">
+        {children}
+      </a>
     </Link>
   )
 }
