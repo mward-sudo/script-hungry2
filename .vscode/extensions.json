@@ -8,6 +8,7 @@
     "rettimo.nextjs-vscode-snippets",
     "christian-kohler.path-intellisense",
     "esbenp.prettier-vscode",
-    "tabnine.tabnine-vscode"
+    "tabnine.tabnine-vscode",
+    "bradlc.vscode-tailwindcss"
   ]
 }
