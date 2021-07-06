@@ -3,7 +3,9 @@ import { FC } from 'react'
 import PaginationPage from '@/lib/blog/pagination-page'
 import Button from '../button'
 
-/** Given the current page number, return details for the previous page */
+/** Given the current page number, return details for the previous page
+ * @param currentPage - The current page number
+ */
 const getPrevPage = (currentPage: number): PaginationPage => {
   const prevPage = new PaginationPage()
   prevPage.no = currentPage - 1
@@ -15,7 +17,9 @@ const getPrevPage = (currentPage: number): PaginationPage => {
   return prevPage
 }
 
-/** Given the current page number, return details for the next page */
+/** Given the current page number, return details for the next page
+ * @param currentPage - The current page number
+ */
 const getNextPage = (
   currentPage: number,
   totalPages: number
@@ -41,8 +45,10 @@ type PaginationProps = {
  * pages
  */
 const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
-  const prevPage = getPrevPage(currentPage)
-  const nextPage = getNextPage(currentPage, totalPages)
+  /** Details for the previous page */
+  const prevPage: PaginationPage = getPrevPage(currentPage)
+  /** Details for the next page */
+  const nextPage: PaginationPage = getNextPage(currentPage, totalPages)
 
   return (
     <>
