@@ -1,7 +1,7 @@
-import { Button, Grid } from '@material-ui/core'
-import Link from 'next/link'
+import { Grid } from '@material-ui/core'
 import { FC } from 'react'
 import PaginationPage from '@/lib/blog/pagination-page'
+import Button from '../button'
 
 /** Given the current page number, return details for the previous page */
 const getPrevPage = (currentPage: number): PaginationPage => {
@@ -49,15 +49,13 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
       <Grid container>
         <Grid xs={4} item>
           {prevPage.exists ? (
-            <Link href={prevPage.url} passHref>
-              <Button variant="contained" color="secondary">
-                Previous page
-              </Button>
-            </Link>
+            <Button
+              variant="secondary"
+              url={prevPage.url}
+              text="Previous page"
+            />
           ) : (
-            <Button disabled variant="contained" color="secondary">
-              Previous page
-            </Button>
+            <Button variant="disabled" text="Previous page" />
           )}
         </Grid>
         <Grid xs={4} item style={{ textAlign: 'center' }}>
@@ -65,15 +63,9 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
         </Grid>
         <Grid xs={4} item style={{ textAlign: 'right' }}>
           {nextPage.exists ? (
-            <Link href={nextPage.url} passHref>
-              <Button variant="contained" color="secondary">
-                Next page
-              </Button>
-            </Link>
+            <Button variant="secondary" url={nextPage.url} text="Next page" />
           ) : (
-            <Button disabled variant="contained" color="secondary">
-              Next page
-            </Button>
+            <Button variant="disabled" text="Next page" />
           )}
         </Grid>
       </Grid>
