@@ -2,8 +2,12 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true,
+    jest: true,
   },
   extends: [
+    'next',
+    'next/core-web-vitals',
     'plugin:react/recommended',
     'airbnb',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -12,11 +16,10 @@ module.exports = {
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    sourceType: 'module',
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 12,
-    sourceType: 'module',
   },
   plugins: [
     'react',
