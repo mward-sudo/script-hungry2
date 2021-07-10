@@ -1,17 +1,10 @@
-import { Container, Box } from '@material-ui/core'
 import { InferGetStaticPropsType, GetStaticProps } from 'next'
-import Head from 'next/head'
-import { motion } from 'framer-motion'
-import Header from '@/components/header'
-import { PostExcerpt as PostExcerptComponent } from '@/components/blog/post-excerpt'
-import Copyright from '@/components/copyright'
 import Constants from '@/lib/consts'
-import { stagger } from '@/animations/animations'
 import { getIndexPosts } from '@/lib/blog/index-posts'
 import { PostExcerpt } from '@/types/graphcms-api'
-import Pagination from '@/components/blog/pagination'
 import getNavigationLinks from '@/lib/navigation-links'
 import { NavigationLinks } from '@/types/navigations-links'
+import BlogIndex from '@/components/blog'
 
 type IndexProps = {
   indexPosts: PostExcerpt[]
@@ -23,36 +16,14 @@ const Index: InferGetStaticPropsType<typeof getStaticProps> = ({
   indexPosts,
   pagesTotal,
   navLinks,
-}: IndexProps) => {
-  return (
-    <>
-      <Head>
-        <title>{Constants.SITE_NAME}</title>
-      </Head>
-      <Header navLinks={navLinks} />
-      <Container maxWidth="sm">
-        <Box my={4}>
-          <motion.div variants={stagger({ staggerTime: 1 })}>
-            {indexPosts.map((post: PostExcerpt) => {
-              const { title, excerpt, slug, author } = post
-              return (
-                <PostExcerptComponent
-                  key={slug}
-                  title={title}
-                  excerpt={excerpt}
-                  slug={slug}
-                  author={author}
-                />
-              )
-            })}
-          </motion.div>
-          <Pagination currentPage={1} totalPages={pagesTotal} />
-          <Copyright />
-        </Box>
-      </Container>
-    </>
-  )
-}
+}: IndexProps) => (
+  <BlogIndex
+    indexPosts={indexPosts}
+    pagesTotal={pagesTotal}
+    currentPage={1}
+    navLinks={navLinks}
+  />
+)
 
 export const getStaticProps: GetStaticProps = async () => {
   const navLinks = await getNavigationLinks()

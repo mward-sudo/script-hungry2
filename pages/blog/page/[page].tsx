@@ -1,19 +1,12 @@
 import { FC } from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import Head from 'next/head'
-import { Box, Container } from '@material-ui/core'
-import { motion } from 'framer-motion'
 import { getTotalPostsNumber } from '@/lib/blog/posts-total'
 import { getIndexPosts } from '@/lib/blog/index-posts'
 import Constants from '@/lib/consts'
 import { PostExcerpt } from '@/types/graphcms-api'
-import Header from '@/components/header'
-import { PostExcerpt as PostExcerptComponent } from '@/components/blog/post-excerpt'
-import Copyright from '@/components/copyright'
-import { stagger } from '@/animations/animations'
-import Pagination from '@/components/blog/pagination'
 import getNavigationLinks from '@/lib/navigation-links'
 import { NavigationLinks } from '@/types/navigations-links'
+import BlogIndex from '@/components/blog'
 
 type BlogIndexPageProps = {
   indexPosts: PostExcerpt[]
@@ -27,38 +20,14 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
   pagesTotal,
   currentPage,
   navLinks,
-}) => {
-  return (
-    <>
-      <>
-        <Head>
-          <title>{Constants.SITE_NAME}</title>
-        </Head>
-        <Header navLinks={navLinks} />
-        <Container maxWidth="sm">
-          <Box my={4}>
-            <motion.div variants={stagger({ staggerTime: 1 })}>
-              {indexPosts.map((post: PostExcerpt) => {
-                const { title, excerpt, slug, author } = post
-                return (
-                  <PostExcerptComponent
-                    key={slug}
-                    title={title}
-                    excerpt={excerpt}
-                    slug={slug}
-                    author={author}
-                  />
-                )
-              })}
-            </motion.div>
-            <Pagination currentPage={currentPage} totalPages={pagesTotal} />
-            <Copyright />
-          </Box>
-        </Container>
-      </>
-    </>
-  )
-}
+}) => (
+  <BlogIndex
+    indexPosts={indexPosts}
+    pagesTotal={pagesTotal}
+    currentPage={currentPage}
+    navLinks={navLinks}
+  />
+)
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const totalPosts = await getTotalPostsNumber()
