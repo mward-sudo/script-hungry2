@@ -5,7 +5,7 @@
  *
  * @example return narrowType<YourType>(unknownVar) ? unknownVar : null
  *
- * @todo Implement full type checks (shape and data types) when
+ * TODO: Implement full type checks (shape and data types) when
  * a DRY solution is found that works for TypeScript & runtime JS
  */
 const narrowType = <T>(t: unknown): t is T => true

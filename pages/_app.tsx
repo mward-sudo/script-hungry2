@@ -28,6 +28,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
           key={router.route}
         >
           <main>
+            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
             <Component {...pageProps} key={router.route} />
           </main>
         </motion.div>

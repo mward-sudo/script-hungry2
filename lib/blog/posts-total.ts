@@ -4,7 +4,6 @@ import narrowType from '@/lib/narrow-type'
 
 /**
  * Gets total number of published blog posts
- * @async
  */
 export const getTotalPostsNumber = async (): Promise<number> => {
   /** GraphQL query to be executed */

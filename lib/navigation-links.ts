@@ -4,7 +4,6 @@ import narrowType from './narrow-type'
 
 /**
  * Get navigation links from CMS.
- * @async
  */
 const getNavigationLinks = async (): Promise<NavigationLinks> => {
   /** GraphQL query to be executed */

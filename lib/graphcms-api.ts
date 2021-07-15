@@ -6,8 +6,8 @@ export const postsPerPage = Constants.POSTS_PER_PAGE
 /**
  * Sends query string parameter to GraphCMS enpoint and returns
  * the results of the query as JSON.
- * @param {string} query string GraphQL Query string
- * @returns {Promise<unknown>} JSON result of query
+ * @param query - GraphQL Query string
+ * @returns Promise<unknown> - JSON result of query
  */
 export const callGraphCMS: CallGraphCMS = async (query) => {
   const fetchUrl = process.env.GRAPHCMS_ENDPOINT || ''
