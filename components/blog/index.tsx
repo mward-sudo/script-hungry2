@@ -1,6 +1,5 @@
 import { FC } from 'react'
 import Head from 'next/head'
-import { Box, Container } from '@material-ui/core'
 import { motion } from 'framer-motion'
 import Header from '@/components/header'
 import { PostExcerpt as PostExcerptComponent } from '@/components/blog/post-excerpt'
@@ -29,8 +28,8 @@ const BlogIndex: FC<BlogIndexProps> = ({
       <title>{Constants.SITE_NAME}</title>
     </Head>
     <Header navLinks={navLinks} />
-    <Container maxWidth="sm">
-      <Box my={4}>
+    <div className="container mx-auto">
+      <div className="my-4">
         <motion.div variants={stagger({ staggerTime: 1 })}>
           {indexPosts.map((post: PostExcerpt) => {
             const { title, excerpt, slug, author } = post
@@ -47,8 +46,8 @@ const BlogIndex: FC<BlogIndexProps> = ({
         </motion.div>
         <Pagination currentPage={currentPage} totalPages={pagesTotal} />
         <Copyright />
-      </Box>
-    </Container>
+      </div>
+    </div>
   </>
 )
 

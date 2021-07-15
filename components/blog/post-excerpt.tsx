@@ -1,13 +1,12 @@
 import { FC } from 'react'
-import Link from 'next/link'
-import { Button, Box } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import Button from '@/components/button'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import { motion } from 'framer-motion'
 import iFeaturedImage from '@/types/featured-image'
 import { fadeInAndUp } from '@/animations/animations'
 import { Author } from '@/types/graphcms-api'
 import PostHeader from './post-header'
+import styles from './post-excerpt.module.css'
 
 type PostExcerptProps = {
   /** Title of the blog post excerpt */
@@ -30,24 +29,11 @@ export const PostExcerpt: FC<PostExcerptProps> = ({
   featuredImage,
   author,
 }) => {
-  const useStyles = makeStyles(() => ({
-    blogPost: {
-      margin: '5em 0',
-    },
-    body: {
-      fontSize: 16,
-      '& p': {
-        marginTop: 0,
-      },
-    },
-  }))
-  const classes = useStyles()
-
   const url = `/blog/posts/${slug}`
 
   return (
     <motion.div variants={fadeInAndUp()}>
-      <Box className={classes.blogPost}>
+      <div className="my-20">
         <PostHeader
           title={title}
           image={featuredImage}
@@ -55,16 +41,12 @@ export const PostExcerpt: FC<PostExcerptProps> = ({
           author={author}
         />
         <div
-          className={classes.body}
+          className={`${styles.blogPost} text-base`}
           dangerouslySetInnerHTML={{ __html: sanitizer(excerpt) }}
         />
 
-        <Link href={url} passHref>
-          <Button variant="outlined" color="primary">
-            Read more…
-          </Button>
-        </Link>
-      </Box>
+        <Button variant="secondary" text="Read more…" url={url} />
+      </div>
     </motion.div>
   )
 }

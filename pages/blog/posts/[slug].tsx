@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import { Box, Container, Button } from '@material-ui/core'
+import Button from '@/components/button'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Head from 'next/head'
 import dynamic from 'next/dynamic'
@@ -38,8 +38,8 @@ const Post: FC<PostProps> = ({ post, navLinks }) => {
         </title>
       </Head>
       <Header element="p" navLinks={navLinks} />
-      <Container maxWidth="sm">
-        <Box my={4}>
+      <div className="container mx-auto">
+        <div className="my-4">
           <PostHeader
             title={post?.title}
             // image={post?.featuredImage}
@@ -57,17 +57,14 @@ const Post: FC<PostProps> = ({ post, navLinks }) => {
             />
           ) : (
             <Button
-              variant="outlined"
+              variant="secondary"
               onClick={() => setShowComments(true)}
-              fullWidth
-              color="primary"
-            >
-              Show Comments
-            </Button>
+              text="Show Comments"
+            />
           )}
           <Copyright />
-        </Box>
-      </Container>
+        </div>
+      </div>
     </>
   )
 }

@@ -1,27 +1,11 @@
 import { FC } from 'react'
-import { Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
 
 /** Component for site wide copyright footer */
 const Copyright: FC = () => {
-  /** Component styles */
-  const useStyles = makeStyles(() => ({
-    copyright: {
-      marginTop: '3em',
-      fontSize: '0.9rem',
-    },
-  }))
-  const classes = useStyles()
-
   return (
-    <Typography
-      variant="body2"
-      className={classes.copyright}
-      color="textSecondary"
-      align="center"
-    >
+    <div className="mt-16 text-gray-700 text-sm text-center">
       &copy; Copyright Michael Ward {new Date().getFullYear()}
-    </Typography>
+    </div>
   )
 }
 export default Copyright

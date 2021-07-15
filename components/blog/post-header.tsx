@@ -1,6 +1,4 @@
 import { FC } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { Typography } from '@material-ui/core'
 import Link from 'next/link'
 import iFeaturedImage from '@/types/featured-image'
 import iAuthor from '@/types/author'
@@ -18,63 +16,39 @@ type PostHeaderProps = {
 }
 
 /** Component that renders a Blog Post header */
-const PostHeader: FC<PostHeaderProps> = ({ title, image, link, author }) => {
-  /** Component styles */
-  const useStyles = makeStyles(() => ({
-    heading: {
-      textAlign: 'center',
-      marginBottom: 0,
-      display: 'inline-block',
-      fontFamily: '"Proza Libre", sans-serif',
-      backgroundColor: 'red',
-      fontStyle: 'italic',
-      textShadow: '1px 1px 1px rgba(0,0,0,0.7)',
-      transform: 'rotate(-2deg)',
-    },
-    headingLink: {
-      display: 'inline-block',
-      fontSize: 32,
-      fontWeight: 600,
-      color: 'white',
-      textDecoration: 'none',
-      transform: 'rotate(2deg)',
-    },
-    byLine: {
-      display: 'inline-block',
-      fontFamily: '"Proza Libre", sans-serif',
-      fontSize: 18,
-      color: '#999',
-      marginBottom: '1em',
-      paddingLeft: '0.5em',
-    },
-  }))
-  const classes = useStyles()
-
-  return (
-    <>
-      <Typography variant="h5" component="h1">
-        <span className={classes.heading}>
-          {link ? (
-            <Link href={link}>
-              <a className={classes.headingLink}>{title}</a>
-            </Link>
-          ) : (
-            <span className={classes.headingLink}>{title}</span>
-          )}
-        </span>
-        {author && <div className={classes.byLine}> {author.name}</div>}
-      </Typography>
-      {image && (
-        /** Display if there is an image supplied */
-        <PostHeaderImage
-          url={image.node.sourceUrl}
-          height={image.node.mediaDetails?.height}
-          width={image.node.mediaDetails?.width}
-          link={link}
-        />
+const PostHeader: FC<PostHeaderProps> = ({ title, image, link, author }) => (
+  <>
+    <h1>
+      <span className="text-center mb-0 inline-block font-display bg-red-600 italic text-shadow rotate-2">
+        {link ? (
+          <Link href={link}>
+            <a className="inline-block text-3xl font-semibold text-white no-underline rotate-2 font-display">
+              {title}
+            </a>
+          </Link>
+        ) : (
+          <span className="inline-block text-3xl font-semibold text-white no-underline rotate-2 font-display">
+            {title}
+          </span>
+        )}
+      </span>
+      {author && (
+        <div className="inline-block font-display text-lg text-gray-600 mb-4 pl-2">
+          {' '}
+          {author.name}
+        </div>
       )}
-    </>
-  )
-}
+    </h1>
+    {image && (
+      /** Display if there is an image supplied */
+      <PostHeaderImage
+        url={image.node.sourceUrl}
+        height={image.node.mediaDetails?.height}
+        width={image.node.mediaDetails?.width}
+        link={link}
+      />
+    )}
+  </>
+)
 
 export default PostHeader

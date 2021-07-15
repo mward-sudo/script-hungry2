@@ -1,4 +1,3 @@
-import { Grid } from '@material-ui/core'
 import { FC } from 'react'
 import PaginationPage from '@/lib/blog/pagination-page'
 import Button from '../button'
@@ -52,8 +51,8 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
 
   return (
     <>
-      <Grid container>
-        <Grid xs={4} item>
+      <div className="grid grid-cols-4">
+        <div>
           {prevPage.exists ? (
             <Button
               variant="secondary"
@@ -63,18 +62,18 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
           ) : (
             <Button variant="disabled" text="Previous page" />
           )}
-        </Grid>
-        <Grid xs={4} item style={{ textAlign: 'center' }}>
+        </div>
+        <div className="col-start-2 cols-span-2 text-center">
           Page {currentPage} of {totalPages}
-        </Grid>
-        <Grid xs={4} item style={{ textAlign: 'right' }}>
+        </div>
+        <div className="text-right">
           {nextPage.exists ? (
             <Button variant="secondary" url={nextPage.url} text="Next page" />
           ) : (
             <Button variant="disabled" text="Next page" />
           )}
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     </>
   )
 }
