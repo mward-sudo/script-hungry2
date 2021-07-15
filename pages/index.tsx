@@ -33,7 +33,10 @@ const Index: FC<IndexPropTypes> = ({
     <HomeIntro homePageHero={homePageHero} />
     <div className="container mx-auto">
       <div className="my-4">
-        <motion.div variants={stagger()} className="flex-grow">
+        <motion.div
+          variants={stagger({ staggerTime: 0.1 })}
+          className="flex-grow"
+        >
           <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
             {homePageCards.data.homePageCards.map((card) => (
               <HomeMediaCard
