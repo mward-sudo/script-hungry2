@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import useDimensions from 'react-cool-dimensions'
 import { FC } from 'react'
 import { motion, Variants } from 'framer-motion'
 import { fadeInAndUp } from '@/animations/animations'
@@ -39,6 +40,8 @@ const HomeMediaCard: FC<MediaCardProps> = ({
   imageHeight,
   imageAlt = '',
 }) => {
+  const { observe, width } = useDimensions<HTMLDivElement | null>()
+
   return (
     <motion.div variants={fadeInAndUp()}>
       <Link href={link}>
@@ -50,13 +53,16 @@ const HomeMediaCard: FC<MediaCardProps> = ({
             className="border-2 border-solid border-gray-100 rounded-md overflow-hidden drop-shadow-sm"
           >
             <div style={{ overflow: 'hidden' }}>
-              <motion.div variants={hoverImgVariant}>
+              <motion.div variants={hoverImgVariant} ref={observe}>
                 <Image
                   layout="responsive"
                   src={image}
                   height={imageHeight}
                   width={imageWidth}
                   alt={imageAlt}
+                  sizes={
+                    width !== undefined ? `${Math.round(width)}px` : '100vw'
+                  }
                 />
               </motion.div>
             </div>
