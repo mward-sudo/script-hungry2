@@ -12,7 +12,7 @@ type HomeIntroProps = {
 const HomeIntro: FC<HomeIntroProps> = ({ homePageHero }) => {
   return (
     <section
-      className="relative bg-black overflow-hidden"
+      className="relative bg-black overflow-hidden mb-8"
       style={{ maxHeight: '60vh' }}
     >
       <Image

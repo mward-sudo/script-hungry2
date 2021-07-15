@@ -1,8 +1,6 @@
 import { FC, ElementType, useState, useEffect } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { AppBar, Toolbar, Typography } from '@material-ui/core'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
 import { motion } from 'framer-motion'
 import { NavigationLinks } from '@/types/navigations-links'
 import NavMobileToggle from './nav/mobile-toggle'
@@ -10,32 +8,6 @@ import NavDesktop from './nav/desktop'
 
 /** Mobile nav links component ready to be dynamically loaded if required */
 const NavMobile = dynamic(() => import('./nav/mobile'))
-
-/** Component styles */
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      position: 'sticky',
-      top: 0,
-      zIndex: 1000,
-    },
-    appBar: {
-      backgroundColor: 'rgba(255,255,255,0.75)',
-      backdropFilter: 'blur(6px)',
-    },
-    toolbar: theme.mixins.toolbar,
-    title: {
-      fontFamily: '"Proza Libre", sans-serif',
-      fontSize: 20,
-      flexGrow: 1,
-      color: '#333',
-    },
-    homeLink: {
-      color: 'inherit',
-      textDecoration: 'inherit',
-    },
-  })
-)
 
 type Size = {
   /** Pixel width */
@@ -91,7 +63,6 @@ type HeaderProps = {
 const Header: FC<HeaderProps> = ({ element = 'h1', navLinks }) => {
   /** CSS pixel width of the page from the state */
   const { width } = useWindowSize()
-  const classes = useStyles()
 
   // Tracks the state of the mobile menu
   const [menuOpen, setMenuOpen] = useState(false)
@@ -108,34 +79,37 @@ const Header: FC<HeaderProps> = ({ element = 'h1', navLinks }) => {
 
   return (
     <>
-      <div className={classes.root}>
-        <AppBar position="relative" className={classes.appBar}>
-          <Toolbar className={classes.toolbar}>
-            <Typography
-              component={element}
-              variant="h6"
-              className={classes.title}
-            >
-              <Link href="/">
-                <a className={classes.homeLink}>scriptHungry</a>
-              </Link>
-            </Typography>
-            {isDesktop(width) && navLinks ? (
-              /** Using desktop nav - default for server side rendering */
-              <>
-                <NavDesktop navLinks={navLinks?.data.navigationLinks} />
-              </>
-            ) : (
-              /** Toggle control for mobile nav menu */
-              <>
-                <motion.div animate={menuOpen ? 'open' : 'closed'}>
-                  <NavMobileToggle toggle={menuToggle} />
-                </motion.div>
-              </>
-            )}
-          </Toolbar>
-        </AppBar>
-      </div>
+      <header className="sticky top-0 z-50 bg-white bg-opacity-75 backdrop-filter backdrop-blur h-16 py-4 px-2 shadow-md">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-4">
+            <Link href="/">
+              <a className="inline-block px-2">
+                {element === 'h1' ? (
+                  <h1 className="font-display text-2xl lh-1">scriptHungry</h1>
+                ) : (
+                  <p className="font-display text-2xl lh-1">scriptHungry</p>
+                )}
+              </a>
+            </Link>
+
+            <div className="justify-self-end col-start-2 col-span-3">
+              {isDesktop(width) && navLinks ? (
+                /** Using desktop nav - default for server side rendering */
+                <>
+                  <NavDesktop navLinks={navLinks?.data.navigationLinks} />
+                </>
+              ) : (
+                /** Toggle control for mobile nav menu */
+                <>
+                  <motion.div animate={menuOpen ? 'open' : 'closed'}>
+                    <NavMobileToggle toggle={menuToggle} />
+                  </motion.div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      </header>
       {!isDesktop(width) && navLinks && (
         /** Nav links for mobile menu */
         <NavMobile
