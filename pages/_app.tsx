@@ -8,6 +8,7 @@ import '@fontsource/proza-libre/600-italic.css'
 import '@fontsource/proza-libre/400.css'
 import 'tailwindcss/tailwind.css'
 import { fadeIn } from '@/animations/animations'
+import '../styles/global.sass'
 
 const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
   return (

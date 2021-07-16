@@ -87,7 +87,9 @@ const Header: FC<HeaderProps> = ({ element = 'h1', navLinks }) => {
                 {element === 'h1' ? (
                   <h1 className="font-display text-2xl lh-1">scriptHungry</h1>
                 ) : (
-                  <p className="font-display text-2xl lh-1">scriptHungry</p>
+                  <p className="font-display text-2xl lh-1 my-0">
+                    scriptHungry
+                  </p>
                 )}
               </a>
             </Link>
