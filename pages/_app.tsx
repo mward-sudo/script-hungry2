@@ -19,6 +19,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
+        <meta name="theme-color" content="#ffffff" />
       </Head>
       <AnimatePresence exitBeforeEnter>
         <motion.div

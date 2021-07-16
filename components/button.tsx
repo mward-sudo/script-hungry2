@@ -24,7 +24,7 @@ const Button: FC<ButtonProps> = ({
   variant = 'primary',
   onClick = null,
 }) => {
-  const defaultStyles = 'cursor-default inline-block rounded px-4 py-3'
+  const defaultStyles = 'cursor-default inline-block rounded px-4 py-3 w-full'
   let button
 
   if (onClick !== null) {

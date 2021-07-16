@@ -15,9 +15,14 @@ import { getAllPostSlugs } from '@/lib/blog/post-slugs'
 import { PostData, PostSlugs } from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
 import { NavigationLinks } from '@/types/navigations-links'
+import Loader from '@/components/loader'
 
 const Disqus = dynamic(() => import('@/components/blog/disqus'), {
-  loading: () => <p>...</p>,
+  loading: () => (
+    <div className="text-center">
+      <Loader />
+    </div>
+  ),
 })
 
 type PostProps = {
@@ -48,20 +53,22 @@ const Post: FC<PostProps> = ({ post, navLinks }) => {
           <div
             dangerouslySetInnerHTML={{ __html: sanitizer(post?.content?.html) }}
           />
-          {showComments ? (
-            <Disqus
-              key={post?.slug}
-              pageTitle={post?.title}
-              pageID={post?.slug}
-              pageURL={`https://scripthungry.com${router.asPath}`}
-            />
-          ) : (
-            <Button
-              variant="secondary"
-              onClick={() => setShowComments(true)}
-              text="Show Comments"
-            />
-          )}
+          <div className="my-16">
+            {showComments ? (
+              <Disqus
+                key={post?.slug}
+                pageTitle={post?.title}
+                pageID={post?.slug}
+                pageURL={`https://scripthungry.com${router.asPath}`}
+              />
+            ) : (
+              <Button
+                variant="secondary"
+                onClick={() => setShowComments(true)}
+                text="Show Comments"
+              />
+            )}
+          </div>
           <Copyright />
         </div>
       </div>
