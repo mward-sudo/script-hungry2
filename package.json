@@ -5,7 +5,6 @@
   "dependencies": {
     "@babel/core": "^7.14.6",
     "@fontsource/proza-libre": "^4.2.2",
-    "@fontsource/roboto": "^4.3.0",
     "@types/node": "^15.6.0",
     "@types/react": "^17.0.6",
     "clsx": "1.1.1",
