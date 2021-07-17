@@ -1,19 +1,12 @@
-const { StatsWriterPlugin } = require('webpack-stats-plugin')
+const { RelativeCiAgentWebpackPlugin } = require('@relative-ci/agent')
 
 module.exports = {
-  webpack: (config, {}) => {
-    config.plugins.push(
-      new StatsWriterPlugin({
-        filename: 'stats.json',
-        stats: {
-          context: './src', // optional, will improve readability of the paths
-          assets: true,
-          entrypoints: true,
-          chunks: true,
-          modules: true,
-        },
-      })
-    )
+  webpack(config, options) {
+    const { dev, isServer } = options
+
+    if (!dev && !isServer) {
+      config.plugins.push(new RelativeCiAgentWebpackPlugin())
+    }
 
     return config
   },
