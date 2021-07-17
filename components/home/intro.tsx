@@ -62,7 +62,7 @@ const HomeIntro: FC<HomeIntroProps> = ({ homePageHero }) => {
                 <span className="block text-headingVwS not-italic font-normal">
                   {homePageHero.lineOneText}
                 </span>
-                <span className="block text-headingVwL">
+                <span className="block text-headingVwL font-bold">
                   {homePageHero.lineTwoText}
                 </span>
               </div>
