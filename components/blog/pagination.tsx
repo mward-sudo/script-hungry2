@@ -51,7 +51,7 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
 
   return (
     <>
-      <div className="grid grid-cols-4">
+      <div className="grid grid-cols-4 border-t-2 pt-8">
         <div>
           {prevPage.exists ? (
             <Button
@@ -63,7 +63,7 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
             <Button variant="disabled" text="Previous page" />
           )}
         </div>
-        <div className="col-start-2 cols-span-2 text-center">
+        <div className="col-start-2 col-span-2 inline-block text-center text-gray-400 py-3">
           Page {currentPage} of {totalPages}
         </div>
         <div className="text-right">
