@@ -1,6 +1,9 @@
 # .github/workflow/nodejs.yml
 name: Node.js CI
 
+on:
+  push
+
 jobs:
   build:
     steps:
