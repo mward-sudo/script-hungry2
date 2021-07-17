@@ -4,9 +4,8 @@ module.exports = {
   webpack: (config, {}) => {
     config.plugins.push(
       new StatsWriterPlugin({
-        filename: 'stats.json',
+        filename: 'webpack-stats.json',
         stats: {
-          context: './src', // optional, will improve readability of the paths
           assets: true,
           entrypoints: true,
           chunks: true,
