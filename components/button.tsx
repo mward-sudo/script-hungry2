@@ -16,6 +16,8 @@ type ButtonProps = {
   variant?: 'primary' | 'secondary' | 'disabled'
   /** An onClick event */
   onClick?: VoidFunction | null
+  /** Width of button */
+  width?: 'auto' | 'full' | string
 }
 
 const Button: FC<ButtonProps> = ({
@@ -23,9 +25,19 @@ const Button: FC<ButtonProps> = ({
   url = '',
   variant = 'primary',
   onClick = null,
+  width = 'auto',
 }) => {
   const defaultStyles = 'cursor-default inline-block rounded px-4 py-3 w-full'
   let button
+  const widthStyle = { width: 'auto' }
+  switch (width) {
+    case 'full':
+      widthStyle.width = '100%'
+      break
+    default:
+      widthStyle.width = width
+      break
+  }
 
   if (onClick !== null) {
     button = (
@@ -33,6 +45,7 @@ const Button: FC<ButtonProps> = ({
         className={`${defaultStyles} ${styles[variant]}`}
         onClick={onClick}
         type="button"
+        style={widthStyle}
       >
         {text}
       </button>
@@ -40,10 +53,17 @@ const Button: FC<ButtonProps> = ({
   } else {
     button =
       variant === 'disabled' ? (
-        <a className={`${defaultStyles} ${styles[variant]}`}>{text}</a>
+        <a className={`${defaultStyles} ${styles[variant]}`} style={widthStyle}>
+          {text}
+        </a>
       ) : (
         <Link href={url}>
-          <a className={`${defaultStyles} ${styles[variant]}`}>{text}</a>
+          <a
+            className={`${defaultStyles} ${styles[variant]}`}
+            style={widthStyle}
+          >
+            {text}
+          </a>
         </Link>
       )
   }
