@@ -63,6 +63,7 @@ const HomeMediaCard: FC<MediaCardProps> = ({
                   sizes={
                     width !== undefined ? `${Math.round(width)}px` : '100vw'
                   }
+                  priority
                 />
               </motion.div>
             </div>
