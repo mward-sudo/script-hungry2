@@ -22,7 +22,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
           initial="initial"
           animate="animate"
           exit="initial"
-          variants={fadeIn()}
+          variants={fadeIn({ duration: 0.25 })}
           key={router.route}
         >
           <main>
