@@ -1,4 +1,15 @@
+const { RelativeCiAgentWebpackPlugin } = require('@relative-ci/agent')
+
 module.exports = {
+  webpack(config, options) {
+    const { dev, isServer } = options
+
+    if (!dev && !isServer) {
+      config.plugins.push(new RelativeCiAgentWebpackPlugin())
+    }
+
+    return config
+  },
   images: {
     domains: [
       'res.cloudinary.com',
