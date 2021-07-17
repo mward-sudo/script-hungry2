@@ -1,14 +1,10 @@
-import { FC, useState } from 'react'
+import { FC, useState, useEffect } from 'react'
 import Button from '@/components/button'
 import { GetStaticProps, GetStaticPaths } from 'next'
-import Head from 'next/head'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
-import Copyright from '@/components/copyright'
-import Header from '@/components/header'
 import PostHeader from '@/components/blog/post-header'
-import Constants from '@/lib/consts'
 import { iPostWithContent } from '@/types/post'
 import { getPostBySlug } from '@/lib/blog/post'
 import { getAllPostSlugs } from '@/lib/blog/post-slugs'
@@ -16,6 +12,11 @@ import { PostData, PostSlugs } from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
 import { NavigationLinks } from '@/types/navigations-links'
 import Loader from '@/components/loader'
+import PostLayout from '@/components/blog/layout'
+import hljs from 'highlight.js'
+import javascript from 'highlight.js/lib/languages/javascript'
+
+hljs.registerLanguage('javascript', javascript)
 
 const Disqus = dynamic(() => import('@/components/blog/disqus'), {
   loading: () => (
@@ -35,43 +36,39 @@ const Post: FC<PostProps> = ({ post, navLinks }) => {
 
   const router = useRouter()
 
+  useEffect(() => {
+    hljs.initHighlighting()
+  }, [])
+
   return (
     <>
-      <Head>
-        <title>
-          {post?.title} | {Constants.SITE_NAME}
-        </title>
-      </Head>
-      <Header element="p" navLinks={navLinks} />
-      <div className="container mx-auto">
-        <div className="my-4">
-          <PostHeader
-            title={post?.title}
-            // image={post?.featuredImage}
-            author={post?.author}
-          />
-          <div
-            dangerouslySetInnerHTML={{ __html: sanitizer(post?.content?.html) }}
-          />
-          <div className="my-16">
-            {showComments ? (
-              <Disqus
-                key={post?.slug}
-                pageTitle={post?.title}
-                pageID={post?.slug}
-                pageURL={`https://scripthungry.com${router.asPath}`}
-              />
-            ) : (
-              <Button
-                variant="secondary"
-                onClick={() => setShowComments(true)}
-                text="Show Comments"
-              />
-            )}
-          </div>
-          <Copyright />
+      <PostLayout post={post} navLinks={navLinks}>
+        <PostHeader
+          title={post?.title}
+          // image={post?.featuredImage}
+          author={post?.author}
+        />
+        <div
+          dangerouslySetInnerHTML={{ __html: sanitizer(post?.content?.html) }}
+        />
+        <div className="my-16">
+          {showComments ? (
+            <Disqus
+              key={post?.slug}
+              pageTitle={post?.title}
+              pageID={post?.slug}
+              pageURL={`https://scripthungry.com${router.asPath}`}
+            />
+          ) : (
+            <Button
+              variant="secondary"
+              onClick={() => setShowComments(true)}
+              text="Show Comments"
+              width="full"
+            />
+          )}
         </div>
-      </div>
+      </PostLayout>
     </>
   )
 }

@@ -1,4 +1,22 @@
+const { StatsWriterPlugin } = require('webpack-stats-plugin')
+
 module.exports = {
+  webpack: (config, {}) => {
+    config.plugins.push(
+      new StatsWriterPlugin({
+        filename: 'stats.json',
+        stats: {
+          context: './src', // optional, will improve readability of the paths
+          assets: true,
+          entrypoints: true,
+          chunks: true,
+          modules: true,
+        },
+      })
+    )
+
+    return config
+  },
   images: {
     domains: [
       'res.cloudinary.com',
