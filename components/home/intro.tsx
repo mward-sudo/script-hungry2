@@ -12,7 +12,7 @@ const HomeIntro: FC<HomeIntroProps> = ({ homePageHero }) => {
   return (
     <section
       className="relative bg-black overflow-hidden mb-8"
-      style={{ maxHeight: '60vh' }}
+      style={{ maxHeight: '50vh' }}
     >
       <div className="overflow-hidden relative" style={{ height: '60vh' }}>
         <motion.div
@@ -38,7 +38,7 @@ const HomeIntro: FC<HomeIntroProps> = ({ homePageHero }) => {
                 'hue-rotate(0deg)',
               ],
               transition: {
-                duration: 20,
+                duration: 60,
                 repeat: Infinity,
               },
             },
