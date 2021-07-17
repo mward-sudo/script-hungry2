@@ -66,6 +66,7 @@ const Post: FC<PostProps> = ({ post, navLinks }) => {
                 variant="secondary"
                 onClick={() => setShowComments(true)}
                 text="Show Comments"
+                width="full"
               />
             )}
           </div>
