@@ -12,7 +12,16 @@
         "reveal": "always",
         "panel": "new"
       },
-      "runOptions": { "runOn": "folderOpen" }
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "type": "npm",
+      "script": "dev",
+      "problemMatcher": [],
+      "label": "npm: dev",
+      "detail": "next"
     }
   ]
 }
