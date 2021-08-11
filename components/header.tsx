@@ -2,9 +2,9 @@ import { FC, ElementType, useState, useEffect } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
-import { iNavigationLinks } from '@/types/graphcms-api'
 import NavMobileToggle from './nav/mobile-toggle'
 import NavDesktop from './nav/desktop'
+import { iNavigationLinks } from '@/types/graphcms-api'
 
 /** Mobile nav links component ready to be dynamically loaded if required */
 const NavMobile = dynamic(() => import('./nav/mobile'))

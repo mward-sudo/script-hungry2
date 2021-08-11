@@ -26,7 +26,7 @@ export const getIndexPosts = async (pageNo = 1): Promise<iIndexPostsData> => {
         excerpt
         slug
         title
-        content {
+        content: {
           html
         }
         coverImage {

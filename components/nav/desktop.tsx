@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import Link from 'next/link'
-import { iNavigationLink } from '@/types/graphcms-api'
+import { NavigationLink } from '@/types/navigations-links'
 
 type ConditionalLinkProps = {
   /** URL for ConditionalLink */
@@ -31,7 +31,7 @@ const ConditionalLink: FC<ConditionalLinkProps> = ({ href, children }) => {
 
 type NavDesktopProps = {
   /** Navigation links for page header */
-  navLinks: iNavigationLink[]
+  navLinks: NavigationLink[]
 }
 
 /** Component for desktop nav links */

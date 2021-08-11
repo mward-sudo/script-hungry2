@@ -10,12 +10,7 @@ import Button from '@/components/button'
 import PostHeader from '@/components/blog/post-header'
 import { getPostBySlug } from '@/lib/blog/post'
 import { getAllPostSlugs } from '@/lib/blog/post-slugs'
-import {
-  iNavigationLinks,
-  iPost,
-  iPostData,
-  iPostSlugs,
-} from '@/types/graphcms-api'
+import { iNavigationLinks, iPost, iPostData, iPostSlugs } from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
 import Loader from '@/components/loader'
 import PostLayout from '@/components/blog/layout'
@@ -54,12 +49,12 @@ const Post: FC<PostProps> = ({ post, navLinks }) => {
         </div>
         <div className="flex items-center m-0 mt-8">
           <Image
-            src={post?.author.picture.url}
+            src={post.author.picture.url}
             width={40}
             height={40}
             className="rounded-full"
           />
-          <div className="ml-4 font-extralight">{post?.author.name}</div>
+          <div className="ml-4 font-extralight">{post.author.name}</div>
         </div>
         <div
           dangerouslySetInnerHTML={{ __html: sanitizer(post?.content?.html) }}
@@ -102,7 +97,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post: iPostData = await getPostBySlug(slug)
   return {
     props: {
-      post: post?.data.post,
+      post: post.data.post,
       navLinks,
     },
     revalidate: 60,
