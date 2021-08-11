@@ -1,4 +1,4 @@
-import { PostsTotal } from '@/types/graphcms-api'
+import { iPostsTotal } from '@/types/graphcms-api'
 import { callGraphCMS } from '@/lib/graphcms-api'
 import narrowType from '@/lib/narrow-type'
 
@@ -20,7 +20,7 @@ export const getTotalPostsNumber = async (): Promise<number> => {
   /** GraphQL JSON response */
   const response = await callGraphCMS(query)
   /** Return total or throw error if response is undefined OR null */
-  if (narrowType<PostsTotal>(response)) {
+  if (narrowType<iPostsTotal>(response)) {
     return response.data.postsConnection.aggregate.count
   }
   throw new Error('No response from CMS for getTotalPostsNumber')

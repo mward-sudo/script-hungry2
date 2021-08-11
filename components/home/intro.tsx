@@ -1,11 +1,11 @@
 import { FC } from 'react'
 import { motion } from 'framer-motion'
 import { fadeInAndUp, stagger } from '@/animations/animations'
-import { HomePageHero } from '@/types/graphcms-api'
+import { iHomePageHero } from '@/types/graphcms-api'
 import styles from './intro.module.css'
 
 type HomeIntroProps = {
-  homePageHero: HomePageHero
+  homePageHero: iHomePageHero
 }
 
 /** Component that renders the home page hero section */

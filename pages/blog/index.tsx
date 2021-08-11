@@ -1,15 +1,14 @@
 import { InferGetStaticPropsType, GetStaticProps } from 'next'
 import Constants from '@/lib/consts'
 import { getIndexPosts } from '@/lib/blog/index-posts'
-import { PostExcerpt } from '@/types/graphcms-api'
+import { iNavigationLinks, iPostExcerpt } from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
-import { NavigationLinks } from '@/types/navigations-links'
 import BlogIndex from '@/components/blog'
 
 type IndexProps = {
-  indexPosts: PostExcerpt[]
+  indexPosts: iPostExcerpt[]
   pagesTotal: number
-  navLinks: NavigationLinks
+  navLinks: iNavigationLinks
 }
 
 const Index: InferGetStaticPropsType<typeof getStaticProps> = ({

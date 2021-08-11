@@ -1,11 +1,11 @@
 import { callGraphCMS } from '@/lib/graphcms-api'
-import { NavigationLinks } from '@/types/navigations-links'
+import { iNavigationLinks } from '@/types/graphcms-api'
 import narrowType from './narrow-type'
 
 /**
  * Get navigation links from CMS.
  */
-const getNavigationLinks = async (): Promise<NavigationLinks> => {
+const getNavigationLinks = async (): Promise<iNavigationLinks> => {
   /** GraphQL query to be executed */
   const query = `{
     navigationLinks(stage: PUBLISHED) {
@@ -18,7 +18,7 @@ const getNavigationLinks = async (): Promise<NavigationLinks> => {
   const response = await callGraphCMS(query)
 
   /** Return response or throw error if response is undefined OR null */
-  if (narrowType<NavigationLinks>(response)) return response
+  if (narrowType<iNavigationLinks>(response)) return response
   throw new Error('No response from CMS for NavigationLinks')
 }
 

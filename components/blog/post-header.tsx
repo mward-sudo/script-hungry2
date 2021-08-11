@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import Image from 'next/image'
 import { motion, Variants } from 'framer-motion'
-import iCoverImage from '@/types/cover-image'
+import { iPicture } from '@/types/graphcms-api'
 
 const hoverImgVariant: Variants = {
   initial: {
@@ -19,7 +19,7 @@ type PostHeaderProps = {
   /** Title of post */
   title: string
   /** Hero image for post */
-  image?: iCoverImage
+  image?: iPicture
 }
 
 /** Component that renders a Blog Post header */

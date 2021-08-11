@@ -1,10 +1,10 @@
 import { FC } from 'react'
+import Image from 'next/image'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import iCoverImage from '@/types/cover-image'
 import { fadeInAndUp } from '@/animations/animations'
-import { Author } from '@/types/graphcms-api'
+import { iAuthor, iPicture } from '@/types/graphcms-api'
 import PostHeader from './post-header'
 import styles from './post-excerpt.module.css'
 
@@ -16,9 +16,9 @@ type PostExcerptProps = {
   /** Slug of the full blog post */
   slug: string
   /** Hero image for the blog post */
-  coverImage?: iCoverImage
+  coverImage?: iPicture
   /** Author of the blog post */
-  author: Author
+  author: iAuthor
 }
 
 /** Component to display an excerpt of a blog post */
@@ -41,11 +41,18 @@ export const PostExcerpt: FC<PostExcerptProps> = ({
           <motion.div initial="initial" whileHover="hover" whileTap="tap">
             <PostHeader title={title} image={coverImage} />
             <div
-              className={`${styles.blogPost} text-base mt-6 mb-8`}
+              className={`${styles.blogPost} text-base mt-10 mb-4`}
               dangerouslySetInnerHTML={{ __html: sanitizer(excerpt) }}
             />
-
-            <p className="text-right">{author.name}</p>
+            <div className="flex items-center m-0 justify-end">
+              <div className="mr-4 font-extralight">{author.name}</div>
+              <Image
+                src={author.picture.url}
+                width={40}
+                height={40}
+                className="rounded-full"
+              />
+            </div>
           </motion.div>
         </motion.div>
       </a>

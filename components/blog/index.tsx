@@ -7,14 +7,13 @@ import Copyright from '@/components/copyright'
 import { stagger } from '@/animations/animations'
 import Pagination from '@/components/blog/pagination'
 import Constants from '@/lib/consts'
-import { PostExcerpt } from '@/types/graphcms-api'
-import { NavigationLinks } from '@/types/navigations-links'
+import { iNavigationLinks, iPostExcerpt } from '@/types/graphcms-api'
 
 type BlogIndexProps = {
-  indexPosts: PostExcerpt[]
+  indexPosts: iPostExcerpt[]
   pagesTotal: number
   currentPage: number
-  navLinks: NavigationLinks
+  navLinks: iNavigationLinks
 }
 
 const BlogIndex: FC<BlogIndexProps> = ({
@@ -34,7 +33,7 @@ const BlogIndex: FC<BlogIndexProps> = ({
           <div className="grid grid-cols-4 gap-6">
             <div className="col-span-4 lg:col-span-3">
               <motion.div variants={stagger({ staggerTime: 1 })}>
-                {indexPosts.map((post: PostExcerpt) => {
+                {indexPosts.map((post: iPostExcerpt) => {
                   const { title, excerpt, slug, author, coverImage } = post
                   return (
                     <PostExcerptComponent

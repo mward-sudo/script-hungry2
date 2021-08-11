@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import Link from 'next/link'
 import { motion, Variants } from 'framer-motion'
-import { NavigationLink } from '@/types/navigations-links'
+import { iNavigationLink } from '@/types/graphcms-api'
 
 const menuRootVariants: Variants = {
   closed: {
@@ -56,7 +56,7 @@ const ConditionalLink: FC<ConditionalLinkProps> = ({ href, children }) => {
 }
 
 type MobileNavProps = {
-  navLinks: NavigationLink[]
+  navLinks: iNavigationLink[]
   menuOpen: boolean
 }
 
