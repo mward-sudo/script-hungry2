@@ -9,7 +9,11 @@ import Constants from '@/lib/consts'
 import { stagger } from '@/animations/animations'
 import getNavigationLinks from '@/lib/navigation-links'
 import HomeMediaCard from '@/components/home/media-card'
-import { iHomePageCards, iHomePageHero, iNavigationLinks } from '@/types/graphcms-api'
+import {
+  iHomePageCards,
+  iHomePageHero,
+  iNavigationLinks,
+} from '@/types/graphcms-api'
 import { getHomePageHero } from '@/lib/blog/home-page-hero'
 import { getHomePageCards } from '@/lib/blog/home-page-cards'
 
