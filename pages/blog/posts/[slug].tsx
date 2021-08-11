@@ -54,7 +54,7 @@ const Post: FC<PostProps> = ({ post, navLinks }) => {
         </div>
         <div className="flex items-center m-0 mt-8">
           <Image
-            src={post.author.picture.url}
+            src={post?.author.picture.url}
             width={40}
             height={40}
             className="rounded-full"
