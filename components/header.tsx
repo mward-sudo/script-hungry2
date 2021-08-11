@@ -2,9 +2,9 @@ import { FC, ElementType, useState, useEffect } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import { motion } from 'framer-motion'
-import { NavigationLinks } from '@/types/navigations-links'
 import NavMobileToggle from './nav/mobile-toggle'
 import NavDesktop from './nav/desktop'
+import { iNavigationLinks } from '@/types/graphcms-api'
 
 /** Mobile nav links component ready to be dynamically loaded if required */
 const NavMobile = dynamic(() => import('./nav/mobile'))
@@ -56,7 +56,7 @@ type HeaderProps = {
   /** The element for the site name, defaults to h1 */
   element?: ElementType
   /** The navigation links to display on this section of the site */
-  navLinks: NavigationLinks
+  navLinks: iNavigationLinks
 }
 
 /** Component to display the site wide header */

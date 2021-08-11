@@ -3,10 +3,10 @@ import Head from 'next/head'
 import Header from '@/components/header'
 import { GetStaticProps } from 'next'
 import getNavigationLinks from '@/lib/navigation-links'
-import { NavigationLinks } from '@/types/navigations-links'
+import { iNavigationLinks } from '@/types/graphcms-api'
 
 type IndexPropTypes = {
-  navLinks: NavigationLinks
+  navLinks: iNavigationLinks
 }
 
 const Index: FC<IndexPropTypes> = ({ navLinks }) => (

@@ -8,12 +8,10 @@ import hljs from 'highlight.js'
 import javascript from 'highlight.js/lib/languages/javascript'
 import Button from '@/components/button'
 import PostHeader from '@/components/blog/post-header'
-import { iPostWithContent } from '@/types/post'
 import { getPostBySlug } from '@/lib/blog/post'
 import { getAllPostSlugs } from '@/lib/blog/post-slugs'
-import { PostData, PostSlugs } from '@/types/graphcms-api'
+import { iNavigationLinks, iPost, iPostData, iPostSlugs } from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
-import { NavigationLinks } from '@/types/navigations-links'
 import Loader from '@/components/loader'
 import PostLayout from '@/components/blog/layout'
 
@@ -28,8 +26,8 @@ const Disqus = dynamic(() => import('@/components/blog/disqus'), {
 })
 
 type PostProps = {
-  post: iPostWithContent
-  navLinks: NavigationLinks
+  post: iPost
+  navLinks: iNavigationLinks
 }
 
 const Post: FC<PostProps> = ({ post, navLinks }) => {
@@ -96,7 +94,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
   }
 
-  const post: PostData = await getPostBySlug(slug)
+  const post: iPostData = await getPostBySlug(slug)
   return {
     props: {
       post: post.data.post,
@@ -107,7 +105,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const postSlugs: PostSlugs | null = await getAllPostSlugs()
+  const postSlugs: iPostSlugs | null = await getAllPostSlugs()
   const paths: Array<string> =
     postSlugs !== null
       ? postSlugs?.data.posts.map((post) => `/blog/posts/${post.slug}`)

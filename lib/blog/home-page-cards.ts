@@ -1,11 +1,11 @@
-import { HomePageCards } from '@/types/graphcms-api'
+import { iHomePageCards } from '@/types/graphcms-api'
 import { callGraphCMS } from '@/lib/graphcms-api'
 import narrowType from '@/lib/narrow-type'
 
 /**
  * Get cards for home page. Async
  */
-export const getHomePageCards = async (): Promise<HomePageCards> => {
+export const getHomePageCards = async (): Promise<iHomePageCards> => {
   /** GraphQL query to be executed */
   const query = `
     query {
@@ -24,6 +24,6 @@ export const getHomePageCards = async (): Promise<HomePageCards> => {
 
   const response = await callGraphCMS(query)
   /** Return response or throw error if response is undefined OR null */
-  if (narrowType<HomePageCards>(response)) return response
+  if (narrowType<iHomePageCards>(response)) return response
   throw new Error('No response from CMS for HomePageCards')
 }

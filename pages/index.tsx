@@ -1,23 +1,22 @@
 import { FC } from 'react'
 import Head from 'next/head'
 import { motion } from 'framer-motion'
+import { GetStaticProps } from 'next'
 import Header from '@/components/header'
 import HomeIntro from '@/components/home/intro'
 import Copyright from '@/components/copyright'
 import Constants from '@/lib/consts'
 import { stagger } from '@/animations/animations'
-import { NavigationLinks } from '@/types/navigations-links'
-import { GetStaticProps } from 'next'
 import getNavigationLinks from '@/lib/navigation-links'
 import HomeMediaCard from '@/components/home/media-card'
-import { HomePageCards, HomePageHero } from '@/types/graphcms-api'
+import { iHomePageCards, iHomePageHero, iNavigationLinks } from '@/types/graphcms-api'
 import { getHomePageHero } from '@/lib/blog/home-page-hero'
 import { getHomePageCards } from '@/lib/blog/home-page-cards'
 
 type IndexPropTypes = {
-  navLinks: NavigationLinks
-  homePageHero: HomePageHero
-  homePageCards: HomePageCards
+  navLinks: iNavigationLinks
+  homePageHero: iHomePageHero
+  homePageCards: iHomePageCards
 }
 
 const Index: FC<IndexPropTypes> = ({

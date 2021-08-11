@@ -1,8 +1,8 @@
-export interface CallGraphCMS {
+export interface iCallGraphCMS {
   (query: string): Promise<unknown>
 }
 
-export type PostsTotal = {
+export type iPostsTotal = {
   data: {
     postsConnection: {
       aggregate: {
@@ -12,15 +12,20 @@ export type PostsTotal = {
   }
 }
 
-export type IndexPostsData = {
+export type iPost = {
+  author: iAuthor
+  excerpt: string
+  slug: string
+  title: string
+  coverImage: iPicture
+  content: {
+    html: string
+  }
+}
+
+export type iIndexPostsData = {
   data: {
-    posts: {
-      author: Author
-      excerpt: string
-      slug: string
-      title: string
-      coverImage: iCoverImage
-    }[]
+    posts: iPost[]
     postsConnection: {
       aggregate: {
         count: number
@@ -28,17 +33,13 @@ export type IndexPostsData = {
     }
   }
 }
-export type PostData = IndexPostsData & {
+export type iPostData = {
   data: {
-    post: {
-      content: {
-        html: string
-      }
-    }
+    post: iPost
   }
 }
 
-export type PostSlugs = {
+export type iPostSlugs = {
   data: {
     posts: {
       slug: string
@@ -46,48 +47,44 @@ export type PostSlugs = {
   }
 }
 
-export type Author = {
+export type iAuthor = {
   name: string
-  picture: Picture
+  picture: iPicture
 }
 
-export type Picture = {
+export type iPicture = {
   url: string
   height: number
   width: number
 }
 
-export type PostExcerpt = {
-  author: Author
+export type iPostExcerpt = {
+  author: iAuthor
   excerpt: string
   slug: string
   title: string
-  coverImage: iCoverImage
+  coverImage: iPicture
 }
 
-export interface HomePageHeroes {
+export interface iHomePageHeroes {
   data: {
-    homePageHeroes: HomePageHero[]
+    homePageHeroes: iHomePageHero[]
   }
 }
 
-export interface HomePageHero {
-  backgroundImage: {
-    url: string
-    width: number
-    height: number
-  }
+export interface iHomePageHero {
+  backgroundImage: Picture
   lineOneText: string
   lineTwoText: string
 }
 
-export interface HomePageCards {
+export interface iHomePageCards {
   data: {
-    homePageCards: HomePageCard[]
+    homePageCards: iHomePageCard[]
   }
 }
 
-export interface HomePageCard {
+export interface iHomePageCard {
   image: {
     url: string
     width: number
@@ -96,4 +93,15 @@ export interface HomePageCard {
   }
   url: string
   text: string
+}
+
+export type iNavigationLinks = {
+  data: {
+    navigationLinks: NavigationLink[]
+  }
+}
+
+export type iNavigationLink = {
+  url: string
+  linkText: string
 }

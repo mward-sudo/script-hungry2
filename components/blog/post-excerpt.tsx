@@ -3,9 +3,8 @@ import Image from 'next/image'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import iCoverImage from '@/types/cover-image'
 import { fadeInAndUp } from '@/animations/animations'
-import { Author } from '@/types/graphcms-api'
+import { iAuthor, iPicture } from '@/types/graphcms-api'
 import PostHeader from './post-header'
 import styles from './post-excerpt.module.css'
 
@@ -17,9 +16,9 @@ type PostExcerptProps = {
   /** Slug of the full blog post */
   slug: string
   /** Hero image for the blog post */
-  coverImage?: iCoverImage
+  coverImage?: iPicture
   /** Author of the blog post */
-  author: Author
+  author: iAuthor
 }
 
 /** Component to display an excerpt of a blog post */

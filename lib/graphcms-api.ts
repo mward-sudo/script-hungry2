@@ -1,4 +1,4 @@
-import { CallGraphCMS } from '@/types/graphcms-api'
+import { iCallGraphCMS } from '@/types/graphcms-api'
 import Constants from './consts'
 
 export const postsPerPage = Constants.POSTS_PER_PAGE
@@ -9,7 +9,7 @@ export const postsPerPage = Constants.POSTS_PER_PAGE
  * @param query - GraphQL Query string
  * @returns Promise<unknown> - JSON result of query
  */
-export const callGraphCMS: CallGraphCMS = async (query) => {
+export const callGraphCMS: iCallGraphCMS = async (query) => {
   const fetchUrl = process.env.GRAPHCMS_ENDPOINT || ''
 
   const fetchOptions = {

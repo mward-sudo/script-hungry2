@@ -3,16 +3,15 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { getTotalPostsNumber } from '@/lib/blog/posts-total'
 import { getIndexPosts } from '@/lib/blog/index-posts'
 import Constants from '@/lib/consts'
-import { PostExcerpt } from '@/types/graphcms-api'
+import { iNavigationLinks, iPostExcerpt } from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
-import { NavigationLinks } from '@/types/navigations-links'
 import BlogIndex from '@/components/blog'
 
 type BlogIndexPageProps = {
-  indexPosts: PostExcerpt[]
+  indexPosts: iPostExcerpt[]
   pagesTotal: number
   currentPage: number
-  navLinks: NavigationLinks
+  navLinks: iNavigationLinks
 }
 
 const BlogIndexPage: FC<BlogIndexPageProps> = ({
