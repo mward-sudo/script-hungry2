@@ -26,7 +26,7 @@ export const getIndexPosts = async (pageNo = 1): Promise<iIndexPostsData> => {
         excerpt
         slug
         title
-        content: {
+        content {
           html
         }
         coverImage {
@@ -42,6 +42,8 @@ export const getIndexPosts = async (pageNo = 1): Promise<iIndexPostsData> => {
       }
     }
   `
+
+  console.log(query)
 
   const response = await callGraphCMS(query)
   /** Return response or throw error if response is undefined OR null */
