@@ -10,7 +10,12 @@ import Button from '@/components/button'
 import PostHeader from '@/components/blog/post-header'
 import { getPostBySlug } from '@/lib/blog/post'
 import { getAllPostSlugs } from '@/lib/blog/post-slugs'
-import { iNavigationLinks, iPost, iPostData, iPostSlugs } from '@/types/graphcms-api'
+import {
+  iNavigationLinks,
+  iPost,
+  iPostData,
+  iPostSlugs,
+} from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
 import Loader from '@/components/loader'
 import PostLayout from '@/components/blog/layout'
