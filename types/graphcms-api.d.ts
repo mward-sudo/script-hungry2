@@ -15,9 +15,7 @@ export type PostsTotal = {
 export type IndexPostsData = {
   data: {
     posts: {
-      author: {
-        name: string
-      }
+      author: Author
       excerpt: string
       slug: string
       title: string
@@ -50,7 +48,15 @@ export type PostSlugs = {
 
 export type Author = {
   name: string
+  picture: Picture
 }
+
+export type Picture = {
+  url: string
+  height: number
+  width: number
+}
+
 export type PostExcerpt = {
   author: Author
   excerpt: string

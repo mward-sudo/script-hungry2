@@ -1,3 +1,5 @@
+import { Author } from './graphcms-api'
+
 export default interface iPostExcerpt {
   title: string
   excerpt: string
@@ -6,4 +8,5 @@ export default interface iPostExcerpt {
     height: number
     width: number
   }
+  author: Author
 }

@@ -2,6 +2,7 @@ import { FC, useState, useEffect } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import hljs from 'highlight.js'
 import javascript from 'highlight.js/lib/languages/javascript'
@@ -47,6 +48,15 @@ const Post: FC<PostProps> = ({ post, navLinks }) => {
           <div className="-m-2">
             <PostHeader title={post?.title} image={post?.coverImage} />
           </div>
+        </div>
+        <div className="flex items-center m-0 mt-8">
+          <Image
+            src={post.author.picture.url}
+            width={40}
+            height={40}
+            className="rounded-full"
+          />
+          <div className="ml-4 font-extralight">{post.author.name}</div>
         </div>
         <div
           dangerouslySetInnerHTML={{ __html: sanitizer(post?.content?.html) }}

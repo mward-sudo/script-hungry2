@@ -1,11 +1,11 @@
-import iAuthor from './author'
+import { Author } from './graphcms-api'
 
 export default interface iPost {
   title: string
   excerpt: string
   slug: string
   date: string
-  author: iAuthor
+  author: Author
   coverImage?: {
     url: string
     height: number
