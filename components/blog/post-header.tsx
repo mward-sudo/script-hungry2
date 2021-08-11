@@ -1,54 +1,52 @@
 import { FC } from 'react'
-import Link from 'next/link'
-import iFeaturedImage from '@/types/featured-image'
-import iAuthor from '@/types/author'
-import PostHeaderImage from './post-header-image'
+import Image from 'next/image'
+import { motion, Variants } from 'framer-motion'
+import iCoverImage from '@/types/cover-image'
+
+const hoverImgVariant: Variants = {
+  initial: {
+    transform: 'scale(1)',
+  },
+  hover: {
+    transform: 'scale(1.05)',
+  },
+  tap: {
+    transform: 'scale(1)',
+  },
+}
 
 type PostHeaderProps = {
   /** Title of post */
   title: string
   /** Hero image for post */
-  image?: iFeaturedImage
-  /** Post URL */
-  link?: string
-  /** Post author */
-  author?: iAuthor
+  image?: iCoverImage
 }
 
 /** Component that renders a Blog Post header */
-const PostHeader: FC<PostHeaderProps> = ({ title, image, link, author }) => (
-  <>
-    <h1>
-      <span className="text-center mb-0 inline-block font-display bg-red-600 italic text-shadow rotate-2">
-        {link ? (
-          <Link href={link}>
-            <a className="inline-block text-3xl font-semibold text-white no-underline rotate-2 font-display">
-              {title}
-            </a>
-          </Link>
-        ) : (
-          <span className="inline-block text-3xl font-semibold text-white no-underline rotate-2 font-display">
-            {title}
-          </span>
-        )}
-      </span>
-      {author && (
-        <div className="inline-block font-display text-lg text-gray-600 mb-4 pl-2">
-          {' '}
-          {author.name}
+const PostHeader: FC<PostHeaderProps> = ({ title, image }) => {
+  return (
+    <>
+      <h1
+        className="text-center font-display bg-red-600 italic text-shadow transform rotate-1
+          text-3xl font-semibold text-white -mt-8 pt-8 -mx-6 px-6 pb-4 mb-4 z-10 relative"
+      >
+        <span className="transform -rotate-1 block">{title}</span>
+      </h1>
+      {image && (
+        /** Display if there is an image supplied */
+        <div className="overflow-hidden -mx-4 -mt-8">
+          <motion.div variants={hoverImgVariant}>
+            <Image
+              src={image.url}
+              height={image.height}
+              width={image.width}
+              layout="responsive"
+            />
+          </motion.div>
         </div>
       )}
-    </h1>
-    {image && (
-      /** Display if there is an image supplied */
-      <PostHeaderImage
-        url={image.node.sourceUrl}
-        height={image.node.mediaDetails?.height}
-        width={image.node.mediaDetails?.width}
-        link={link}
-      />
-    )}
-  </>
-)
+    </>
+  )
+}
 
 export default PostHeader

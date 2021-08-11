@@ -21,6 +21,7 @@ export type IndexPostsData = {
       excerpt: string
       slug: string
       title: string
+      coverImage: iCoverImage
     }[]
     postsConnection: {
       aggregate: {
@@ -55,6 +56,7 @@ export type PostExcerpt = {
   excerpt: string
   slug: string
   title: string
+  coverImage: iCoverImage
 }
 
 export interface HomePageHeroes {

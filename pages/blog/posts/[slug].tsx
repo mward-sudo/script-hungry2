@@ -1,9 +1,11 @@
 import { FC, useState, useEffect } from 'react'
-import Button from '@/components/button'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
+import hljs from 'highlight.js'
+import javascript from 'highlight.js/lib/languages/javascript'
+import Button from '@/components/button'
 import PostHeader from '@/components/blog/post-header'
 import { iPostWithContent } from '@/types/post'
 import { getPostBySlug } from '@/lib/blog/post'
@@ -13,8 +15,6 @@ import getNavigationLinks from '@/lib/navigation-links'
 import { NavigationLinks } from '@/types/navigations-links'
 import Loader from '@/components/loader'
 import PostLayout from '@/components/blog/layout'
-import hljs from 'highlight.js'
-import javascript from 'highlight.js/lib/languages/javascript'
 
 hljs.registerLanguage('javascript', javascript)
 
@@ -43,11 +43,11 @@ const Post: FC<PostProps> = ({ post, navLinks }) => {
   return (
     <>
       <PostLayout post={post} navLinks={navLinks}>
-        <PostHeader
-          title={post?.title}
-          // image={post?.featuredImage}
-          author={post?.author}
-        />
+        <div className="mt-8 overflow-hidden p-2">
+          <div className="-m-2">
+            <PostHeader title={post?.title} image={post?.coverImage} />
+          </div>
+        </div>
         <div
           dangerouslySetInnerHTML={{ __html: sanitizer(post?.content?.html) }}
         />
