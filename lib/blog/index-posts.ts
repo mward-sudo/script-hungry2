@@ -43,8 +43,6 @@ export const getIndexPosts = async (pageNo = 1): Promise<iIndexPostsData> => {
     }
   `
 
-  console.log(query)
-
   const response = await callGraphCMS(query)
   /** Return response or throw error if response is undefined OR null */
   if (narrowType<iIndexPostsData>(response)) return response
