@@ -59,7 +59,7 @@ const Post: FC<PostProps> = ({ post, navLinks }) => {
             height={40}
             className="rounded-full"
           />
-          <div className="ml-4 font-extralight">{post.author.name}</div>
+          <div className="ml-4 font-extralight">{post?.author.name}</div>
         </div>
         <div
           dangerouslySetInnerHTML={{ __html: sanitizer(post?.content?.html) }}
