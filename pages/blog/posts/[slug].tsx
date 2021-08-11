@@ -102,7 +102,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post: iPostData = await getPostBySlug(slug)
   return {
     props: {
-      post: post.data.post,
+      post: post?.data.post,
       navLinks,
     },
     revalidate: 60,
