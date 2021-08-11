@@ -16,14 +16,16 @@ const Index: InferGetStaticPropsType<typeof getStaticProps> = ({
   indexPosts,
   pagesTotal,
   navLinks,
-}: IndexProps) => (
-  <BlogIndex
-    indexPosts={indexPosts}
-    pagesTotal={pagesTotal}
-    currentPage={1}
-    navLinks={navLinks}
-  />
-)
+}: IndexProps) => {
+  return (
+    <BlogIndex
+      indexPosts={indexPosts}
+      pagesTotal={pagesTotal}
+      currentPage={1}
+      navLinks={navLinks}
+    />
+  )
+}
 
 export const getStaticProps: GetStaticProps = async () => {
   const navLinks = await getNavigationLinks()

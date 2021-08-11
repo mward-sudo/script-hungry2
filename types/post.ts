@@ -6,6 +6,11 @@ export default interface iPost {
   slug: string
   date: string
   author: iAuthor
+  coverImage?: {
+    url: string
+    height: number
+    width: number
+  }
 }
 
 export interface iPostWithContent extends iPost {

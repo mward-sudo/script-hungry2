@@ -21,6 +21,11 @@ export const getIndexPosts = async (pageNo = 1): Promise<IndexPostsData> => {
         excerpt
         slug
         title
+        coverImage {
+          url
+          height
+          width
+        }
       }
       postsConnection(stage: PUBLISHED) {
         aggregate {

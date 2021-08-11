@@ -16,6 +16,11 @@ export const getPostBySlug = async (slug: string): Promise<PostData> => {
         content {
           html
         }
+        coverImage {
+          url
+          height
+          width
+        }
         date
         excerpt
         slug
