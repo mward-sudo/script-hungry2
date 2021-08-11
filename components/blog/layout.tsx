@@ -3,13 +3,12 @@ import Head from 'next/head'
 import Copyright from '@/components/copyright'
 import Header from '@/components/header'
 import Constants from '@/lib/consts'
-import { NavigationLinks } from '@/types/navigations-links'
 import 'highlight.js/styles/dark.css'
-import { iPost } from '@/types/graphcms-api'
+import { iNavigationLinks, iPost } from '@/types/graphcms-api'
 
 type PostProps = {
   post: iPost
-  navLinks: NavigationLinks
+  navLinks: iNavigationLinks
 }
 
 const PostLayout: FC<PostProps> = ({ post, navLinks, children }) => {

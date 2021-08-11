@@ -97,7 +97,7 @@ export interface iHomePageCard {
 
 export type iNavigationLinks = {
   data: {
-    navigationLinks: NavigationLink[]
+    navigationLinks: iNavigationLink[]
   }
 }
 
