@@ -24,7 +24,7 @@ const BlogIndex: FC<BlogIndexProps> = ({
           const { title, excerpt, slug, author, coverImage } = post
           const url = `/blog/posts/${slug}`
           return (
-            <div className="mb-16">
+            <div className="mb-16" key={slug}>
               <Link href={url}>
                 <a>
                   <PostExcerpt
