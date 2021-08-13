@@ -122,7 +122,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const postSlugs: iPostSlugs | null = await getAllPostSlugs()
   const paths: Array<string> =
     postSlugs !== null
-      ? postSlugs?.data.posts.map((post) => `/blog/posts/${post.slug}`)
+      ? postSlugs?.data.posts.map((post) => `/blog/post/${post.slug}`)
       : []
 
   return {

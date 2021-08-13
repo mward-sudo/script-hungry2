@@ -22,7 +22,7 @@ const BlogIndex: FC<BlogIndexProps> = ({
       <div className="col-span-4 lg:col-span-3">
         {indexPosts.map((post: iPostExcerpt) => {
           const { title, excerpt, slug, author, coverImage } = post
-          const url = `/blog/posts/${slug}`
+          const url = `/blog/post/${slug}`
           return (
             <div className="mb-16" key={slug}>
               <Link href={url}>

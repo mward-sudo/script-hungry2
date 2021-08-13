@@ -12,7 +12,7 @@ const baseUrl = {
 const getBlogPages = async (): Promise<string[]> => {
   const blogSlugs = await getAllPostSlugs()
   const blogPages = blogSlugs.data.posts.map(
-    (blogSlug) => `${baseUrl}/blog/posts/${blogSlug.slug}`
+    (blogSlug) => `${baseUrl}/blog/post/${blogSlug.slug}`
   )
   return blogPages
 }
