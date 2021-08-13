@@ -1,13 +1,12 @@
-import { FC, useState, useEffect } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import hljs from 'highlight.js'
 import javascript from 'highlight.js/lib/languages/javascript'
+import { AnimatePresence, motion } from 'framer-motion'
 import Button from '@/components/button'
-import PostHeader from '@/components/blog/post-header'
 import { getPostBySlug } from '@/lib/blog/post'
 import { getAllPostSlugs } from '@/lib/blog/post-slugs'
 import {
@@ -19,6 +18,9 @@ import {
 import getNavigationLinks from '@/lib/navigation-links'
 import Loader from '@/components/loader'
 import PostLayout from '@/components/blog/layout'
+import PostExcerpt from '@/components/blog/post-excerpt'
+import Constants from '@/lib/consts'
+import { fadeIn } from '@/animations/animations'
 
 hljs.registerLanguage('javascript', javascript)
 
@@ -46,24 +48,29 @@ const Post: FC<PostProps> = ({ post, navLinks }) => {
 
   return (
     <>
-      <PostLayout post={post} navLinks={navLinks}>
-        <div className="mt-8 overflow-hidden p-2">
-          <div className="-m-2">
-            <PostHeader title={post?.title} image={post?.coverImage} />
-          </div>
-        </div>
-        <div className="flex items-center m-0 mt-8">
-          <Image
-            src={post?.author.picture.url}
-            width={40}
-            height={40}
-            className="rounded-full"
-          />
-          <div className="ml-4 font-extralight">{post?.author.name}</div>
-        </div>
-        <div
-          dangerouslySetInnerHTML={{ __html: sanitizer(post?.content?.html) }}
+      <PostLayout
+        pageTitle={`${post?.title} | ${Constants.SITE_NAME}`}
+        navLinks={navLinks}
+        restrainWidth
+      >
+        <PostExcerpt
+          title={post?.title}
+          author={post?.author}
+          excerpt={post?.excerpt}
+          slug={post?.slug}
+          coverImage={post?.coverImage}
+          hoverImageEffect={false}
         />
+
+        <AnimatePresence>
+          <motion.div variants={fadeIn()}>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: sanitizer(post?.content?.html),
+              }}
+            />
+          </motion.div>
+        </AnimatePresence>
         <div className="my-16">
           {showComments ? (
             <Disqus

@@ -4,6 +4,7 @@ import { getIndexPosts } from '@/lib/blog/index-posts'
 import { iNavigationLinks, iPostExcerpt } from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
 import BlogIndex from '@/components/blog'
+import PostLayout from '@/components/blog/layout'
 
 type IndexProps = {
   indexPosts: iPostExcerpt[]
@@ -17,12 +18,13 @@ const Index: InferGetStaticPropsType<typeof getStaticProps> = ({
   navLinks,
 }: IndexProps) => {
   return (
-    <BlogIndex
-      indexPosts={indexPosts}
-      pagesTotal={pagesTotal}
-      currentPage={1}
-      navLinks={navLinks}
-    />
+    <PostLayout pageTitle={`${Constants.SITE_NAME} Blog`} navLinks={navLinks}>
+      <BlogIndex
+        indexPosts={indexPosts}
+        pagesTotal={pagesTotal}
+        currentPage={1}
+      />
+    </PostLayout>
   )
 }
 

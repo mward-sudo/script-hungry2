@@ -6,6 +6,7 @@ import Constants from '@/lib/consts'
 import { iNavigationLinks, iPostExcerpt } from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
 import BlogIndex from '@/components/blog'
+import PostLayout from '@/components/blog/layout'
 
 type BlogIndexPageProps = {
   indexPosts: iPostExcerpt[]
@@ -20,12 +21,13 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
   currentPage,
   navLinks,
 }) => (
-  <BlogIndex
-    indexPosts={indexPosts}
-    pagesTotal={pagesTotal}
-    currentPage={currentPage}
-    navLinks={navLinks}
-  />
+  <PostLayout pageTitle={`${Constants.SITE_NAME} Blog`} navLinks={navLinks}>
+    <BlogIndex
+      indexPosts={indexPosts}
+      pagesTotal={pagesTotal}
+      currentPage={currentPage}
+    />
+  </PostLayout>
 )
 
 export const getStaticPaths: GetStaticPaths = async () => {
