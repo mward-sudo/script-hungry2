@@ -1,9 +1,8 @@
 import { FC } from 'react'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion, AnimateSharedLayout, AnimatePresence } from 'framer-motion'
 import 'tailwindcss/tailwind.css'
-import { fadeIn } from '@/animations/animations'
 import '../styles/global.sass'
 
 const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
@@ -17,20 +16,22 @@ const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
         />
         <meta name="theme-color" content="#ffffff" />
       </Head>
-      <AnimatePresence exitBeforeEnter>
-        <motion.div
-          initial="initial"
-          animate="animate"
-          exit="initial"
-          variants={fadeIn({ duration: 0.25 })}
-          key={router.route}
-        >
-          <main>
-            {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-            <Component {...pageProps} key={router.route} />
-          </main>
-        </motion.div>
-      </AnimatePresence>
+
+      <AnimateSharedLayout type="crossfade">
+        <AnimatePresence exitBeforeEnter>
+          <motion.div
+            initial="initial"
+            animate="animate"
+            exit="initial"
+            key={router.route}
+          >
+            <main>
+              {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+              <Component {...pageProps} key={router.route} />
+            </main>
+          </motion.div>
+        </AnimatePresence>
+      </AnimateSharedLayout>
     </>
   )
 }

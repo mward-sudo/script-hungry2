@@ -20,31 +20,39 @@ type PostHeaderProps = {
   title: string
   /** Hero image for post */
   image?: iPicture
+  /** Image hover effect */
+  hoverImageEffect?: boolean
 }
 
 /** Component that renders a Blog Post header */
-const PostHeader: FC<PostHeaderProps> = ({ title, image }) => {
+const PostHeader: FC<PostHeaderProps> = ({
+  title,
+  image,
+  hoverImageEffect = true,
+}) => {
   return (
     <>
-      <h1
-        className="text-center font-display bg-red-600 italic text-shadow transform rotate-1
-          text-3xl font-semibold text-white -mt-8 pt-8 -mx-6 px-6 pb-4 mb-4 z-10 relative"
-      >
-        <span className="transform -rotate-1 block">{title}</span>
-      </h1>
-      {image && (
-        /** Display if there is an image supplied */
-        <div className="overflow-hidden -mx-4 -mt-8">
-          <motion.div variants={hoverImgVariant}>
-            <Image
-              src={image.url}
-              height={image.height}
-              width={image.width}
-              layout="responsive"
-            />
-          </motion.div>
-        </div>
-      )}
+      <motion.div>
+        <h1
+          className="text-center font-display bg-red-600 italic text-shadow transform -rotate-1
+            text-3xl font-semibold text-white z-10 relative pt-8 -mt-8 -mx-6 px-6 pb-4"
+        >
+          <span className="transform rotate-1 block">{title}</span>
+        </h1>
+        {image && (
+          /** Display if there is an image supplied */
+          <div className="overflow-hidden -mx-4 -mt-4">
+            <motion.div variants={hoverImageEffect ? hoverImgVariant : {}}>
+              <Image
+                src={image.url}
+                height={image.height}
+                width={image.width}
+                layout="responsive"
+              />
+            </motion.div>
+          </div>
+        )}
+      </motion.div>
     </>
   )
 }

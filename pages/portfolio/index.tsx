@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import Head from 'next/head'
-import Header from '@/components/header'
 import { GetStaticProps } from 'next'
+import Header from '@/components/header'
 import getNavigationLinks from '@/lib/navigation-links'
 import { iNavigationLinks } from '@/types/graphcms-api'
 

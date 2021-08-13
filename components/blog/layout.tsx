@@ -2,26 +2,29 @@ import { FC } from 'react'
 import Head from 'next/head'
 import Copyright from '@/components/copyright'
 import Header from '@/components/header'
-import Constants from '@/lib/consts'
 import 'highlight.js/styles/dark.css'
-import { iNavigationLinks, iPost } from '@/types/graphcms-api'
+import { iNavigationLinks } from '@/types/graphcms-api'
 
-type PostProps = {
-  post: iPost
+type PostLayoutProps = {
+  pageTitle: string
   navLinks: iNavigationLinks
+  restrainWidth?: boolean
 }
 
-const PostLayout: FC<PostProps> = ({ post, navLinks, children }) => {
+const PostLayout: FC<PostLayoutProps> = ({
+  pageTitle,
+  navLinks,
+  restrainWidth = false,
+  children,
+}) => {
   return (
     <>
       <Head>
-        <title>
-          {post?.title} | {Constants.SITE_NAME}
-        </title>
+        <title>{pageTitle}</title>
       </Head>
       <Header element="p" navLinks={navLinks} />
-      <div className="container mx-auto">
-        <div className="my-4">
+      <div className={`container mx-auto ${restrainWidth && 'max-w-4xl'}`}>
+        <div className="m-4">
           {children}
           <Copyright />
         </div>
