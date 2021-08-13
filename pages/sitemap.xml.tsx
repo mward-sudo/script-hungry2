@@ -1,5 +1,4 @@
 import { getAllPostSlugs } from '@/lib/blog/post-slugs'
-import fs from 'fs'
 import { GetServerSideProps } from 'next'
 
 const Sitemap: VoidFunction = () => <></>
@@ -10,29 +9,6 @@ const baseUrl = {
   production: 'https://scripthungry.com',
 }[process.env.NODE_ENV]
 
-const getStaticPages = (): string[] => {
-  const staticPages = fs
-    .readdirSync(
-      {
-        development: 'pages',
-        test: 'pages',
-        production: './',
-      }[process.env.NODE_ENV]
-    )
-    .filter((staticPage) => {
-      return ![
-        '_app.tsx',
-        '_document.tsx',
-        '_error.tsx',
-        'index.tsx',
-        'sitemap.xml.tsx',
-      ].includes(staticPage)
-    })
-    .map((staticPagePath) => `${baseUrl}/${staticPagePath}`)
-
-  return staticPages
-}
-
 const getBlogPages = async (): Promise<string[]> => {
   const blogSlugs = await getAllPostSlugs()
   const blogPages = blogSlugs.data.posts.map(
@@ -42,7 +18,12 @@ const getBlogPages = async (): Promise<string[]> => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const pages = [`${baseUrl}/`, ...getStaticPages(), ...(await getBlogPages())]
+  const pages = [
+    `${baseUrl}/`,
+    `${baseUrl}/blog`,
+    `${baseUrl}/portfolio`,
+    ...(await getBlogPages()),
+  ]
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
