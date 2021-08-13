@@ -53,14 +53,16 @@ const Post: FC<PostProps> = ({ post, navLinks }) => {
         navLinks={navLinks}
         restrainWidth
       >
-        <PostExcerpt
-          title={post?.title}
-          author={post?.author}
-          excerpt={post?.excerpt}
-          slug={post?.slug}
-          coverImage={post?.coverImage}
-          hoverImageEffect={false}
-        />
+        <div className="-m-5 p5 mb-0 md:m-0 md:p-0">
+          <PostExcerpt
+            title={post?.title}
+            author={post?.author}
+            excerpt={post?.excerpt}
+            slug={post?.slug}
+            coverImage={post?.coverImage}
+            hoverImageEffect={false}
+          />
+        </div>
 
         <AnimatePresence>
           <motion.div variants={fadeIn()}>
