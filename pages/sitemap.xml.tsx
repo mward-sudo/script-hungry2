@@ -1,3 +1,4 @@
+import { getBlogCategories } from '@/lib/blog/categories'
 import { getAllPostSlugs } from '@/lib/blog/post-slugs'
 import { GetServerSideProps } from 'next'
 
@@ -11,10 +12,17 @@ const baseUrl = {
 
 const getBlogPages = async (): Promise<string[]> => {
   const blogSlugs = await getAllPostSlugs()
-  const blogPages = blogSlugs.data.posts.map(
+  return blogSlugs.data.posts.map(
     (blogSlug) => `${baseUrl}/blog/post/${blogSlug.slug}`
   )
-  return blogPages
+}
+
+const getBlogCategoryPages = async (): Promise<string[]> => {
+  const categories = await getBlogCategories()
+
+  return categories?.data.blogCategories.map(
+    (category) => `${baseUrl}/blog/category/${category.slug}`
+  )
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -23,6 +31,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     `${baseUrl}/blog`,
     `${baseUrl}/portfolio`,
     ...(await getBlogPages()),
+    ...(await getBlogCategoryPages()),
   ]
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
