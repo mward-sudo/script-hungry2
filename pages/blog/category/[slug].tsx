@@ -24,7 +24,7 @@ const Category: FC<CategoryProps> = ({ category, navLinks }) => {
   return (
     <>
       <PostLayout
-        pageTitle={`${category.name} | ${Constants.SITE_NAME}`}
+        pageTitle={`${category?.name} | ${Constants.SITE_NAME}`}
         navLinks={navLinks}
       >
         <AnimatePresence>
