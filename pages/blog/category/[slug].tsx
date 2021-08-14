@@ -21,8 +21,6 @@ type CategoryProps = {
 }
 
 const Category: FC<CategoryProps> = ({ category, navLinks }) => {
-  const { posts } = category
-
   return (
     <>
       <PostLayout
@@ -41,7 +39,7 @@ const Category: FC<CategoryProps> = ({ category, navLinks }) => {
           </motion.div>
         </AnimatePresence>
 
-        {posts.map((post) => (
+        {category?.posts.map((post) => (
           <Link href={`/blog/post/${post.slug}`}>
             <a>
               <div className="-m-5 p5 mb-0 md:m-0 md:p-0">
