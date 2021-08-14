@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import {
-  iBlogCategories,
   iBlogCategoryWithPostExceprts,
   iNavigationLinks,
 } from '@/types/graphcms-api'
@@ -86,7 +85,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const categories: iBlogCategories | null = await getBlogCategories()
+  const categories = await getBlogCategories()
   const paths: Array<string> =
     categories !== null
       ? categories?.data.blogCategories.map(
