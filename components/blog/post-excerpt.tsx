@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import { motion } from 'framer-motion'
 import { iAuthor, iPicture } from '@/types/graphcms-api'
-import PostHeader from './post-header'
+import ExcerptHeader from './excerpt-header'
 
 type PostExcerptProps = {
   /** Title of the blog post excerpt */
@@ -30,14 +30,15 @@ const PostExcerpt: FC<PostExcerptProps> = ({
   hoverImageEffect = true,
 }) => (
   <motion.div
-    className="bg-white mb-4 p-4 rounded-lg drop-shadow-xl border-2 border-gray-200 overflow-hidden hover:bg-gray-50"
+    className="bg-white mb-4 p-4 rounded-lg drop-shadow-xl border-2 border-gray-200 hover:bg-gray-50"
     layoutId={`post-box-${slug}`}
   >
     <motion.div initial="initial" whileHover="hover" whileTap="tap">
-      <PostHeader
+      <ExcerptHeader
         title={title}
         image={coverImage}
         hoverImageEffect={hoverImageEffect}
+        slug={slug}
       />
       <motion.div
         className="text-base mt-10 mb-4"

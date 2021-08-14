@@ -1,40 +1,56 @@
 import { FC } from 'react'
 import Image from 'next/image'
+import { motion, Variants } from 'framer-motion'
 import { iPicture } from '@/types/graphcms-api'
-import { motion } from 'framer-motion'
 
-type PostHeaderProps = {
+const hoverImgVariant: Variants = {
+  initial: {
+    transform: 'scale(1)',
+  },
+  hover: {
+    transform: 'scale(1.05)',
+  },
+  tap: {
+    transform: 'scale(1)',
+  },
+}
+
+type ExcerptHeaderProps = {
   /** Title of post */
   title: string
-  /** Slug */
-  slug: string
   /** Hero image for post */
   image?: iPicture
+  /* Slug */
+  slug: string
+  /** Image hover effect */
+  hoverImageEffect?: boolean
 }
 
 /** Component that renders a Blog Post header */
-const PostHeader: FC<PostHeaderProps> = ({ title, slug, image }) => {
+const ExcerptHeader: FC<ExcerptHeaderProps> = ({
+  title,
+  image,
+  slug,
+  hoverImageEffect = true,
+}) => {
   return (
     <>
-      <div className="h-96" />
-      <motion.div
-        className="absolute top-16 left-0 right-0 h-96 overflow-hidden z-10"
-        layoutId={`post-${slug}`}
-      >
+      <motion.div className="relative" layoutId={`post-${slug}`}>
         {image && (
           /** Display if there is an image supplied */
           <motion.div
-            className="overflow-hidden -mx-4 -mt-4"
+            className="-mx-4 -mt-4 rounded-t-lg overflow-hidden"
             layoutId={`post-img-${slug}`}
           >
-            <Image
-              src={image.url}
-              height={image.height}
-              width={image.width}
-              layout="fill"
-              objectFit="cover"
-              objectPosition="top"
-            />
+            <motion.div variants={hoverImageEffect ? hoverImgVariant : {}}>
+              <Image
+                src={image.url}
+                height={image.height}
+                width={image.width}
+                objectFit="cover"
+                objectPosition="top"
+              />
+            </motion.div>
           </motion.div>
         )}
         <div className="absolute top-0 h-full w-full grid text-center justify-center content-center">
@@ -51,4 +67,4 @@ const PostHeader: FC<PostHeaderProps> = ({ title, slug, image }) => {
   )
 }
 
-export default PostHeader
+export default ExcerptHeader

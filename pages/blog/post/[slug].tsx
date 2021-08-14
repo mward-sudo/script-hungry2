@@ -18,9 +18,9 @@ import {
 import getNavigationLinks from '@/lib/navigation-links'
 import Loader from '@/components/loader'
 import PostLayout from '@/components/blog/layout'
-import PostExcerpt from '@/components/blog/post-excerpt'
 import Constants from '@/lib/consts'
 import { fadeIn } from '@/animations/animations'
+import PostHeader from '@/components/blog/post-header'
 
 hljs.registerLanguage('javascript', javascript)
 
@@ -34,10 +34,11 @@ const Disqus = dynamic(() => import('@/components/blog/disqus'), {
 
 type PostProps = {
   post: iPost
+  slug: string
   navLinks: iNavigationLinks
 }
 
-const Post: FC<PostProps> = ({ post, navLinks }) => {
+const Post: FC<PostProps> = ({ post, slug, navLinks }) => {
   const [showComments, setShowComments] = useState(false)
 
   const router = useRouter()
@@ -54,13 +55,10 @@ const Post: FC<PostProps> = ({ post, navLinks }) => {
         restrainWidth
       >
         <div className="-m-5 p5 mb-0 md:m-0 md:p-0">
-          <PostExcerpt
+          <PostHeader
             title={post?.title}
-            author={post?.author}
-            excerpt={post?.excerpt}
-            slug={post?.slug}
-            coverImage={post?.coverImage}
-            hoverImageEffect={false}
+            image={post?.coverImage}
+            slug={slug}
           />
         </div>
 
@@ -112,6 +110,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       post: post?.data.post,
+      slug,
       navLinks,
     },
     revalidate: 60,
