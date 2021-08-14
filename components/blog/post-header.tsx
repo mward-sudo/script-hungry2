@@ -32,13 +32,7 @@ const PostHeader: FC<PostHeaderProps> = ({
 }) => {
   return (
     <>
-      <motion.div>
-        <h1
-          className="text-center font-display bg-red-600 italic text-shadow transform -rotate-1
-            text-3xl font-semibold text-white z-10 relative pt-8 -mt-8 -mx-6 px-6 pb-4"
-        >
-          <span className="transform rotate-1 block">{title}</span>
-        </h1>
+      <motion.div className="relative">
         {image && (
           /** Display if there is an image supplied */
           <div className="overflow-hidden -mx-4 -mt-4">
@@ -52,6 +46,14 @@ const PostHeader: FC<PostHeaderProps> = ({
             </motion.div>
           </div>
         )}
+        <div className="absolute top-0 h-full w-full grid text-center justify-center content-center">
+          <h1
+            className="text-center font-display bg-red-600 italic text-shadow transform -rotate-1
+            text-3xl font-semibold text-white px-4 py-2"
+          >
+            <span className="transform rotate-1 block">{title}</span>
+          </h1>
+        </div>
       </motion.div>
     </>
   )
