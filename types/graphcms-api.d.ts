@@ -105,3 +105,29 @@ export type iNavigationLink = {
   url: string
   linkText: string
 }
+
+export type iBlogCategories = iBlogCategory[]
+
+export type iBlogCategoriesData = {
+  data: {
+    blogCategories: iBlogCategories
+  }
+}
+
+export type iBlogCategory = {
+  slug: string
+  name: string
+  description: {
+    html: string
+  }
+}
+
+export type iBlogCategoryWithPostExceprts = iBlogCategory & {
+  posts: iPostExcerpt[]
+}
+
+export type iBlogCategoryWithPostExceprtsData = {
+  data: {
+    blogCategory: iBlogCategoryWithPostExceprts
+  }
+}

@@ -3,16 +3,22 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { getTotalPostsNumber } from '@/lib/blog/posts-total'
 import { getIndexPosts } from '@/lib/blog/index-posts'
 import Constants from '@/lib/consts'
-import { iNavigationLinks, iPostExcerpt } from '@/types/graphcms-api'
+import {
+  iBlogCategories,
+  iNavigationLinks,
+  iPostExcerpt,
+} from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
 import BlogIndex from '@/components/blog'
 import PostLayout from '@/components/blog/layout'
+import { getBlogCategories } from '@/lib/blog/categories'
 
 type BlogIndexPageProps = {
   indexPosts: iPostExcerpt[]
   pagesTotal: number
   currentPage: number
   navLinks: iNavigationLinks
+  categories: iBlogCategories
 }
 
 const BlogIndexPage: FC<BlogIndexPageProps> = ({
@@ -20,12 +26,14 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
   pagesTotal,
   currentPage,
   navLinks,
+  categories,
 }) => (
   <PostLayout pageTitle={`${Constants.SITE_NAME} Blog`} navLinks={navLinks}>
     <BlogIndex
       indexPosts={indexPosts}
       pagesTotal={pagesTotal}
       currentPage={currentPage}
+      categories={categories}
     />
   </PostLayout>
 )
@@ -65,12 +73,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const indexPosts = await getIndexPosts(pageNo)
   const postsTotal = indexPosts?.data.postsConnection.aggregate.count || 1
   const pagesTotal = Math.ceil(postsTotal / Constants.POSTS_PER_PAGE)
+  const categoriesData = await getBlogCategories()
+  const categories = categoriesData.data.blogCategories
 
   return {
     props: {
       indexPosts: indexPosts?.data.posts,
       pagesTotal,
       currentPage: pageNo,
+      categories,
       navLinks,
     },
   }

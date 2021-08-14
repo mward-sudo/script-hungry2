@@ -3,19 +3,21 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import PostExcerpt from '@/components/blog/post-excerpt'
 import Pagination from '@/components/blog/pagination'
-import { iPostExcerpt } from '@/types/graphcms-api'
+import { iBlogCategories, iPostExcerpt } from '@/types/graphcms-api'
 import { fadeInAndUp } from '@/animations/animations'
 
 type BlogIndexProps = {
   indexPosts: iPostExcerpt[]
   pagesTotal: number
   currentPage: number
+  categories: iBlogCategories
 }
 
 const BlogIndex: FC<BlogIndexProps> = ({
   indexPosts,
   pagesTotal,
   currentPage,
+  categories,
 }) => (
   <>
     <div className="grid grid-cols-4 gap-6">
@@ -46,7 +48,16 @@ const BlogIndex: FC<BlogIndexProps> = ({
           className="bg-white p-4 border-2 border-gray-200 rounded-lg drop-shadow-xl"
           variants={fadeInAndUp()}
         >
-          <p>Test</p>
+          <h2>Categories</h2>
+          <ul>
+            {categories.map((category) => (
+              <li className="my-2">
+                <Link href={`/blog/category/${category.slug}`}>
+                  <a>{category.name}</a>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </motion.div>
       </motion.div>
     </div>
