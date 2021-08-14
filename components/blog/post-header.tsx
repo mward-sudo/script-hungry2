@@ -29,8 +29,6 @@ const PostHeader: FC<PostHeaderProps> = ({ title, slug, image }) => {
           >
             <Image
               src={image.url}
-              height={image.height}
-              width={image.width}
               layout="fill"
               objectFit="cover"
               objectPosition="top"

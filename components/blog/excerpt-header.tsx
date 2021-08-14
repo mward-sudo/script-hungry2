@@ -42,11 +42,13 @@ const ExcerptHeader: FC<ExcerptHeaderProps> = ({
             className="-mx-4 -mt-4 rounded-t-lg overflow-hidden"
             layoutId={`post-img-${slug}`}
           >
-            <motion.div variants={hoverImageEffect ? hoverImgVariant : {}}>
+            <motion.div
+              variants={hoverImageEffect ? hoverImgVariant : {}}
+              className="h-96"
+            >
               <Image
                 src={image.url}
-                height={image.height}
-                width={image.width}
+                layout="fill"
                 objectFit="cover"
                 objectPosition="top"
               />
