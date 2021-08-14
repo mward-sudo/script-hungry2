@@ -44,16 +44,15 @@ const BlogIndex: FC<BlogIndexProps> = ({
         })}
       </div>
       <motion.div className="hidden lg:block">
-        <motion.div
-          className="bg-white p-4 border-2 border-gray-200 rounded-lg drop-shadow-xl"
-          variants={fadeInAndUp()}
-        >
-          <h2>Categories</h2>
+        <motion.div variants={fadeInAndUp()}>
+          <h2 className="mt-0 mb-2">Categories</h2>
           <ul>
-            {categories.map((category) => (
-              <li className="my-2">
-                <Link href={`/blog/category/${category.slug}`}>
-                  <a>{category.name}</a>
+            {categories.map(({ slug, name }) => (
+              <li key={slug} className="inline-block">
+                <Link href={`/blog/category/${slug}`}>
+                  <a className="inline-block text-sm bg-white mr-2 px-2 py-1 border-2 border-gray-200 rounded-lg drop-shadow-xl hover:border-gray-600 hover:bg-gray-600 hover:text-white">
+                    {name}
+                  </a>
                 </Link>
               </li>
             ))}
