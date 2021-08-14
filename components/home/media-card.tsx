@@ -50,7 +50,7 @@ const HomeMediaCard: FC<MediaCardProps> = ({
             initial="initial"
             whileHover="hover"
             whileTap="tap"
-            className="border-2 border-solid border-gray-100 rounded-md overflow-hidden drop-shadow-sm"
+            className="border-2 border-solid border-gray-200 rounded-lg overflow-hidden drop-shadow-sm bg-white"
           >
             <div style={{ overflow: 'hidden' }}>
               <motion.div variants={hoverImgVariant} ref={observe}>
