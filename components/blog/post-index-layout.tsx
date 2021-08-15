@@ -5,16 +5,14 @@ import Header from '@/components/header'
 import 'highlight.js/styles/dark.css'
 import { iNavigationLinks } from '@/types/graphcms-api'
 
-type PostLayoutProps = {
+type PostIndexLayoutProps = {
   pageTitle: string
   navLinks: iNavigationLinks
-  restrainWidth?: boolean
 }
 
-const PostLayout: FC<PostLayoutProps> = ({
+const PostIndexLayout: FC<PostIndexLayoutProps> = ({
   pageTitle,
   navLinks,
-  restrainWidth = false,
   children,
 }) => {
   return (
@@ -23,7 +21,7 @@ const PostLayout: FC<PostLayoutProps> = ({
         <title>{pageTitle}</title>
       </Head>
       <Header element="p" navLinks={navLinks} />
-      <div className={`container mx-auto ${restrainWidth && 'max-w-4xl'}`}>
+      <div className="container mx-auto">
         <div className="m-4">
           {children}
           <Copyright />
@@ -33,4 +31,4 @@ const PostLayout: FC<PostLayoutProps> = ({
   )
 }
 
-export default PostLayout
+export default PostIndexLayout

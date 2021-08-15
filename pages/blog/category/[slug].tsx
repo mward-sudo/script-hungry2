@@ -7,7 +7,7 @@ import {
   iNavigationLinks,
 } from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
-import PostLayout from '@/components/blog/layout'
+import PostIndexLayout from '@/components/blog/post-index-layout'
 import PostExcerpt from '@/components/blog/post-excerpt'
 import Constants from '@/lib/consts'
 import { getBlogCategoryWithPostExcerpts } from '@/lib/blog/category-with-post-excerpts'
@@ -25,7 +25,7 @@ type CategoryProps = {
 const Category: FC<CategoryProps> = ({ category, categories, navLinks }) => {
   return (
     <>
-      <PostLayout
+      <PostIndexLayout
         pageTitle={`${category?.name} | ${Constants.SITE_NAME}`}
         navLinks={navLinks}
       >
@@ -76,7 +76,7 @@ const Category: FC<CategoryProps> = ({ category, categories, navLinks }) => {
             </motion.div>
           </motion.div>
         </div>
-      </PostLayout>
+      </PostIndexLayout>
     </>
   )
 }

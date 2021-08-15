@@ -10,7 +10,7 @@ import {
 } from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
 import BlogIndex from '@/components/blog'
-import PostLayout from '@/components/blog/layout'
+import PostIndexLayout from '@/components/blog/post-index-layout'
 import { getBlogCategories } from '@/lib/blog/categories'
 
 type BlogIndexPageProps = {
@@ -28,14 +28,17 @@ const BlogIndexPage: FC<BlogIndexPageProps> = ({
   navLinks,
   categories,
 }) => (
-  <PostLayout pageTitle={`${Constants.SITE_NAME} Blog`} navLinks={navLinks}>
+  <PostIndexLayout
+    pageTitle={`${Constants.SITE_NAME} Blog`}
+    navLinks={navLinks}
+  >
     <BlogIndex
       indexPosts={indexPosts}
       pagesTotal={pagesTotal}
       currentPage={currentPage}
       categories={categories}
     />
-  </PostLayout>
+  </PostIndexLayout>
 )
 
 export const getStaticPaths: GetStaticPaths = async () => {

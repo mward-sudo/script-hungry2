@@ -17,10 +17,10 @@ import {
 } from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
 import Loader from '@/components/loader'
-import PostLayout from '@/components/blog/layout'
-import Constants from '@/lib/consts'
 import { fadeIn } from '@/animations/animations'
 import PostHeader from '@/components/blog/post-header'
+import Head from 'next/head'
+import Header from '@/components/header'
 
 hljs.registerLanguage('javascript', javascript)
 
@@ -49,19 +49,18 @@ const Post: FC<PostProps> = ({ post, slug, navLinks }) => {
 
   return (
     <>
-      <PostLayout
-        pageTitle={`${post?.title} | ${Constants.SITE_NAME}`}
-        navLinks={navLinks}
-        restrainWidth
-      >
-        <div className="-m-5 p5 mb-0 md:m-0 md:p-0">
-          <PostHeader
-            title={post?.title}
-            image={post?.coverImage}
-            slug={slug}
-          />
-        </div>
+      <Head>
+        <title>{post?.title}</title>
+      </Head>
+      <Header element="p" navLinks={navLinks} />
 
+      <PostHeader
+        title={post?.title}
+        coverImage={post?.coverImage}
+        slug={slug}
+      />
+
+      <div className="max-w-3xl mx-auto">
         <AnimatePresence>
           <motion.div variants={fadeIn()}>
             <div
@@ -88,7 +87,7 @@ const Post: FC<PostProps> = ({ post, slug, navLinks }) => {
             />
           )}
         </div>
-      </PostLayout>
+      </div>
     </>
   )
 }

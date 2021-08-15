@@ -8,7 +8,7 @@ import {
 } from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
 import BlogIndex from '@/components/blog'
-import PostLayout from '@/components/blog/layout'
+import PostIndexLayout from '@/components/blog/post-index-layout'
 import { getBlogCategories } from '@/lib/blog/categories'
 
 type IndexProps = {
@@ -25,14 +25,17 @@ const Index: InferGetStaticPropsType<typeof getStaticProps> = ({
   navLinks,
 }: IndexProps) => {
   return (
-    <PostLayout pageTitle={`${Constants.SITE_NAME} Blog`} navLinks={navLinks}>
+    <PostIndexLayout
+      pageTitle={`${Constants.SITE_NAME} Blog`}
+      navLinks={navLinks}
+    >
       <BlogIndex
         indexPosts={indexPosts}
         pagesTotal={pagesTotal}
         currentPage={1}
         categories={categories}
       />
-    </PostLayout>
+    </PostIndexLayout>
   )
 }
 
