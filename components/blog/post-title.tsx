@@ -15,7 +15,7 @@ const PostTitle: FC<PostTitleProps> = ({ slug, title }) => (
       left: '50%',
       transform: 'translate(-50%, -50%)',
       zIndex: 10,
-      maxWidth: '25em',
+      maxWidth: '30em',
     }}
   >
     <motion.div layoutId={`post-title-${slug}`}>
