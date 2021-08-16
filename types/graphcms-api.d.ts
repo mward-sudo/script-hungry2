@@ -49,6 +49,7 @@ export type iPostSlugs = {
 
 export type iAuthor = {
   name: string
+  twitterHandle: string
   picture: iPicture
 }
 

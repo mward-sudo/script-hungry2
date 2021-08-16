@@ -20,6 +20,7 @@ export const getBlogCategoryWithPostExcerpts = async (
         posts {
           author {
             name
+            twitterHandle
             picture {
               height
               width

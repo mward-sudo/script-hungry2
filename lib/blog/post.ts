@@ -12,6 +12,7 @@ export const getPostBySlug = async (slug: string): Promise<iPostData> => {
       post(where: {slug: "${slug}"}, stage: PUBLISHED) {
         author {
           name
+          twitterHandle
           picture {
             url(transformation: {image: {resize: {height: 100, width: 100}}})
             height
