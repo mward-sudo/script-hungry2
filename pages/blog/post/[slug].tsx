@@ -21,6 +21,7 @@ import { fadeIn } from '@/animations/animations'
 import PostHeader from '@/components/blog/post-header'
 import Head from 'next/head'
 import Header from '@/components/header'
+import Constants from '@/lib/consts'
 
 hljs.registerLanguage('javascript', javascript)
 
@@ -51,6 +52,32 @@ const Post: FC<PostProps> = ({ post, slug, navLinks }) => {
     <>
       <Head>
         <title>{post?.title}</title>
+        <meta name="description" content={post?.excerpt} />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary" key="twcard" />
+        <meta
+          name="twitter:creator"
+          content={post?.author.twitterHandle}
+          key="twhandle"
+        />
+        <meta
+          property="og:url"
+          content={`https://scripthungry.com/blog/post/${post?.slug}`}
+          key="ogurl"
+        />
+        <meta
+          property="og:image"
+          content={post?.coverImage?.url}
+          key="ogimage"
+        />
+        <meta
+          property="og:site_name"
+          content={Constants.SITE_NAME}
+          key="ogsitename"
+        />
+        <meta property="og:title" content={post?.title} key="ogtitle" />
+        <meta property="og:description" content={post?.excerpt} key="ogdesc" />
       </Head>
       <Header element="p" navLinks={navLinks} />
 
