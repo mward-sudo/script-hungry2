@@ -45,14 +45,17 @@ const Post: FC<PostProps> = ({ post, slug, navLinks }) => {
   const router = useRouter()
 
   useEffect(() => {
-    hljs.initHighlighting()
+    hljs.highlightAll()
   }, [])
+
+  const url = `https://scripthungry.com/blog/post/${post?.slug}`
 
   return (
     <>
       <Head>
         <title>{post?.title}</title>
         <meta name="description" content={post?.excerpt} />
+        <link rel="canonical" href={url} />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" key="twcard" />
@@ -61,11 +64,7 @@ const Post: FC<PostProps> = ({ post, slug, navLinks }) => {
           content={post?.author.twitterHandle}
           key="twhandle"
         />
-        <meta
-          property="og:url"
-          content={`https://scripthungry.com/blog/post/${post?.slug}`}
-          key="ogurl"
-        />
+        <meta property="og:url" content={url} key="ogurl" />
         <meta
           property="og:image"
           content={post?.coverImage?.url}
