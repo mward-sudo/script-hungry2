@@ -1,6 +1,6 @@
+import { GetServerSideProps } from 'next'
 import { getBlogCategories } from '@/lib/blog/categories'
 import { getAllPostSlugs } from '@/lib/blog/post-slugs'
-import { GetServerSideProps } from 'next'
 
 const Sitemap: VoidFunction = () => <></>
 

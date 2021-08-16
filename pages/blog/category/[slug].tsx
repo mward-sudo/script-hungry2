@@ -1,6 +1,8 @@
 import React, { FC } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
+import Link from 'next/link'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   iBlogCategories,
   iBlogCategoryWithPostExceprts,
@@ -12,8 +14,6 @@ import PostExcerpt from '@/components/blog/post-excerpt'
 import Constants from '@/lib/consts'
 import { getBlogCategoryWithPostExcerpts } from '@/lib/blog/category-with-post-excerpts'
 import { getBlogCategories } from '@/lib/blog/categories'
-import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
 import { fadeIn, fadeInAndUp } from '@/animations/animations'
 
 type CategoryProps = {

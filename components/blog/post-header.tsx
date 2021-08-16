@@ -1,7 +1,7 @@
 import Image from 'next/image'
+import { FC } from 'react'
 import { iPicture } from '@/types/graphcms-api'
 import { motion } from 'framer-motion'
-import { FC } from 'react'
 import PostTitle from './post-title'
 
 type PostHeaderProps = {
