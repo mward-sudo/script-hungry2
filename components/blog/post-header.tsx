@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { FC } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { iPicture } from '@/types/graphcms-api'
 import PostTitle from './post-title'
 
@@ -21,11 +21,11 @@ const PostHeader: FC<PostHeaderProps> = ({
   coverImage,
   isExcerpt,
 }) => (
-  <motion.div className="relative" layoutId={`post-${slug}`}>
+  <m.div className="relative" layoutId={`post-${slug}`}>
     <PostTitle slug={slug} title={title} />
     {coverImage && (
       /** Display if there is an image supplied */
-      <motion.div
+      <m.div
         className="overflow-hidden"
         layoutId={`post-img-${slug}`}
         style={{ aspectRatio: '16 / 7' }}
@@ -37,9 +37,9 @@ const PostHeader: FC<PostHeaderProps> = ({
           width={coverImage.width}
           className={`${isExcerpt ? 'rounded-t-lg' : ''}`}
         />
-      </motion.div>
+      </m.div>
     )}
-  </motion.div>
+  </m.div>
 )
 
 export default PostHeader

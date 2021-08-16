@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import {
   iBlogCategories,
   iBlogCategoryWithPostExceprts,
@@ -32,7 +32,7 @@ const Category: FC<CategoryProps> = ({ category, categories, navLinks }) => {
         <div className="grid grid-cols-4 gap-6">
           <div className="col-span-4 lg:col-span-3">
             <AnimatePresence>
-              <motion.div variants={fadeIn()}>
+              <m.div variants={fadeIn()}>
                 <h1 className="font-bold -mb-4">{category?.name}</h1>
                 <div
                   className="font-light mb-12 text-gray-700"
@@ -40,7 +40,7 @@ const Category: FC<CategoryProps> = ({ category, categories, navLinks }) => {
                     __html: sanitizer(category?.description?.html),
                   }}
                 />
-              </motion.div>
+              </m.div>
             </AnimatePresence>
 
             {category?.posts.map((post) => (
@@ -59,8 +59,8 @@ const Category: FC<CategoryProps> = ({ category, categories, navLinks }) => {
               </Link>
             ))}
           </div>
-          <motion.div className="hidden lg:block">
-            <motion.div variants={fadeInAndUp()}>
+          <m.div className="hidden lg:block">
+            <m.div variants={fadeInAndUp()}>
               <h2 className="mt-0 mb-2">Categories</h2>
               <ul>
                 {categories?.map(({ slug, name }) => (
@@ -73,8 +73,8 @@ const Category: FC<CategoryProps> = ({ category, categories, navLinks }) => {
                   </li>
                 ))}
               </ul>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         </div>
       </PostIndexLayout>
     </>

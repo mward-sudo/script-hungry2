@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import Head from 'next/head'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { GetStaticProps } from 'next'
 import Header from '@/components/header'
 import HomeIntro from '@/components/home/intro'
@@ -33,14 +33,11 @@ const Index: FC<IndexPropTypes> = ({
       <title>{Constants.SITE_NAME}</title>
     </Head>
     <Header navLinks={navLinks} />
-    <motion.div variants={fadeIn()}>
+    <m.div variants={fadeIn()}>
       <HomeIntro homePageHero={homePageHero} />
       <div className="container mx-auto">
         <div className="my-4">
-          <motion.div
-            variants={stagger({ staggerTime: 0.1 })}
-            className="flex-grow"
-          >
+          <m.div variants={stagger({ staggerTime: 0.1 })} className="flex-grow">
             <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
               {homePageCards.data.homePageCards.map((card) => (
                 <HomeMediaCard
@@ -54,11 +51,11 @@ const Index: FC<IndexPropTypes> = ({
                 />
               ))}
             </div>
-          </motion.div>
+          </m.div>
           <Copyright />
         </div>
       </div>
-    </motion.div>
+    </m.div>
   </>
 )
 
