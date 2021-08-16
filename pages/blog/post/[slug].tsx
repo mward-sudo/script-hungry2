@@ -55,7 +55,7 @@ const Post: FC<PostProps> = ({ post, slug, navLinks }) => {
         <meta name="description" content={post?.excerpt} />
 
         {/* Twitter */}
-        <meta name="twitter:card" content="summary" key="twcard" />
+        <meta name="twitter:card" content="summary_large_image" key="twcard" />
         <meta
           name="twitter:creator"
           content={post?.author.twitterHandle}
