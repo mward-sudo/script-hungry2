@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import Link from 'next/link'
 import PostExcerpt from '@/components/blog/post-excerpt'
 import Pagination from '@/components/blog/pagination'
@@ -43,8 +43,8 @@ const BlogIndex: FC<BlogIndexProps> = ({
           )
         })}
       </div>
-      <motion.div className="hidden lg:block">
-        <motion.div variants={fadeInAndUp()}>
+      <m.div className="hidden lg:block">
+        <m.div variants={fadeInAndUp()}>
           <h2 className="mt-0 mb-2">Categories</h2>
           <ul>
             {categories.map(({ slug, name }) => (
@@ -57,8 +57,8 @@ const BlogIndex: FC<BlogIndexProps> = ({
               </li>
             ))}
           </ul>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </div>
     <Pagination currentPage={currentPage} totalPages={pagesTotal} />
   </>

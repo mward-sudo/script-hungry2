@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { FC } from 'react'
 
 type PostTitleProps = {
@@ -18,14 +18,14 @@ const PostTitle: FC<PostTitleProps> = ({ slug, title }) => (
       maxWidth: '30em',
     }}
   >
-    <motion.div layoutId={`post-title-${slug}`}>
+    <m.div layoutId={`post-title-${slug}`}>
       <h1
         className="text-center font-display bg-red-600 italic text-shadow
       text-xl md:text-3xl font-semibold text-white px-4 py-2 transform-gpu -rotate-2"
       >
         <span className="block transform-gpu rotate-2">{title}</span>
       </h1>
-    </motion.div>
+    </m.div>
   </div>
 )
 

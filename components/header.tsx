@@ -1,7 +1,7 @@
 import { FC, ElementType, useState, useEffect } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { iNavigationLinks } from '@/types/graphcms-api'
 import NavMobileToggle from './nav/mobile-toggle'
 import NavDesktop from './nav/desktop'
@@ -103,9 +103,9 @@ const Header: FC<HeaderProps> = ({ element = 'h1', navLinks }) => {
               ) : (
                 /** Toggle control for mobile nav menu */
                 <>
-                  <motion.div animate={menuOpen ? 'open' : 'closed'}>
+                  <m.div animate={menuOpen ? 'open' : 'closed'}>
                     <NavMobileToggle toggle={menuToggle} />
-                  </motion.div>
+                  </m.div>
                 </>
               )}
             </div>

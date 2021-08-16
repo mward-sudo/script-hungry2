@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import hljs from 'highlight.js'
 import javascript from 'highlight.js/lib/languages/javascript'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, m } from 'framer-motion'
 import Head from 'next/head'
 import Button from '@/components/button'
 import { getPostBySlug } from '@/lib/blog/post'
@@ -89,13 +89,13 @@ const Post: FC<PostProps> = ({ post, slug, navLinks }) => {
 
       <div className="max-w-3xl mx-auto">
         <AnimatePresence>
-          <motion.div variants={fadeIn()}>
+          <m.div variants={fadeIn()}>
             <div
               dangerouslySetInnerHTML={{
                 __html: sanitizer(post?.content?.html),
               }}
             />
-          </motion.div>
+          </m.div>
         </AnimatePresence>
         <div className="my-16">
           {showComments ? (

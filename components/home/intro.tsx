@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { fadeInAndUp, stagger } from '@/animations/animations'
 import { iHomePageHero } from '@/types/graphcms-api'
 import styles from './intro.module.css'
@@ -19,17 +19,13 @@ const HomeIntro: FC<HomeIntroProps> = ({ homePageHero }) => {
         <div className={styles.introBackground} />
       </div>
 
-      <motion.div
+      <m.div
         variants={stagger()}
         className="absolute top-0 h-full w-full grid text-center justify-center content-center"
       >
-        <motion.div
-          variants={fadeInAndUp({ initialYOffset: 400, duration: 1 })}
-        >
+        <m.div variants={fadeInAndUp({ initialYOffset: 400, duration: 1 })}>
           <h3 className="font-display bg-red-600 transform -rotate-6 z-10 italic text-white m-0 p-2 leading-none text-shadow-md">
-            <motion.div
-              variants={fadeInAndUp({ initialYOffset: 400, duration: 1 })}
-            >
+            <m.div variants={fadeInAndUp({ initialYOffset: 400, duration: 1 })}>
               <div className="transform rotate-6">
                 <span className="block text-headingVwS not-italic font-normal">
                   {homePageHero.lineOneText}
@@ -38,10 +34,10 @@ const HomeIntro: FC<HomeIntroProps> = ({ homePageHero }) => {
                   {homePageHero.lineTwoText}
                 </span>
               </div>
-            </motion.div>
+            </m.div>
           </h3>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   )
 }

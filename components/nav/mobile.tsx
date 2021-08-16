@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import Link from 'next/link'
-import { motion, Variants } from 'framer-motion'
+import { m, Variants } from 'framer-motion'
 import { iNavigationLink } from '@/types/graphcms-api'
 
 const menuRootVariants: Variants = {
@@ -41,17 +41,17 @@ const ConditionalLink: FC<ConditionalLinkProps> = ({ href, children }) => {
     'block text-center py-6 px-0 text-5xl text-white no-underline'
 
   return externalHref ? (
-    <motion.div variants={menuLinkVariants}>
+    <m.div variants={menuLinkVariants}>
       <a href={href} className={navLinkClasses}>
         {children}
       </a>
-    </motion.div>
+    </m.div>
   ) : (
-    <motion.div variants={menuLinkVariants}>
+    <m.div variants={menuLinkVariants}>
       <Link href={href}>
         <a className={navLinkClasses}>{children}</a>
       </Link>
-    </motion.div>
+    </m.div>
   )
 }
 
@@ -63,7 +63,7 @@ type MobileNavProps = {
 /** Component that renders the mobile navigation pane */
 const MobileNav: FC<MobileNavProps> = ({ navLinks, menuOpen }) => {
   return (
-    <motion.div
+    <m.div
       initial={false}
       animate={menuOpen ? 'open' : 'closed'}
       variants={menuRootVariants}
@@ -74,7 +74,7 @@ const MobileNav: FC<MobileNavProps> = ({ navLinks, menuOpen }) => {
           {linkText}
         </ConditionalLink>
       ))}
-    </motion.div>
+    </m.div>
   )
 }
 

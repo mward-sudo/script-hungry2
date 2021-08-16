@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import useDimensions from 'react-cool-dimensions'
 import { FC } from 'react'
-import { motion, Variants } from 'framer-motion'
+import { m, Variants } from 'framer-motion'
 import { fadeInAndUp } from '@/animations/animations'
 
 const hoverImgVariant: Variants = {
@@ -43,17 +43,17 @@ const HomeMediaCard: FC<MediaCardProps> = ({
   const { observe, width } = useDimensions<HTMLDivElement | null>()
 
   return (
-    <motion.div variants={fadeInAndUp()}>
+    <m.div variants={fadeInAndUp()}>
       <Link href={link}>
         <a className="no-underline uppercase text-base">
-          <motion.div
+          <m.div
             initial="initial"
             whileHover="hover"
             whileTap="tap"
             className="border-2 border-solid border-gray-200 rounded-lg overflow-hidden drop-shadow-sm bg-white"
           >
             <div style={{ overflow: 'hidden' }}>
-              <motion.div variants={hoverImgVariant} ref={observe}>
+              <m.div variants={hoverImgVariant} ref={observe}>
                 <Image
                   layout="responsive"
                   src={image}
@@ -65,15 +65,15 @@ const HomeMediaCard: FC<MediaCardProps> = ({
                   }
                   priority
                 />
-              </motion.div>
+              </m.div>
             </div>
             <div className="text-black text-center no-underline py-1 px-4">
               {linkText} &gt;
             </div>
-          </motion.div>
+          </m.div>
         </a>
       </Link>
-    </motion.div>
+    </m.div>
   )
 }
 

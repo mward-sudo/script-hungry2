@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { motion, Transition, Variants } from 'framer-motion'
+import { m, Transition, Variants } from 'framer-motion'
 
 type PathProps = {
   /** framer motion Variants */
@@ -10,9 +10,9 @@ type PathProps = {
   d?: string | undefined
 }
 
-/** Returns a motion.path component */
+/** Returns a m.path component */
 const Path: FC<PathProps> = ({ variants, transition, d }) => (
-  <motion.path
+  <m.path
     fill="transparent"
     strokeWidth="3"
     stroke="hsl(0, 0%, 18%)"
