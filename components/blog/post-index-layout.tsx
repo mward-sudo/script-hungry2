@@ -2,7 +2,6 @@ import { FC } from 'react'
 import Head from 'next/head'
 import Copyright from '@/components/copyright'
 import Header from '@/components/header'
-import 'highlight.js/styles/dark.css'
 import { iNavigationLinks } from '@/types/graphcms-api'
 
 type PostIndexLayoutProps = {

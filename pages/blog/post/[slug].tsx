@@ -3,7 +3,7 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 import { sanitize as sanitizer } from 'isomorphic-dompurify'
-import hljs from 'highlight.js'
+import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
 import { AnimatePresence, m } from 'framer-motion'
 import Head from 'next/head'
@@ -22,6 +22,8 @@ import { fadeIn } from '@/animations/animations'
 import PostHeader from '@/components/blog/post-header'
 import Header from '@/components/header'
 import Constants from '@/lib/consts'
+// import 'highlight.js/styles/default.css'
+import 'highlight.js/styles/github-dark.css'
 
 hljs.registerLanguage('javascript', javascript)
 
@@ -45,6 +47,7 @@ const Post: FC<PostProps> = ({ post, slug, navLinks }) => {
   const router = useRouter()
 
   useEffect(() => {
+    hljs.configure({ languages: ['javascript'] })
     hljs.highlightAll()
   }, [])
 
