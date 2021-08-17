@@ -50,4 +50,9 @@ module.exports = withBundleAnalyzer({
       },
     ]
   },
+  resolve: {
+    alias: {
+      'react-dom$': 'react-dom/profiling',
+    },
+  },
 })
