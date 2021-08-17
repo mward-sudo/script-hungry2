@@ -4,12 +4,7 @@ export default class MyDocument extends Document {
   render(): JSX.Element {
     return (
       <Html lang="en">
-        <Head>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Proza+Libre:ital,wght@0,400;0,600;1,600&display=swap"
-            rel="stylesheet"
-          />
-        </Head>
+        <Head />
         <body className="bg-gray-100">
           <Main />
           <NextScript />
