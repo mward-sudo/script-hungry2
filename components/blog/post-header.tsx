@@ -36,6 +36,7 @@ const PostHeader: FC<PostHeaderProps> = ({
           height={coverImage.height}
           width={coverImage.width}
           className={`${isExcerpt ? 'rounded-t-lg' : ''}`}
+          priority
         />
       </m.div>
     )}
