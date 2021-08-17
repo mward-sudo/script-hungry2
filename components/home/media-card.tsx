@@ -67,7 +67,7 @@ const HomeMediaCard: FC<MediaCardProps> = ({
                 />
               </m.div>
             </div>
-            <div className="text-black text-center no-underline py-1 px-4">
+            <div className="text-black text-center no-underline py-3 px-2">
               {linkText} &gt;
             </div>
           </m.div>
