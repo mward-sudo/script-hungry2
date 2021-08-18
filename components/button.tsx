@@ -3,8 +3,9 @@ import { FC } from 'react'
 
 const styles = {
   primary: 'bg-blue-700 text-white',
-  secondary: 'border-blue-700 border-2 bg-white text-black',
-  disabled: 'bg-gray-200 text-gray-500',
+  secondary:
+    'border-blue-700 border-2 bg-white dark:bg-gray-900 text-black dark:text-gray-300',
+  disabled: 'bg-gray-200 text-gray-500 dark:bg-gray-900 dark:text-gray-700',
 }
 
 type ButtonProps = {

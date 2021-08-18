@@ -51,7 +51,7 @@ const Pagination: FC<PaginationProps> = ({ totalPages, currentPage }) => {
 
   return (
     <>
-      <div className="grid grid-cols-4 border-t-2 pt-8">
+      <div className="grid grid-cols-4 border-t-2 dark:border-gray-700 pt-8">
         <div>
           {prevPage.exists ? (
             <Button

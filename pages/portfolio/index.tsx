@@ -15,7 +15,7 @@ const Index: FC<IndexPropTypes> = ({ navLinks }) => (
       <title>Portfolio - Michael Ward</title>
     </Head>
     <Header element="p" navLinks={navLinks} />
-    <div className="container mx-auto">
+    <div className="container mx-auto dark:text-gray-300">
       <h1>Under development</h1>
     </div>
   </>

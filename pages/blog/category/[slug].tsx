@@ -15,6 +15,7 @@ import Constants from '@/lib/consts'
 import { getBlogCategoryWithPostExcerpts } from '@/lib/blog/category-with-post-excerpts'
 import { getBlogCategories } from '@/lib/blog/categories'
 import { fadeIn, fadeInAndUp } from '@/animations/animations'
+import Categories from '@/components/blog/categories'
 
 type CategoryProps = {
   category: iBlogCategoryWithPostExceprts
@@ -29,13 +30,13 @@ const Category: FC<CategoryProps> = ({ category, categories, navLinks }) => {
         pageTitle={`${category?.name} | ${Constants.SITE_NAME}`}
         navLinks={navLinks}
       >
-        <div className="grid grid-cols-4 gap-6">
+        <div className="grid grid-cols-4 gap-6 dark:text-gray-300">
           <div className="col-span-4 lg:col-span-3">
             <AnimatePresence>
               <m.div variants={fadeIn()}>
                 <h1 className="font-bold -mb-4">{category?.name}</h1>
                 <div
-                  className="font-light mb-12 text-gray-700"
+                  className="font-light mb-12 text-gray-700 dark:text-gray-500"
                   dangerouslySetInnerHTML={{
                     __html: sanitizer(category?.description?.html),
                   }}
@@ -61,18 +62,7 @@ const Category: FC<CategoryProps> = ({ category, categories, navLinks }) => {
           </div>
           <m.div className="hidden lg:block">
             <m.div variants={fadeInAndUp()}>
-              <h2 className="mt-0 mb-2">Categories</h2>
-              <ul>
-                {categories?.map(({ slug, name }) => (
-                  <li key={slug} className="inline-block">
-                    <Link href={`/blog/category/${slug}`}>
-                      <a className="inline-block text-sm bg-white mr-2 px-2 py-1 border-2 border-gray-200 rounded-lg drop-shadow-xl hover:border-gray-600 hover:bg-gray-600 hover:text-white">
-                        {name}
-                      </a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <Categories categories={categories} />
             </m.div>
           </m.div>
         </div>

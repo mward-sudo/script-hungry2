@@ -15,14 +15,14 @@ const ConditionalLink: FC<ConditionalLinkProps> = ({ href, children }) => {
     /** Use a tag for external link */
     <a
       href={href}
-      className="box-border inline-block px-4 py-2 text-gray-700 no-underline transition-all duration-200 ease-in-out border-red-600 border-solid hover:border-b-4"
+      className="box-border inline-block px-4 py-2 no-underline transition-all duration-200 ease-in-out border-red-600 border-solid hover:border-b-4"
     >
       {children}
     </a>
   ) : (
     /** Use next/Link for internal link */
     <Link href={href} passHref>
-      <a className="box-border inline-block px-4 py-2 text-gray-700 no-underline transition-all duration-200 ease-in-out border-red-600 border-solid hover:border-b-4">
+      <a className="box-border inline-block px-4 py-2 no-underline transition-all duration-200 ease-in-out border-red-600 border-solid hover:border-b-4">
         {children}
       </a>
     </Link>

@@ -79,11 +79,11 @@ const Header: FC<HeaderProps> = ({ element = 'h1', navLinks }) => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 bg-white bg-opacity-75 backdrop-filter backdrop-blur h-16 py-4 px-2 shadow-md">
+      <header className="sticky top-0 z-50 bg-white dark:bg-gray-900 bg-opacity-75 backdrop-filter backdrop-blur h-16 py-4 px-2 shadow-md">
         <div className="container mx-auto">
           <div className="grid grid-cols-4">
             <Link href="/">
-              <a className="inline-block px-2">
+              <a className="inline-block px-2 dark:text-gray-300">
                 {element === 'h1' ? (
                   <h1 className="font-display text-2xl lh-1">scriptHungry</h1>
                 ) : (
@@ -94,7 +94,7 @@ const Header: FC<HeaderProps> = ({ element = 'h1', navLinks }) => {
               </a>
             </Link>
 
-            <div className="justify-self-end col-start-2 col-span-3">
+            <div className="justify-self-end col-start-2 col-span-3 text-gray-700 dark:text-gray-300">
               {isDesktop(width) && navLinks ? (
                 /** Using desktop nav - default for server side rendering */
                 <>

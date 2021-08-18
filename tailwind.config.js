@@ -7,11 +7,17 @@ const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'media',
   theme: {
     borderStyles: {
       styles: true, // defaults to false
       colors: true, // defaults to false
+      fill: {
+        current: 'currentColor',
+      },
+      stroke: {
+        current: 'currentColor',
+      },
     },
     extend: {
       colors: {

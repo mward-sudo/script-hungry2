@@ -13,9 +13,7 @@ type PathProps = {
 /** Returns a m.path component */
 const Path: FC<PathProps> = ({ variants, transition, d }) => (
   <m.path
-    fill="transparent"
     strokeWidth="3"
-    stroke="hsl(0, 0%, 18%)"
     strokeLinecap="round"
     variants={variants}
     transition={transition}
@@ -33,9 +31,14 @@ const NavMobileToggle: FC<NavMobileToggleProps> = ({ toggle }) => (
   <button
     onClick={toggle}
     type="button"
-    className="inline-block border-0 pt-2 px-2 pb-0 m-0 no-underline bg-transparent text-white text-base cursor-pointer text-center appearance-none"
+    className="inline-block border-0 pt-2 px-2 pb-0 m-0 no-underline bg-transparent cursor-pointer text-center appearance-none"
   >
-    <svg width="23" height="23" viewBox="0 0 23 23">
+    <svg
+      width="23"
+      height="23"
+      viewBox="0 0 23 23"
+      className=" text-gray-800 dark:text-gray-300 stroke-current"
+    >
       <Path
         variants={{
           closed: { d: 'M 2 2.5 L 20 2.5' },

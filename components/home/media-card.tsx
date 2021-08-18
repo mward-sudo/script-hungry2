@@ -50,7 +50,7 @@ const HomeMediaCard: FC<MediaCardProps> = ({
             initial="initial"
             whileHover="hover"
             whileTap="tap"
-            className="border-2 border-solid border-gray-200 rounded-lg overflow-hidden drop-shadow-sm bg-white"
+            className="border-2 border-solid border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden drop-shadow-sm bg-white dark:bg-gray-900"
           >
             <div style={{ overflow: 'hidden' }}>
               <m.div variants={hoverImgVariant} ref={observe}>
@@ -67,7 +67,7 @@ const HomeMediaCard: FC<MediaCardProps> = ({
                 />
               </m.div>
             </div>
-            <div className="text-black text-center no-underline py-3 px-2">
+            <div className="text-black dark:text-gray-200 text-center no-underline py-3 px-2">
               {linkText} &gt;
             </div>
           </m.div>

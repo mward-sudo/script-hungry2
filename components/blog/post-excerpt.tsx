@@ -27,7 +27,7 @@ const PostExcerpt: FC<PostExcerptProps> = ({
   author,
 }) => (
   <m.div
-    className="bg-white mb-4 p-4 rounded-lg drop-shadow-xl border-2 border-gray-200 hover:bg-gray-50"
+    className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800 mb-4 p-4 rounded-lg drop-shadow-xl border-2 hover:bg-gray-50 dark:hover:bg-gray-800 dark:text-gray-300 transition"
     layoutId={`post-box-${slug}`}
   >
     <m.div initial="initial" whileHover="hover" whileTap="tap">

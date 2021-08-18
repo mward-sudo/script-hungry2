@@ -5,6 +5,7 @@ import PostExcerpt from '@/components/blog/post-excerpt'
 import Pagination from '@/components/blog/pagination'
 import { iBlogCategories, iPostExcerpt } from '@/types/graphcms-api'
 import { fadeInAndUp } from '@/animations/animations'
+import Categories from './categories'
 
 type BlogIndexProps = {
   indexPosts: iPostExcerpt[]
@@ -45,18 +46,7 @@ const BlogIndex: FC<BlogIndexProps> = ({
       </div>
       <m.div className="hidden lg:block">
         <m.div variants={fadeInAndUp()}>
-          <h2 className="mt-0 mb-2">Categories</h2>
-          <ul>
-            {categories.map(({ slug, name }) => (
-              <li key={slug} className="inline-block">
-                <Link href={`/blog/category/${slug}`}>
-                  <a className="inline-block text-sm bg-white mr-2 px-2 py-1 border-2 border-gray-200 rounded-lg drop-shadow-xl hover:border-gray-600 hover:bg-gray-600 hover:text-white">
-                    {name}
-                  </a>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <Categories categories={categories} />
         </m.div>
       </m.div>
     </div>
