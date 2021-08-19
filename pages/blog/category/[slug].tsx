@@ -62,7 +62,7 @@ const Category: FC<CategoryProps> = ({ category, categories, navLinks }) => {
           </div>
           <m.div className="hidden lg:block">
             <m.div variants={fadeInAndUp()}>
-              <Categories categories={categories} />
+              {categories && <Categories categories={categories} />}
             </m.div>
           </m.div>
         </div>
