@@ -5,7 +5,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 module.exports = withBundleAnalyzer({
-  webpack: (config, {}) => {
+  webpack: (config, { dev, isServer }) => {
     config.plugins.push(
       new StatsWriterPlugin({
         filename: 'webpack-stats.json',
