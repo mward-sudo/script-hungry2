@@ -5,7 +5,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 })
 
 module.exports = withBundleAnalyzer({
-  webpack: (config, {}) => {
+  webpack: (config, { dev, isServer }) => {
     config.plugins.push(
       new StatsWriterPlugin({
         filename: 'webpack-stats.json',
@@ -17,6 +17,14 @@ module.exports = withBundleAnalyzer({
         },
       })
     )
+
+    if (!dev && !isServer) {
+      Object.assign(config.resolve.alias, {
+        react: 'preact/compat',
+        'react-dom/test-utils': 'preact/test-utils',
+        'react-dom': 'preact/compat',
+      })
+    }
 
     return config
   },
