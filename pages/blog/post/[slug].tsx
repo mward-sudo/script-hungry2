@@ -28,11 +28,14 @@ import 'highlight.js/styles/github-dark.css'
 hljs.registerLanguage('javascript', javascript)
 
 const Disqus = dynamic(() => import('@/components/blog/disqus'), {
-  loading: () => (
-    <div className="text-center">
-      <Loader />
-    </div>
-  ),
+  ssr: false,
+  loading: function Disqus() {
+    return (
+      <div className="text-center">
+        <Loader />
+      </div>
+    )
+  },
 })
 
 type PostProps = {

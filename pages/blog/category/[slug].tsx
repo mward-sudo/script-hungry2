@@ -45,7 +45,7 @@ const Category: FC<CategoryProps> = ({ category, categories, navLinks }) => {
             </AnimatePresence>
 
             {category?.posts.map((post) => (
-              <Link href={`/blog/post/${post.slug}`}>
+              <Link href={`/blog/post/${post.slug}`} key={post.slug}>
                 <a>
                   <div className="-m-5 p5 mb-0 md:m-0 md:p-0">
                     <PostExcerpt

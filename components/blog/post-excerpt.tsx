@@ -60,6 +60,7 @@ const PostExcerpt: FC<PostExcerptProps> = ({
               src={author?.picture.url}
               width={40}
               height={40}
+              alt=""
               className="rounded-full"
             />
           )}
