@@ -5,5 +5,8 @@
     "jam3",
     "unused-imports",
     "eslint-plugin-tsdoc"
-  ]
+  ],
+  "rules": {
+		"unused-imports/no-unused-imports": "error"
+	}
 }
