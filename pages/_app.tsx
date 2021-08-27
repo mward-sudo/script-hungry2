@@ -1,17 +1,23 @@
-import { FC } from 'react'
 import type { AppProps } from 'next/app'
+import { ReactBricks } from 'react-bricks'
 import Head from 'next/head'
+import config from '@/react-bricks/config'
+import 'tailwindcss/tailwind.css'
+import '../styles/global.sass'
 import {
-  m,
-  LazyMotion,
   AnimateSharedLayout,
   AnimatePresence,
   domMax,
+  LazyMotion,
+  m,
 } from 'framer-motion'
-import 'tailwindcss/tailwind.css'
-import '../styles/global.sass'
 
-const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
+const MyApp = ({ Component, pageProps, router }: AppProps) => {
+  const reactBricksConfig = {
+    ...config,
+    contentClassName: 'antialiased font-content',
+  }
+
   return (
     <>
       <Head>
@@ -55,23 +61,24 @@ const MyApp: FC<AppProps> = ({ Component, pageProps, router }) => {
         <meta name="theme-color" content="#ffffff" />
       </Head>
 
-      <LazyMotion features={domMax}>
-        <AnimateSharedLayout type="crossfade">
-          <AnimatePresence exitBeforeEnter>
-            <m.div
-              initial="initial"
-              animate="animate"
-              exit="initial"
-              key={router.route}
-            >
-              <main>
-                {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-                <Component {...pageProps} key={router.route} />
-              </main>
-            </m.div>
-          </AnimatePresence>
-        </AnimateSharedLayout>
-      </LazyMotion>
+      <AnimatePresence>
+        <ReactBricks {...reactBricksConfig}>
+          <LazyMotion features={domMax}>
+            <AnimateSharedLayout type="crossfade">
+              <m.div
+                initial="initial"
+                animate="animate"
+                exit="initial"
+                key={router.route}
+              >
+                <main>
+                  <Component {...pageProps} key={router.route} />
+                </main>
+              </m.div>
+            </AnimateSharedLayout>
+          </LazyMotion>
+        </ReactBricks>
+      </AnimatePresence>
     </>
   )
 }

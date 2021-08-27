@@ -1,71 +1,85 @@
-import { FC } from 'react'
+import { useContext, FC } from 'react'
 import Head from 'next/head'
 import { m } from 'framer-motion'
 import { GetStaticProps } from 'next'
 import Header from '@/components/header'
-import HomeIntro from '@/components/home/intro'
 import Copyright from '@/components/copyright'
 import Constants from '@/lib/consts'
-import { fadeIn, stagger } from '@/animations/animations'
+import { fadeIn } from '@/animations/animations'
 import getNavigationLinks from '@/lib/navigation-links'
-import HomeMediaCard from '@/components/home/media-card'
 import {
-  iHomePageCards,
-  iHomePageHero,
-  iNavigationLinks,
-} from '@/types/graphcms-api'
-import { getHomePageHero } from '@/lib/blog/home-page-hero'
-import { getHomePageCards } from '@/lib/blog/home-page-cards'
+  ReactBricksContext,
+  PageViewer,
+  cleanPage,
+  types,
+  fetchPage,
+} from 'react-bricks'
+import { iNavigationLinks } from '@/types/graphcms-api'
+
+import config from '@/react-bricks/config'
+import ErrorNoKeys from '@/components/errorNoKeys'
+import ErrorNoHomePage from '@/components/errorNoHomePage'
 
 type IndexPropTypes = {
   navLinks: iNavigationLinks
-  homePageHero: iHomePageHero
-  homePageCards: iHomePageCards
+  page: types.Page
+  error: string
 }
 
-const Index: FC<IndexPropTypes> = ({
-  navLinks,
-  homePageHero,
-  homePageCards,
-}) => (
-  <>
-    <Head>
-      <title>{Constants.SITE_NAME}</title>
-    </Head>
-    <Header navLinks={navLinks} />
-    <m.div variants={fadeIn()}>
-      <HomeIntro homePageHero={homePageHero} />
-      <div className="container mx-auto">
-        <div className="my-4">
-          <m.div variants={stagger({ staggerTime: 0.1 })} className="flex-grow">
-            <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-              {homePageCards.data.homePageCards.map((card) => (
-                <HomeMediaCard
-                  image={card.image.url}
-                  imageHeight={card.image.height}
-                  imageWidth={card.image.width}
-                  imageAlt={card.image.caption}
-                  link={card.url}
-                  linkText={card.text}
-                  key={card.url}
-                />
-              ))}
+const Index: FC<IndexPropTypes> = ({ navLinks, page, error }) => {
+  // Clean the received content
+  // Removes unknown or not allowed bricks
+  const { pageTypes, bricks } = useContext(ReactBricksContext)
+
+  const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
+
+  return (
+    <>
+      <Head>
+        <title>{Constants.SITE_NAME}</title>
+      </Head>
+
+      {pageOk && (
+        <>
+          <Head>
+            <title>{page.meta.title}</title>
+            <meta name="description" content={page.meta.description} />
+          </Head>
+          <m.div variants={fadeIn()}>
+            <Header navLinks={navLinks} />
+            <PageViewer page={pageOk} />
+
+            <div className="container mx-auto">
+              <div className="my-4">
+                <Copyright />
+              </div>
             </div>
           </m.div>
-          <Copyright />
-        </div>
-      </div>
-    </m.div>
-  </>
-)
+        </>
+      )}
+      {error === 'NOKEYS' && <ErrorNoKeys />}
+      {error === 'NOPAGE' && <ErrorNoHomePage />}
+    </>
+  )
+}
 
 export const getStaticProps: GetStaticProps = async () => {
+  let reactBricksProps: Record<string, any>
+
+  if (!config.apiKey) {
+    reactBricksProps = { error: 'NOKEYS' }
+  }
+  try {
+    const page = await fetchPage('home', config.apiKey)
+    reactBricksProps = { page }
+  } catch {
+    reactBricksProps = { error: 'NOPAGE' }
+  }
+
   const navLinks = await getNavigationLinks()
-  const homePageHero = await getHomePageHero()
-  const homePageCards = await getHomePageCards()
 
   return {
-    props: { navLinks, homePageHero, homePageCards },
+    props: { ...reactBricksProps, navLinks },
   }
 }
 
