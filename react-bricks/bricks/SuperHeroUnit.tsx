@@ -22,7 +22,10 @@ const SuperHeroUnit: types.Brick<SuperHeroUnitProps> = ({}) => {
         className="relative mb-8 overflow-hidden bg-black"
         style={{ maxHeight: '50vh' }}
       >
-        <div className="relative overflow-hidden" style={{ height: '50vh' }}>
+        <div
+          className="relative overflow-hidden"
+          style={{ aspectRatio: '2 / 1' }}
+        >
           <div className={styles.introBackground} />
         </div>
 
