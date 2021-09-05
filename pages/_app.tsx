@@ -15,7 +15,7 @@ import {
 const MyApp = ({ Component, pageProps, router }: AppProps) => {
   const reactBricksConfig = {
     ...config,
-    contentClassName: 'antialiased font-content',
+    contentClassName: 'antialiased font-content bg-gray-100 dark:bg-black',
   }
 
   return (
@@ -62,7 +62,7 @@ const MyApp = ({ Component, pageProps, router }: AppProps) => {
       </Head>
 
       <AnimatePresence>
-        <ReactBricks {...reactBricksConfig}>
+        <ReactBricks {...reactBricksConfig} appRootElement="div">
           <LazyMotion features={domMax}>
             <AnimateSharedLayout type="crossfade">
               <m.div
