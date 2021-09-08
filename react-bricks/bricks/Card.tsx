@@ -29,35 +29,34 @@ const Card: types.Brick<CardProps> = ({ link, ...rest }) => {
   return (
     <m.div variants={fadeInAndUp()} className="w-1/2 lg:w-1/4" {...rest}>
       <div className="m-2">
-        <Link href={link}>
-          <a className="text-base no-underline uppercase">
-            <m.div
-              initial="initial"
-              whileHover="hover"
-              whileTap="tap"
-              className="overflow-hidden bg-white border-2 border-gray-200 border-solid rounded-lg dark:border-gray-800 drop-shadow-sm dark:bg-gray-900"
-            >
-              <div style={{ overflow: 'hidden' }}>
-                <m.div variants={hoverImgVariant}>
-                  <Image
-                    propName="cardImage"
-                    alt=""
-                    imageStyle={{ ratio: '16 / 9', width: '100%' }}
-                  />
-                </m.div>
-              </div>
+        <Link href={link} className="text-base no-underline uppercase">
+          <m.div
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            className="overflow-hidden bg-white border-2 border-gray-200 border-solid rounded-lg dark:border-gray-800 drop-shadow-sm dark:bg-gray-900"
+          >
+            <div style={{ overflow: 'hidden' }}>
+              <m.div variants={hoverImgVariant}>
+                <Image
+                  propName="cardImage"
+                  alt=""
+                  imageStyle={{ ratio: '16 / 9', width: '100%' }}
+                  maxWidth={400}
+                />
+              </m.div>
+            </div>
 
-              <Text
-                propName="cardText"
-                placeholder="Card Text"
-                renderBlock={({ children }) => (
-                  <div className="px-2 py-3 text-center text-black no-underline dark:text-gray-200">
-                    {children} &gt;
-                  </div>
-                )}
-              />
-            </m.div>
-          </a>
+            <Text
+              propName="cardText"
+              placeholder="Card Text"
+              renderBlock={({ children }) => (
+                <div className="px-2 py-3 text-center text-black no-underline dark:text-gray-200">
+                  {children} &gt;
+                </div>
+              )}
+            />
+          </m.div>
         </Link>
       </div>
     </m.div>
@@ -74,6 +73,7 @@ Card.schema = {
   getDefaultProps: () => ({
     cardText: 'Card Text',
     link: '/',
+    cardImage: '',
   }),
   sideEditProps: [
     {
