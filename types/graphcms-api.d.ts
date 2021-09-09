@@ -67,35 +67,6 @@ export type iPostExcerpt = {
   coverImage: iPicture
 }
 
-export interface iHomePageHeroes {
-  data: {
-    homePageHeroes: iHomePageHero[]
-  }
-}
-
-export interface iHomePageHero {
-  backgroundImage: Picture
-  lineOneText: string
-  lineTwoText: string
-}
-
-export interface iHomePageCards {
-  data: {
-    homePageCards: iHomePageCard[]
-  }
-}
-
-export interface iHomePageCard {
-  image: {
-    url: string
-    width: number
-    height: number
-    caption: string
-  }
-  url: string
-  text: string
-}
-
 export type iNavigationLinks = {
   data: {
     navigationLinks: iNavigationLink[]
