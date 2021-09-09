@@ -7,6 +7,21 @@ const pageTypes: types.IPageType[] = [
     defaultLocked: false,
     defaultStatus: types.PageStatus.Published,
     getDefaultContent: () => [],
+    excludedBlockTypes: ['postContent'],
+  },
+  {
+    name: 'blog post',
+    pluralName: 'blog posts',
+    defaultLocked: false,
+    defaultStatus: types.PageStatus.Draft,
+    getDefaultContent: () => ['title'],
+    allowedBlockTypes: [
+      'title',
+      'heading2',
+      'heading3',
+      'post-content',
+      'code',
+    ],
   },
 ]
 

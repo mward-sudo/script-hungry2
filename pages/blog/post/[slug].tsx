@@ -1,29 +1,29 @@
-import React, { FC, useState, useEffect } from 'react'
+import React, { FC, useState, useEffect, useContext } from 'react'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
-import { sanitize as sanitizer } from 'isomorphic-dompurify'
 import hljs from 'highlight.js/lib/core'
 import javascript from 'highlight.js/lib/languages/javascript'
-import { AnimatePresence, m } from 'framer-motion'
 import Head from 'next/head'
 import Button from '@/components/button'
-import { getPostBySlug } from '@/lib/blog/post'
-import { getAllPostSlugs } from '@/lib/blog/post-slugs'
-import {
-  iNavigationLinks,
-  iPost,
-  iPostData,
-  iPostSlugs,
-} from '@/types/graphcms-api'
+import { iNavigationLinks } from '@/types/graphcms-api'
 import getNavigationLinks from '@/lib/navigation-links'
 import Loader from '@/components/loader'
-import { fadeIn } from '@/animations/animations'
-import PostHeader from '@/components/blog/post-header'
 import Header from '@/components/header'
 import Constants from '@/lib/consts'
 // import 'highlight.js/styles/default.css'
 import 'highlight.js/styles/github-dark.css'
+import config from '@/react-bricks/config'
+import {
+  cleanPage,
+  fetchPage,
+  fetchPages,
+  PageViewer,
+  ReactBricksContext,
+  types,
+} from 'react-bricks'
+import ErrorNoKeys from '@/components/errorNoKeys'
+import ErrorNoHomePage from '@/components/errorNoHomePage'
 
 hljs.registerLanguage('javascript', javascript)
 
@@ -39,12 +39,12 @@ const Disqus = dynamic(() => import('@/components/blog/disqus'), {
 })
 
 type PostProps = {
-  post: iPost
-  slug: string
   navLinks: iNavigationLinks
+  page: types.Page
+  error: string
 }
 
-const Post: FC<PostProps> = ({ post, slug, navLinks }) => {
+const Post: FC<PostProps> = ({ navLinks, page, error }) => {
   const [showComments, setShowComments] = useState(false)
 
   const router = useRouter()
@@ -54,26 +54,32 @@ const Post: FC<PostProps> = ({ post, slug, navLinks }) => {
     hljs.highlightAll()
   }, [])
 
-  const url = `https://scripthungry.com/blog/post/${post?.slug}`
+  // Clean the received content
+  // Removes unknown or not allowed bricks
+  const { pageTypes, bricks } = useContext(ReactBricksContext)
+
+  const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
+
+  const url = `https://scripthungry.com/blog/post/${page?.slug}`
 
   return (
     <>
       <Head>
-        <title>{post?.title}</title>
-        <meta name="description" content={post?.excerpt} />
+        <title>{page?.meta.title}</title>
+        <meta name="description" content={page?.meta.description} />
         <link rel="canonical" href={url} />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" key="twcard" />
-        <meta
+        {/* <meta
           name="twitter:creator"
-          content={post?.author.twitterHandle}
+          content={page?.author.firstName}
           key="twhandle"
-        />
+        /> */}
         <meta property="og:url" content={url} key="ogurl" />
         <meta
           property="og:image"
-          content={post?.coverImage?.url}
+          content={page?.meta.featuredImage}
           key="ogimage"
         />
         <meta
@@ -81,80 +87,81 @@ const Post: FC<PostProps> = ({ post, slug, navLinks }) => {
           content={Constants.SITE_NAME}
           key="ogsitename"
         />
-        <meta property="og:title" content={post?.title} key="ogtitle" />
-        <meta property="og:description" content={post?.excerpt} key="ogdesc" />
+        <meta property="og:title" content={page?.meta.title} key="ogtitle" />
+        <meta
+          property="og:description"
+          content={page?.meta.description}
+          key="ogdesc"
+        />
       </Head>
+
       <Header element="p" navLinks={navLinks} />
 
-      <PostHeader
-        title={post?.title}
-        coverImage={post?.coverImage}
-        slug={slug}
-      />
-
-      <div className="max-w-3xl mx-auto">
-        <AnimatePresence>
-          <m.div variants={fadeIn()}>
-            <div
-              className="dark:text-gray-300"
-              dangerouslySetInnerHTML={{
-                __html: sanitizer(post?.content?.html),
-              }}
-            />
-          </m.div>
-        </AnimatePresence>
-        <div className="my-16">
-          {showComments ? (
-            <Disqus
-              key={post?.slug}
-              pageTitle={post?.title}
-              pageID={post?.slug}
-              pageURL={`https://scripthungry.com${router.asPath}`}
-            />
-          ) : (
-            <Button
-              variant="secondary"
-              onClick={() => setShowComments(true)}
-              text="Show Comments"
-              width="full"
-            />
-          )}
-        </div>
-      </div>
+      {pageOk && (
+        <>
+          <PageViewer page={pageOk} />
+          <div className="max-w-3xl mx-auto">
+            <div className="my-16">
+              {showComments && page?.meta.title ? (
+                <Disqus
+                  key={page?.slug}
+                  pageTitle={page?.meta.title}
+                  pageID={page?.slug}
+                  pageURL={`https://scripthungry.com${router.asPath}`}
+                />
+              ) : (
+                <Button
+                  variant="secondary"
+                  onClick={() => setShowComments(true)}
+                  text="Show Comments"
+                  width="full"
+                />
+              )}
+            </div>
+          </div>
+        </>
+      )}
+      {error === 'NOKEYS' && <ErrorNoKeys />}
+      {error === 'NOPAGE' && <ErrorNoHomePage />}
     </>
   )
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const navLinks = await getNavigationLinks()
+  let reactBricksProps: Record<string, any>
 
   let slug = ''
-  if (params !== undefined && params.slug !== undefined) {
-    if (typeof params.slug === 'string') {
-      slug = params.slug
-    } else if (typeof params.slug === 'object') {
-      // eslint-disable-next-line prefer-destructuring
+  if (params?.slug) {
+    if (Array.isArray(params.slug)) {
       slug = params.slug[0]
+    } else if (typeof params.slug === 'string') {
+      slug = params.slug
     }
   }
 
-  const post: iPostData = await getPostBySlug(slug)
+  if (!config.apiKey) {
+    reactBricksProps = { error: 'NOKEYS' }
+  }
+  try {
+    const page = await fetchPage(slug, config.apiKey)
+    reactBricksProps = { page }
+  } catch {
+    reactBricksProps = { error: 'NOPAGE' }
+  }
+
+  const navLinks = await getNavigationLinks()
+
   return {
-    props: {
-      post: post?.data.post,
-      slug,
-      navLinks,
-    },
+    props: { ...reactBricksProps, navLinks },
     revalidate: 60,
   }
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const postSlugs: iPostSlugs | null = await getAllPostSlugs()
-  const paths: Array<string> =
-    postSlugs !== null
-      ? postSlugs?.data.posts.map((post) => `/blog/post/${post.slug}`)
-      : []
+  const pages = await fetchPages(config.apiKey, { type: 'blog post' })
+  const paths = pages.map((page) => ({
+    params: { slug: page.slug },
+  }))
 
   return {
     paths,
