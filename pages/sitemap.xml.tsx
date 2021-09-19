@@ -29,7 +29,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const pages = [
     `${baseUrl}/`,
     `${baseUrl}/blog`,
-    `${baseUrl}/portfolio`,
+    `${baseUrl}/showcase`,
+    `${baseUrl}/showcase/parallax`,
     ...(await getBlogPages()),
     ...(await getBlogCategoryPages()),
   ]

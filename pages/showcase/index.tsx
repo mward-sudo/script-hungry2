@@ -1,45 +1,32 @@
 import { FC } from 'react'
 import Head from 'next/head'
-import { m } from 'framer-motion'
 import { GetStaticProps } from 'next'
 import Header from '@/components/header'
-import HomeIntro from '@/components/home/intro'
-import Copyright from '@/components/copyright'
-import Constants from '@/lib/consts'
-import { fadeIn, stagger } from '@/animations/animations'
 import getNavigationLinks from '@/lib/navigation-links'
+import { iNavigationLinks, iShowcaseCards } from '@/types/graphcms-api'
+import { getShowcaseCards } from '@/lib/blog/showcase-cards'
+import { m } from 'framer-motion'
+import { stagger } from '@/animations/animations'
 import MediaCard from '@/components/media-card'
-import {
-  iHomepageCards,
-  iHomePageHero,
-  iNavigationLinks,
-} from '@/types/graphcms-api'
-import { getHomePageHero } from '@/lib/blog/home-page-hero'
-import { getHomePageCards } from '@/lib/blog/home-page-cards'
 
 type IndexPropTypes = {
   navLinks: iNavigationLinks
-  homePageHero: iHomePageHero
-  homePageCards: iHomepageCards
+  showcaseCards: iShowcaseCards
 }
 
-const Index: FC<IndexPropTypes> = ({
-  navLinks,
-  homePageHero,
-  homePageCards,
-}) => (
+const Index: FC<IndexPropTypes> = ({ navLinks, showcaseCards }) => (
   <>
     <Head>
-      <title>{Constants.SITE_NAME}</title>
+      <title>Showcase - Michael Ward</title>
     </Head>
-    <Header navLinks={navLinks} />
-    <m.div variants={fadeIn()}>
-      <HomeIntro homePageHero={homePageHero} />
+    <Header element="p" navLinks={navLinks} />
+    <div className="container mx-auto dark:text-gray-300">
+      <h1>Showcase</h1>
       <div className="container mx-auto">
         <div className="my-4">
           <m.div variants={stagger({ staggerTime: 0.1 })} className="flex-grow">
             <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
-              {homePageCards.data.homePageCards.map((card) => (
+              {showcaseCards.data.showcaseCards.map((card) => (
                 <MediaCard
                   image={card.image.url}
                   imageHeight={card.image.height}
@@ -52,21 +39,20 @@ const Index: FC<IndexPropTypes> = ({
               ))}
             </div>
           </m.div>
-          <Copyright />
         </div>
       </div>
-    </m.div>
+    </div>
   </>
 )
 
 export const getStaticProps: GetStaticProps = async () => {
   const navLinks = await getNavigationLinks()
-  const homePageHero = await getHomePageHero()
-  const homePageCards = await getHomePageCards()
-  console.log(homePageCards)
+  const showcaseCards = await getShowcaseCards()
+
+  console.log(showcaseCards)
 
   return {
-    props: { navLinks, homePageHero, homePageCards },
+    props: { navLinks, showcaseCards },
   }
 }
 
