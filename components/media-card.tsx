@@ -32,7 +32,7 @@ type MediaCardProps = {
   imageAlt?: string
 }
 
-const HomeMediaCard: FC<MediaCardProps> = ({
+const MediaCard: FC<MediaCardProps> = ({
   link,
   linkText,
   image,
@@ -45,12 +45,12 @@ const HomeMediaCard: FC<MediaCardProps> = ({
   return (
     <m.div variants={fadeInAndUp()}>
       <Link href={link}>
-        <a className="no-underline uppercase text-base">
+        <a className="text-base no-underline uppercase">
           <m.div
             initial="initial"
             whileHover="hover"
             whileTap="tap"
-            className="border-2 border-solid border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden drop-shadow-sm bg-white dark:bg-gray-900"
+            className="overflow-hidden bg-white border-2 border-gray-200 border-solid rounded-lg dark:border-gray-800 drop-shadow-sm dark:bg-gray-900"
           >
             <div style={{ overflow: 'hidden' }}>
               <m.div variants={hoverImgVariant} ref={observe}>
@@ -67,7 +67,7 @@ const HomeMediaCard: FC<MediaCardProps> = ({
                 />
               </m.div>
             </div>
-            <div className="text-black dark:text-gray-200 text-center no-underline py-3 px-2">
+            <div className="px-2 py-3 text-center text-black no-underline dark:text-gray-200">
               {linkText} &gt;
             </div>
           </m.div>
@@ -77,4 +77,4 @@ const HomeMediaCard: FC<MediaCardProps> = ({
   )
 }
 
-export default HomeMediaCard
+export default MediaCard

@@ -79,13 +79,19 @@ export interface iHomePageHero {
   lineTwoText: string
 }
 
-export interface iHomePageCards {
+export interface iHomepageCards {
   data: {
-    homePageCards: iHomePageCard[]
+    homePageCards: iCard[]
   }
 }
 
-export interface iHomePageCard {
+export interface iShowcaseCards {
+  data: {
+    showcaseCards: iCard[]
+  }
+}
+
+export interface iCard {
   image: {
     url: string
     width: number

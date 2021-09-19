@@ -1,15 +1,15 @@
-import { iHomepageCards } from '@/types/graphcms-api'
+import { iShowcaseCards } from '@/types/graphcms-api'
 import { callGraphCMS } from '@/lib/graphcms-api'
 import narrowType from '@/lib/narrow-type'
 
 /**
- * Get cards for home page. Async
+ * Get cards for showcase. Async
  */
-export const getHomePageCards = async (): Promise<iHomepageCards> => {
+export const getShowcaseCards = async (): Promise<iShowcaseCards> => {
   /** GraphQL query to be executed */
   const query = `
     query {
-      homePageCards(stage: PUBLISHED) {
+      showcaseCards(stage: PUBLISHED) {
         image {
           height
           width
@@ -24,6 +24,6 @@ export const getHomePageCards = async (): Promise<iHomepageCards> => {
 
   const response = await callGraphCMS(query)
   /** Return response or throw error if response is undefined OR null */
-  if (narrowType<iHomepageCards>(response)) return response
-  throw new Error('No response from CMS for HomePageCards')
+  if (narrowType<iShowcaseCards>(response)) return response
+  throw new Error('No response from CMS for ShowcaseCards')
 }
