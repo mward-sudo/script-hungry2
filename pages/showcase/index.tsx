@@ -51,6 +51,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { navLinks, showcaseCards },
+    revalidate: 60,
   }
 }
 

@@ -87,6 +87,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       categories,
       navLinks,
     },
+    revalidate: 60,
   }
 }
 
