@@ -28,7 +28,6 @@ export const callGraphCMS: iCallGraphCMS = async (query) => {
     return data
   } catch (error) {
     // eslint-disable-next-line no-console
-    console.log(error)
     throw new Error('Could not fetch data from GraphCMS!')
   }
 }

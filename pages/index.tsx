@@ -63,7 +63,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const navLinks = await getNavigationLinks()
   const homePageHero = await getHomePageHero()
   const homePageCards = await getHomePageCards()
-  console.log(homePageCards)
 
   return {
     props: { navLinks, homePageHero, homePageCards },

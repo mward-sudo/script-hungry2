@@ -49,8 +49,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const navLinks = await getNavigationLinks()
   const showcaseCards = await getShowcaseCards()
 
-  console.log(showcaseCards)
-
   return {
     props: { navLinks, showcaseCards },
   }
