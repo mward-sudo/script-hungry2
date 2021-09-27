@@ -97,6 +97,7 @@ const Post: FC<PostProps> = ({ post, slug, navLinks }) => {
           <m.div variants={fadeIn()}>
             <div
               className="dark:text-gray-300"
+              id="blog-post"
               dangerouslySetInnerHTML={{
                 __html: sanitizer(post?.content?.html),
               }}
