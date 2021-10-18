@@ -19,10 +19,7 @@ const PostTitle: FC<PostTitleProps> = ({ slug, title }) => (
     }}
   >
     <m.div layoutId={`post-title-${slug}`}>
-      <h1
-        className="text-center font-display bg-red-600 italic text-shadow
-      text-xl md:text-3xl font-semibold text-white px-4 py-2 transform-gpu -rotate-2"
-      >
+      <h1 className="px-4 py-2 text-xl italic font-semibold text-center text-white bg-red-600 font-display text-shadow md:text-3xl transform-gpu -rotate-2">
         <span className="block transform-gpu rotate-2">{title}</span>
       </h1>
     </m.div>

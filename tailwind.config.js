@@ -42,6 +42,14 @@ module.exports = {
     fontFamily: {
       display: ['"Proza Libre"', 'sans-serif'],
     },
+    rotate: {
+      1: '1deg',
+      '-1': '-1deg',
+      2: '2deg',
+      '-2': '-2deg',
+      3: '3deg',
+      '-3': '-3deg',
+    },
   },
   variants: {
     extend: {

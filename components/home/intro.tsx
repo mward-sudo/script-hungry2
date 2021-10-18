@@ -2,7 +2,6 @@ import { FC } from 'react'
 import { m } from 'framer-motion'
 import { fadeInAndUp, stagger } from '@/animations/animations'
 import { iHomePageHero } from '@/types/graphcms-api'
-import styles from './intro.module.css'
 
 type HomeIntroProps = {
   homePageHero: iHomePageHero
@@ -11,26 +10,16 @@ type HomeIntroProps = {
 /** Component that renders the home page hero section */
 const HomeIntro: FC<HomeIntroProps> = ({ homePageHero }) => {
   return (
-    <section
-      className="relative bg-black overflow-hidden mb-8"
-      style={{ maxHeight: '50vh' }}
-    >
-      <div className="overflow-hidden relative" style={{ height: '50vh' }}>
-        <div className={styles.introBackground} />
-      </div>
-
-      <m.div
-        variants={stagger()}
-        className="absolute top-0 h-full w-full grid text-center justify-center content-center"
-      >
+    <section className="relative mb-40 text-center mt-28">
+      <m.div variants={stagger()} className="w-3/4 mx-auto">
         <m.div variants={fadeInAndUp({ initialYOffset: 400, duration: 1 })}>
-          <h3 className="font-display bg-red-600 transform -rotate-6 z-10 italic text-white m-0 p-2 leading-none text-shadow-md">
+          <h3 className="block p-2 m-0 italic leading-none text-white transform bg-red-600 shadow-2xl font-display -rotate-3 text-shadow-md">
             <m.div variants={fadeInAndUp({ initialYOffset: 400, duration: 1 })}>
-              <div className="transform rotate-6">
-                <span className="block text-headingVwS not-italic font-normal">
+              <div className="transform rotate-3">
+                <span className="block not-italic font-normal text-headingVwS">
                   {homePageHero.lineOneText}
                 </span>
-                <span className="block text-headingVwL font-bold">
+                <span className="block font-bold text-headingVwL">
                   {homePageHero.lineTwoText}
                 </span>
               </div>
