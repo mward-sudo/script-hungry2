@@ -20,4 +20,7 @@
 },
 "debug.console.fontSize": 14,
 "typescript.tsdk": "node_modules/typescript/lib",
+"files.exclude": {
+  "**/.yarn": true
+},
 }

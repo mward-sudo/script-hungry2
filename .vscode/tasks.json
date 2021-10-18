@@ -4,9 +4,9 @@
     {
       "label": "Run npm dev on startup",
       "type": "shell",
-      "command": "npm run dev",
+      "command": "yarn run dev",
       "windows": {
-        "command": "npm run dev"
+        "command": "yarn run dev"
       },
       "presentation": {
         "reveal": "always",

@@ -1,31 +1,4 @@
-const { StatsWriterPlugin } = require('webpack-stats-plugin')
-
-const withSvgr = require('@newhighsco/next-plugin-svgr')
-
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
-
-module.exports = withBundleAnalyzer(
-  withSvgr({
-    webpack: (config, { dev, isServer }) => {
-      config.plugins.push(
-        new StatsWriterPlugin({
-          filename: 'webpack-stats.json',
-          stats: {
-            assets: true,
-            entrypoints: true,
-            chunks: true,
-            modules: true,
-          },
-        })
-      )
-
-      return config
-    },
-    svgrOptions: {
-      /* config options here */
-    },
+module.exports = {
     images: {
       domains: [
         'res.cloudinary.com',
@@ -35,13 +8,6 @@ module.exports = withBundleAnalyzer(
       ],
       imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
       quality: 25,
-    },
-    typescript: {
-      // !! WARN !!
-      // Dangerously allow production builds to successfully complete even if
-      // your project has type errors.
-      // !! WARN !!
-      // ignoreBuildErrors: true
     },
     async headers() {
       return [
@@ -56,5 +22,4 @@ module.exports = withBundleAnalyzer(
         },
       ]
     },
-  })
-)
+  }

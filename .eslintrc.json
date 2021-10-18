@@ -1,11 +1,6 @@
 {
   "extends": ["next/core-web-vitals", "plugin:prettier/recommended"],
-  "plugins": [
-    "@typescript-eslint",
-    "jam3",
-    "unused-imports",
-    "eslint-plugin-tsdoc"
-  ],
+  "plugins": ["unused-imports"],
   "rules": {
 		"unused-imports/no-unused-imports": "error"
 	}
