@@ -9,6 +9,7 @@
     "christian-kohler.path-intellisense",
     "esbenp.prettier-vscode",
     "bradlc.vscode-tailwindcss",
-    "heybourn.headwind"
+    "heybourn.headwind",
+    "arcanis.vscode-zipfs"
   ]
 }

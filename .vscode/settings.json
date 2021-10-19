@@ -5,22 +5,31 @@
   "editor.formatOnSave": true,
   "eslint.alwaysShowStatus": true,
   "editor.codeActionsOnSave": {
-  "source.fixAll.eslint": true
-},
-"zenMode.centerLayout": false,
-"prettier.printWidth": 100,
-"editor.tabSize": 2,
-"html.format.wrapLineLength": 100,
-"terminal.integrated.fontSize": 14,
-"terminal.integrated.profiles.osx": {
-  "zsh (login)": {
-    "path": "zsh",
-    "args": ["-l"]
-  }
-},
-"debug.console.fontSize": 14,
-"typescript.tsdk": "node_modules/typescript/lib",
-"files.exclude": {
-  "**/.yarn": true
-},
+    "source.fixAll.eslint": true
+  },
+  "zenMode.centerLayout": false,
+  "prettier.printWidth": 100,
+  "editor.tabSize": 2,
+  "html.format.wrapLineLength": 100,
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.profiles.osx": {
+    "zsh (login)": {
+      "path": "zsh",
+      "args": [
+        "-l"
+      ]
+    }
+  },
+  "debug.console.fontSize": 14,
+  "typescript.tsdk": ".yarn/sdks/typescript/lib",
+  "files.exclude": {
+    "**/.yarn": true
+  },
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "eslint.nodePath": ".yarn/sdks",
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.js",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
