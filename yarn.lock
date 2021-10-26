@@ -271,7 +271,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.11.2":
+"@babel/runtime@npm:^7.10.2, @babel/runtime@npm:^7.11.2, @babel/runtime@npm:^7.7.2":
   version: 7.15.4
   resolution: "@babel/runtime@npm:7.15.4"
   dependencies:
@@ -4779,6 +4779,9 @@ __metadata:
     react: ^17.0.2
     react-cool-dimensions: ^2.0.7
     react-dom: ^17.0.2
+    react-intersection-observer: ^8.32.1
+    react-parallax: ^3.3.0
+    react-scroll-percentage: ^4.2.0
     sass: ^1.37.5
     tailwindcss: ^2.2.7
     tailwindcss-border-styles: ^1.0.1
@@ -5845,6 +5848,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-intersection-observer@npm:^8.25.1, react-intersection-observer@npm:^8.32.1":
+  version: 8.32.1
+  resolution: "react-intersection-observer@npm:8.32.1"
+  peerDependencies:
+    react: ^15.0.0 || ^16.0.0 || ^17.0.0|| ^18.0.0
+  checksum: 3bd4419a468299909774287244ce33390a6a2770da241fd0b53e8594b7e4ad4ffe9d08bceec616d297194a78680401029231d19388871469a0e234558de2fa47
+  languageName: node
+  linkType: hard
+
 "react-is@npm:17.0.2":
   version: 17.0.2
   resolution: "react-is@npm:17.0.2"
@@ -5859,10 +5871,32 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-parallax@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "react-parallax@npm:3.3.0"
+  peerDependencies:
+    react: 16.x.x || 17.x.x
+    react-dom: 16.x.x || 17.x.x
+  checksum: a345216b136b6f30c765aab75e985eb8d6a33c6f4a4dd311c661741f55faa24558b6a303e4d63c3fe04dee1993aa9beced8818fab49aad902a46eb4fff5db318
+  languageName: node
+  linkType: hard
+
 "react-refresh@npm:0.8.3":
   version: 0.8.3
   resolution: "react-refresh@npm:0.8.3"
   checksum: 3cffe5a9cbac1c5d59bf74bf9fff43c987d87ef32098b9092ea94b6637377d86c08565b9374d9397f446b3fbcd95de986ec77220a16f979687cb39b7b89e2f91
+  languageName: node
+  linkType: hard
+
+"react-scroll-percentage@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "react-scroll-percentage@npm:4.2.0"
+  dependencies:
+    "@babel/runtime": ^7.7.2
+    react-intersection-observer: ^8.25.1
+  peerDependencies:
+    react: ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: f5f58054fa70f2a8ed6a96e244688bd99b73e2267160e53e1f0dfab958c1aa573f737820b8dacfff3a36708764a365674cfc8a5022fd75dd3fb0196882bfcfa9
   languageName: node
   linkType: hard
 
