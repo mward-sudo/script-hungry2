@@ -7,7 +7,7 @@
     "framer-motion": "^4.1.9",
     "highlight.js": "^11.2.0",
     "isomorphic-dompurify": "^0.13.0",
-    "next": "^11.1.2",
+    "next": "^12.1.0",
     "react": "^17.0.2",
     "react-cool-dimensions": "^2.0.7",
     "react-dom": "^17.0.2",
